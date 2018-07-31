@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/clipboard/LogoClipboard.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Rename.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/MoveDown.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/files/LogoFiles.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Help.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/workspace/style/LogoStyle.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/app_data/properties/language_properties_EN.xml</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/app_data/web/index.html</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/goLogoLoWelcomeBanner.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ChangeFont_Italicize.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Language.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/data/LogoPrototype.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/app_data/web/Logo.html</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/build/built-jar.properties</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/data/LogoData.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/workspace/style/logo_style.css</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Paste.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Undo.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/NewFile.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ChangeFont_IncreaseText.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/goLogoLoLogo.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/MoveUp.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Export.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ChangeFont_Underline.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/app_data/web/About.html</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/workspace/goLogoLoWorkspace.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ChangeFont_Bold.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/app_data/web/Help.html</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ChangeFont_DecreaseText.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/AddText.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Resize.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Copy.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Exit.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Delete.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Cut.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/AddImage.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ZoomOut.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Load.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/app_data/properties/app_properties.xml</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/nbproject/project.xml</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/goLogoLoPropertyType.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/About.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/src/gologolo/GoLogoLo.java</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Redo.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/Save.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ZoomIn.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/nbproject/genfiles.properties</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/images/icons/ResetView.png</file>
+            <file>file:/Users/jasoncao/NetBeansProjects/goLogoLo/nbproject/project.properties</file>
+        </group>
+    </open-files>
+</project-private>
