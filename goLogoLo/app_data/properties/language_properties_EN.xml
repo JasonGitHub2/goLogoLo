@@ -7,11 +7,24 @@
     <property_list>
 
         <!-- ENGLISH LANGUAGE SETTINGS GOLOGOLO CONTROLS -->
+         <property name="LOGO_EDIT_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+              <property name="LOGO_EDIT_DIALOG_CANCEL_BUTTON_TEXT"            value="Cancel"></property>
+         <property name="LOGO_EDIT_TEXT_LABEL_TEXT"               value="Edit Text:"></property>  
+           <property name="LOGO_ADD_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+              <property name="LOGO_ADD_DIALOG_CANCEL_BUTTON_TEXT"            value="Cancel"></property>
+         <property name="LOGO_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+        <property name="LOGO_DIALOG_CANCEL_BUTTON_TEXT"        value="Cancel"></property>       
 
+         <property name="LOGO_TEXT_LABEL_TEXT"               value="Add Text:"></property>  
+        <property name="LOGO_DIALOG_HEADER_TEXT"               value="Add Logo Component"></property>
+        <property name="LOGO_NAME_LABEL_TEXT"               value="Name:"></property>   
+        <property name="LOGO_ADD_DIALOG_NAME_LABEL_TEXT"               value="Name:"></property>   
+        <property name="LOGO_DIALOG_ADD_HEADER_TEXT"           value="Add Component"></property>
+        <property name="CHANGE_DIMENSION_LABEL_TEXT"   value="Change Logo Dimension"></property>
         <!-- WELCOME DIALOG TEXT -->
         <property name="WELCOME_DIALOG_TITLE"               value="Welcome to the goLogoLo Editor"></property>
         <property name="WELCOME_DIALOG_RECENT_WORK_LABEL"   value="Recent Work"></property>
-        <property name="WELCOME_DIALOG_NEW_BUTTON_TEXT"  value="Create new goLogoLo workspace"></property>
+        <property name="WELCOME_DIALOG_NEW_BUTTON_TEXT"  value="Create New Logo"></property>
 
         <!-- GENERIC APP ERROR MESSAGES -->
         <property name="APP_ERROR_TITLE"            value="Application Error"></property>
@@ -38,6 +51,7 @@
         <!-- UNDO TOOLBAR TOOLTIPS -->
         <property name="UNDO_BUTTON_TOOLTIP"        value="Undo"></property>
         <property name="REDO_BUTTON_TOOLTIP"        value="Redo"></property>
+        
 
         <!-- HELP TOOLBAR TOOLTIPS -->
         <property name="HELP_BUTTON_TOOLTIP"        value="Help"></property>
@@ -79,7 +93,7 @@
         <property name="GOLOGOLO_BORDER_COLOR_LABEL_TEXT"       value="Border Color:"></property>
         <property name="GOLOGOLO_BORDER_RADIUS_LABEL_TEXT"       value="Border Radius:"></property>
         
-        <property name="GOLOGOLO_COLOR_GRADIENT_LABEL_TEXT"       value="Color Gradient:"></property>
+        <property name="GOLOGOLO_COLOR_GRADIENT_LABEL_TEXT"       value="               Color Gradient"></property>
         <property name="GOLOGOLO_FOCUS_ANGLE_LABEL_TEXT"       value="Focus Angle:"></property>
         <property name="GOLOGOLO_FOCUS_DISTANCE_LABEL_TEXT"       value="Focus Distance:"></property>
         <property name="GOLOGOLO_CENTER_X_LABEL_TEXT"       value="Center x:"></property>
@@ -88,10 +102,16 @@
         <property name="GOLOGOLO_CYCLE_METHOD_LABEL_TEXT"       value="Cycle Method:"></property>
         <property name="GOLOGOLO_STOP_0_COLOR_LABEL_TEXT"       value="Stop 0 Color:"></property>
         <property name="GOLOGOLO_STOP_1_COLOR_LABEL_TEXT"       value="Stop 1 Color:"></property>
+         <property name="TOGGLE_SNAP_LABEL_TEXT"       value="Snap"></property>
         
         <property name="GOLOGOLO_ORDER_COLUMN_TEXT"       value="Order"></property>
         <property name="GOLOGOLO_NAME_COLUMN_TEXT"    value="Name"></property>
         <property name="GOLOGOLO_TYPE_COLUMN_TEXT"     value="Type"></property>
+        
+        <!--NAVIGATION BAR RESIZE TEXTS -->
+        <property name="GOLOGOLO_CHANGE_LOGO_DIMENSIONS_LABEL_TEXT"     value="Change Logo Dimensions"></property>
+        <property name="GOLOGOLO_HEIGHT_LABEL_TEXT"     value="Height:"></property>
+        <property name="GOLOGOLO_WIDTH_LABEL_TEXT"     value="Width:"></property>
        
         <!-- LANGUAGE-DEPENDENT TEXT FOR ITEM DIALOG CONTROLS -->
       

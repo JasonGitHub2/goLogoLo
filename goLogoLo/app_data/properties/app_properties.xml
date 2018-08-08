@@ -7,7 +7,8 @@
     customizable.
 -->
 <properties>
-    <property_list>        
+    <property_list>     
+      
         <!-- DESKTOP JAVA FRAMEWORK CONTROLS SETTINGS -->
         <property name="APP_TITLE"	    value="goLogoLo Editor"></property>
         <property name="APP_BANNER"         value="goLogoLoWelcomeBanner.png"></property>
@@ -21,8 +22,8 @@
         <property name="APP_PATH_ICONS"     value="./images/icons/"></property>
         <property name="APP_PATH_IMAGES"    value="./images/"></property>
         <property name="APP_PATH_WEB"       value="./app_data/web/"></property>
-        <property name="PREF_WIDTH"         value="800"></property>
-        <property name="PREF_HEIGHT"        value="600"></property>
+        <property name="PREF_WIDTH"         value="1200"></property>
+        <property name="PREF_HEIGHT"        value="1000"></property>
         <property name="START_MAXIMIZED"    value="true"></property>
 
         <!-- TOP TOOLBARS AND CONTROLS TO INCLUDE -->
@@ -37,11 +38,17 @@
         <property name="HAS_EXPORT"             value="true"></property>
         <property name="HAS_EXIT"               value="true"></property>
         <property name="HAS_CLIPBOARD_TOOLBAR"  value="true"></property>
+        <property name="HAS_NAVIGATION_TOOLBAR"  value="true"></property>
         <property name="HAS_UNDO_TOOLBAR"       value="true"></property>
         <property name="HAS_HELP_TOOLBAR"       value="true"></property>
         <property name="HAS_HELP"               value="true"></property>
-        <property name="HAS_LANGUAGE"           value="true"></property>
+         <property name="HAS_RESET"               value="true"></property>
+         <property name="HAS_LANGUAGE"           value="true"></property>
         <property name="HAS_ABOUT"              value="true"></property>
+         <property name="HAS_ZOOM_IN"              value="true"></property>
+        <property name="HAS_ZOOM_OUT"              value="true"></property>
+         <property name="HAS_RESIZE"              value="true"></property>
+         <property name="HAS_TOGGLE"              value="true"></property>
 
         <!-- PROGRAM ICON FILES - FILE TOOLBAR -->        
         <property name="NEW_BUTTON_ICON"        value="NewFile.png"></property>
@@ -83,10 +90,13 @@
         <property name="MOVE_DOWN_BUTTON_ICON"        value="MoveDown.png"></property>
         <property name="MOVE_UP_BUTTON_ICON"          value="MoveUp.png"></property>
         <property name="RENAME_BUTTON_ICON"           value="Rename.png"></property>
-        <property name="RESET_BUTTON_ICON"            value="Reset.png"></property>
+        <property name="RESET_BUTTON_ICON"            value="Resetview.png"></property>
         <property name="RESIZE_BUTTON_ICON"           value="Resize.png"></property>
         <property name="ZOOM_IN_BUTTON_ICON"          value="ZoomIn.png"></property>
         <property name="ZOOM_OUT_BUTTON_ICON"         value="ZoomOut.png"></property>
+        <property name="TOGGLE_BUTTON_OFF_ICON"         value="ToggleButtonOff.png"></property>
+        <property name="TOGGLE_BUTTON_ON_ICON"         value="ToggleButtonOn.png"></property>
+      
                  
         
   <!-- THIS IS THE FILE WE'LL USE TO MAKE OUR EXPORTED WEB FILE -->
@@ -98,6 +108,7 @@
         <property name="DEFAULT_FONT"               value="Times New Roman"></property>
           <property name="DEFAULT_FONT_SIZE"               value="72"></property>
           <property name="DEFAULT_BORDER_COLOR"               value="#ff0000"></property>
+           <property name="DEFAULT_CYCLE_METHOD"               value="No Cycle"></property>
        
     </property_list>
     <property_options_list>
@@ -121,6 +132,9 @@
             <option>#ff0000</option>
             <option>#00ff00</option>
             <option>#92a8d1</option>
+        </property_options>
+        <property_options name="CYCLE_METHOD_OPTIONS">
+            <option>No Cycle</option>
         </property_options>
     </property_options_list>
 </properties>

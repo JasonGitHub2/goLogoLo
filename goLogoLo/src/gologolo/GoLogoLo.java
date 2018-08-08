@@ -24,7 +24,7 @@ import static javafx.application.Application.launch;
 public class GoLogoLo extends AppTemplate{
 
     /**
-     * @param args the command line arguments
+     * @param args the command line 
      */
     public static void main(String[] args) {
         launch(args);

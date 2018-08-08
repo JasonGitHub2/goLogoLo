@@ -38,4 +38,12 @@ public class LogoStyle {
      
 //text css for regular text
      public static final String CLASS_LOGO_REGULAR_LABEL        ="goLogoLo_regular_text";
+      public static final String CLASS_LOGO_TITLE_LABEL        ="goLogoLo_title_text";
+       public static final String CLASS_LOGO_DIALOG_GRID           = "goLogoLo_dialog_grid";
+        public static final String CLASS_LOGO_DIALOG_HEADER         = "logo_dialog_header";
+    public static final String CLASS_LOGO_DIALOG_PROMPT         = "logo_dialog_prompt";
+     public static final String CLASS_LOGO_DIALOG_TEXT_FIELD     = "logo_dialog_text_field";
+     public static final String CLASS_LOGO_DIALOG_BUTTON         = "logo_dialog_button";
+      public static final String CLASS_LOGO_DIALOG_PANE           = "logo_button_pane";
+       public static final String CLASS_LOGO_SHAPE           = "logo_shape";
 }

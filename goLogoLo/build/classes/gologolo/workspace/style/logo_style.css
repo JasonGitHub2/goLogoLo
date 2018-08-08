@@ -121,7 +121,7 @@ and open the template in the editor.
      BACKGROUND PANE for LEFT PANE 
 **/
 .goLogoLo_left_box {
-    -fx-background-color: rgb(230,230,230);
+    -fx-background-color:rgb(204,204,204);
     -fx-border: 0 0 0 0;
     -fx-border-color: black;
     -fx-border-radius: 0;
@@ -136,7 +136,7 @@ and open the template in the editor.
      css Pane for left side icon buttons in workspace
 **/
 .goLogoLo_icon_pane_box {
-    -fx-background-color: rgb(153, 102, 255);
+    -fx-background-color: rgb(26, 140, 255);
     -fx-border: 0 0 0 0;
     -fx-border-color: black;
     -fx-border-radius: 0;
@@ -149,11 +149,11 @@ and open the template in the editor.
      css Pane for Right side  buttons in workspace
 **/
 .goLogoLo_right_icon_pane_box {
-    -fx-background-color: rgb(153, 102, 255);
+    -fx-background-color: rgb(26, 140, 255);
     -fx-border: 0 0 0 0;
     -fx-border-color: black;
     -fx-border-radius: 0;
-    -fx-padding: 15 15 15 15;
+    -fx-padding: 5 5 5 5;
     -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);
 }
 
@@ -162,7 +162,7 @@ and open the template in the editor.
      BACKGROUND PANE for RIGHT PANE
 **/
 .goLogoLo_right_box {
-    -fx-background-color: rgb(234, 230, 255);
+    -fx-background-color: rgb(191, 191, 191);
     -fx-border: 1 1 0 0;
     -fx-border-color: black;
     -fx-border-radius: 0;
@@ -170,7 +170,39 @@ and open the template in the editor.
     -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);
    
 }
+.logo_dialog_header {
+    -fx-font-weight: bold;
+    -fx-font-size: 18pt
+}
+.logo_dialog_button {
+    -fx-min-width:150px;
+    -fx-max-width:150px;
+    -fx-min-height:50px;
+    -fx-max-height:50px;
+    -fx-font-weight: bold;
+    -fx-font-size: 14pt;
+}
 
+
+.logo_dialog_text_field {
+   
+}
+.logo_shape{
+    -fx-background-color: rgb(255, 255, 255);
+}
+.logo_dialog_prompt {
+    -fx-font-weight: bold;
+    -fx-font-size: 14pt;
+}
+/* FOR DIALOGS */
+.goLogoLo_dialog_grid {
+    -fx-background-color: -swatch-primary;
+    -fx-background-radius: 5.0;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-padding: 10;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
 .goLogoLo-pane {
     -fx-spacing: 3 3 3 3;
 }
@@ -201,6 +233,7 @@ table/chart css
 **/
 .goLogoLo_table, .goLogoLo_column {
     -fx-font-size: 14pt;
+    
 }
 
 /**
@@ -244,28 +277,35 @@ css for combo box
    
     -fx-border-color:#ACACAC;
     -fx-font-size: 11pt;
-    -fx-padding:10 10 10 10;
+    -fx-padding:5 5 5 5;
     -fx-border: 1 1 0 0;  
 }
 
 .goLogoLo_long_combo_box {
    
     -fx-border-color:#ACACAC;
-    -fx-font-size: 11pt;
-    -fx-padding:10 10 10 10;
+    -fx-font-size: 10pt;
+    -fx-padding:5 5 5 5;
     -fx-border: 1 1 0 0; 
-    -fx-pref-width:400px;
+    -fx-pref-width:300px;
 }
 
 .goLogoLo_slider{
  
-    -fx-padding:10 10 10 10;
+    -fx-padding:5 5 5 5;
   
 }
 
 .goLogoLo_regular_text{
+    -fx-font-size: 10pt;
+ 
+}
+.goLogoLo_snap_text{
     -fx-font-size: 16pt;
-    -fx-min-width: 250px;
-    -fx-max-width: 250px;
+ 
+}
+.goLogoLo_title_text{
+    -fx-font-size: 14pt;
+  
 
 }
