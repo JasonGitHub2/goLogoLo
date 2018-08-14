@@ -211,7 +211,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         //font buttons
         Button boldButton                = goLogoLoBuilder.buildIconButton(BOLD_BUTTON,                  fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button italicizeButton           = goLogoLoBuilder.buildIconButton(ITALICIZE_BUTTON,             fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button increaseTexttButton       = goLogoLoBuilder.buildIconButton(INCREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
+        Button increaseTextButton       = goLogoLoBuilder.buildIconButton(INCREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button decreaseTextButton        = goLogoLoBuilder.buildIconButton(DECREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button underlineButton           = goLogoLoBuilder.buildIconButton(UNDERLINE_BUTTON,             fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         
@@ -325,8 +325,11 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
             eventController.processChangeFont((String)fontComboBox.getValue());  
         });
           
-          
-          
+//          goLogoLoEditPane.setOnMouseClicked(e -> {
+//                      LogoData data = (LogoData)app.getDataComponent();
+//                      data.c
+//          });
+//          
           addImageButton.setOnAction(e->{
              File file= djf.ui.dialogs.AppDialogsFacade.showOpenDialog(null,null);
              String filePath=file.getAbsolutePath();
@@ -338,7 +341,17 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         });
          
          
+         underlineButton.setOnAction(e->{
+            eventController.processUnderlineText();
+        });
          
+        increaseTextButton.setOnAction(e->{
+            eventController.processIncreaseText();
+        });
+         
+        decreaseTextButton.setOnAction(e->{
+            eventController.processDecreaseText();
+        });
          
          //edit double click on table
          logoTable.setOnMouseClicked(e -> {
@@ -355,9 +368,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
          
 
     }
-   
-    
-    
+  
     
     @Override
     public void processWorkspaceKeyEvent(KeyEvent ke) {

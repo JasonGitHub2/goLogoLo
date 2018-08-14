@@ -36,7 +36,7 @@ public class ItalicizeText_Transaction  implements jTPS_Transaction{
        if(!textNode.getIsItalicized()){
             textNode.setFont(Font.font(textNode.getFontName(), FontPosture.ITALIC, textNode.getFontSize()));
             textNode.setIsItalicized(true);
-                 textNode.setIsBold(false);
+            textNode.setIsBold(false);
         }
         else if(textNode.getIsItalicized()){
             textNode.setFont(Font.font(textNode.getFontName(), FontPosture.REGULAR, textNode.getFontSize()));

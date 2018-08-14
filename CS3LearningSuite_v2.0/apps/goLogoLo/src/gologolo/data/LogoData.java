@@ -679,9 +679,11 @@ public class LogoData implements AppDataComponent{
        for(Node node:editComponents){
            node.setEffect(null);
        }
-      InnerShadow innerShadow = new InnerShadow();
-      innerShadow.setColor(BLUE);
-       editComponents.get(index).setEffect(innerShadow);
+       Glow glow=new Glow();
+        editComponents.get(index).setEffect(glow);
+//      InnerShadow innerShadow = new InnerShadow();
+//      innerShadow.setColor(BLUE);
+//       editComponents.get(index).setEffect(innerShadow);
        
     }
     
@@ -689,9 +691,11 @@ public class LogoData implements AppDataComponent{
         for(Node node:editComponents){
            node.setEffect(null);
        }
-       InnerShadow innerShadow = new InnerShadow();
-      innerShadow.setColor(BLUE);
-       editComponents.get(index).setEffect(innerShadow);
+         Glow glow=new Glow();
+        editComponents.get(index).setEffect(glow);
+//       InnerShadow innerShadow = new InnerShadow();
+//      innerShadow.setColor(BLUE);
+//       editComponents.get(index).setEffect(innerShadow);
     }
     
     public void selectNodeInPane(Node node){
@@ -711,9 +715,11 @@ public class LogoData implements AppDataComponent{
     
      public Iterator<Node> nodeIterator() {
         return this.editComponents.iterator();
+         
     }
      
-     
+   
+             
      public void addRectangleDataAndNode(LogoPrototype item,Rectangle component) {
         components.add(item);
         editComponents.add((Node)component);      
@@ -910,6 +916,8 @@ public class LogoData implements AppDataComponent{
             editComponents.remove(component);
             this.clearSelected();           
             reorderTable(); 
+ 
         }
+
     
 }

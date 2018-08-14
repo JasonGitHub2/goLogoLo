@@ -16,10 +16,13 @@ import gologolo.transactions.AddText_Transaction;
 import gologolo.transactions.BoldText_Transaction;
 import gologolo.transactions.ChangeFontSize_Transaction;
 import gologolo.transactions.ChangeFont_Transaction;
+import gologolo.transactions.DecreaseText_Transaction;
 import gologolo.transactions.DeleteComponent_Transaction;
 import gologolo.transactions.EditText_Transaction;
+import gologolo.transactions.IncreaseText_Transaction;
 import gologolo.transactions.ItalicizeText_Transaction;
 import gologolo.transactions.RenameComponent_Transaction;
+import gologolo.transactions.UnderlineText_Transaction;
 import gologolo.workspace.dialog.AddTextDialog;
 import gologolo.workspace.dialog.EditTextDialog;
 import gologolo.workspace.dialog.RenameDialog;
@@ -126,8 +129,39 @@ public class LogoController {
             djf.ui.dialogs.AppDialogsFacade.showMessageDialog(app.getGUIModule().getWindow(), "Invalid Name", "Invalid data for a new component");
         }
     }
+     public void processUnderlineText(){
+             LogoData data = (LogoData)app.getDataComponent();  
+             if (data.isItemSelected())  {
+               LogoPrototype selectedText=data.getSelectedItem();
+               if(selectedText.getType().equalsIgnoreCase("Text")){
+                   UnderlineText_Transaction transaction = new UnderlineText_Transaction(selectedText,app);
+                    app.processTransaction(transaction);
+                }
+           }
+     }
     
+      public void processDecreaseText(){
+          LogoData data = (LogoData)app.getDataComponent();  
+             if (data.isItemSelected())  {
+               LogoPrototype selectedText=data.getSelectedItem();
+               if(selectedText.getType().equalsIgnoreCase("Text")){
+                   DecreaseText_Transaction transaction = new DecreaseText_Transaction(selectedText,app);
+                    app.processTransaction(transaction);
+                }
+           }
+      }
+     public void processIncreaseText(){
+             LogoData data = (LogoData)app.getDataComponent();  
+             if (data.isItemSelected())  {
+               LogoPrototype selectedText=data.getSelectedItem();
+               if(selectedText.getType().equalsIgnoreCase("Text")){
+                   IncreaseText_Transaction transaction = new IncreaseText_Transaction(selectedText,app);
+                    app.processTransaction(transaction);
+                }
+           }
+     }
     
+     
     public void processRenameComponent(){
         LogoData data = (LogoData)app.getDataComponent();
          if (data.isItemSelected() ) {

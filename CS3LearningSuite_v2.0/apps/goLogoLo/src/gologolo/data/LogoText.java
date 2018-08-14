@@ -24,6 +24,7 @@ public class LogoText extends Text implements Cloneable{
     String fontName;
     int fontSize;
     boolean isBold;
+    boolean isUnderline;
     boolean isItalicized;
     
     public LogoText(String stringInput){
@@ -47,6 +48,7 @@ public class LogoText extends Text implements Cloneable{
         this.setY(200);
         isBold=false;
         isItalicized=false;
+        isUnderline=false;
 
     }
     
@@ -173,6 +175,14 @@ public class LogoText extends Text implements Cloneable{
 
     public boolean getIsItalicized() {
         return isItalicized;
+    }
+
+    public boolean getIsUnderline() {
+        return isUnderline;
+    }
+
+    public void setIsUnderline(boolean isUnderline) {
+        this.isUnderline = isUnderline;
     }
 
     public void setIsItalicized(boolean isItalicized) {
