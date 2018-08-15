@@ -48,11 +48,11 @@ public class LogoRectangle extends Rectangle implements Cloneable
         rectangle.setHeight(height);
         rectangle.setFill(fill);
         rectangle.setStroke(stroke);
-        rectangle.setY(300);
-        rectangle.setX(250);
+        rectangle.setY(y);
+        rectangle.setX(x);
         borderColor=rectangle.getStroke().toString();
         color=rectangle.getFill().toString();
-        
+        name="DEFAULT";
         type="Rectangle";
         order=0;
        

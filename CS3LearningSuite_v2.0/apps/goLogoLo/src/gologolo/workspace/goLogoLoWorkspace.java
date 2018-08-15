@@ -292,6 +292,9 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
             eventController.processAddRectangle();
         });
         
+        addCircleButton.setOnAction(e->{
+            eventController.processAddCircle();
+        });
         
         addTextButton.setOnAction(e->{
             eventController.processAddText();
@@ -352,6 +355,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         decreaseTextButton.setOnAction(e->{
             eventController.processDecreaseText();
         });
+        
          
          //edit double click on table
          logoTable.setOnMouseClicked(e -> {

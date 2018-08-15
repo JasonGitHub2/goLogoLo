@@ -919,5 +919,65 @@ public class LogoData implements AppDataComponent{
  
         }
 
-    
+     public void addCircleDataAndNode(LogoPrototype item,LogoCircle component) {
+        components.add(item);
+        editComponents.add((Node)component);      
+        this.clearSelected();
+         this.selectItem(item);
+         selectNodeInPane(component);
+         reorderTable(); 
+        
+        
+         //Drag click and move for this rectagle
+              component.setOnMouseClicked(e -> {
+            
+            {
+              this.clearSelected();
+              this.selectItem(item);
+              selectNodeInPane(component);
+              
+            }
+        });
+       
+            
+            
+          component.setOnMousePressed(e->{
+           this.clearSelected();
+           this.selectItem(item);
+           selectNodeInPane(component);
+
+            orgSceneX = e.getSceneX();
+            orgSceneY = e.getSceneY();
+            orgTranslateX = component.getTranslateX();
+            orgTranslateY = component.getTranslateY();
+         });
+        
+         
+            component.setOnMouseDragged(e->{
+            this.clearSelected();
+            this.selectItem(item);
+            selectNodeInPane(component);
+              
+            double offsetX = e.getSceneX() - orgSceneX;
+            double offsetY = e.getSceneY() - orgSceneY;
+            double newTranslateX = orgTranslateX + offsetX;
+            double newTranslateY = orgTranslateY + offsetY;
+
+            component.setTranslateX(newTranslateX);
+            component.setTranslateY(newTranslateY);
+            component.setOnMouseReleased(x->{
+              
+                ClickDrag_Transaction transaction = new ClickDrag_Transaction( orgTranslateX, orgTranslateY, newTranslateX, newTranslateY,component);
+                initApp.processTransaction(transaction);
+            });
+         });
+        
+           }
+        
+        public void removeCircleDataAndNode(LogoPrototype item,LogoCircle component) {
+           components.remove(item);
+            editComponents.remove(component);
+            this.clearSelected();           
+            reorderTable(); 
+        }
 }

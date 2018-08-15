@@ -10,6 +10,7 @@ import gologolo.GoLogoLo;
 
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
+import gologolo.transactions.AddCircle_Transaction;
 import gologolo.transactions.AddImage_Transaction;
 import gologolo.transactions.AddRectangle_Transaction;
 import gologolo.transactions.AddText_Transaction;
@@ -55,6 +56,15 @@ public class LogoController {
 
        
     }
+    public void processAddCircle(){
+    
+            LogoData data = (LogoData)app.getDataComponent();
+            AddCircle_Transaction transaction = new AddCircle_Transaction(data, app);
+            app.processTransaction(transaction);
+
+       
+    }
+    
      public void processChangeFont(String newFont){
           LogoData data = (LogoData)app.getDataComponent();
          String font;

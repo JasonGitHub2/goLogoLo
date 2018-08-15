@@ -62,7 +62,7 @@ public class LogoText extends Text implements Cloneable{
         text.setY(y);
         xCoordinate=x;
         yCoordinate=y;
-       
+       name="DEFAULT";
         type="Text";
         order=0;
        

@@ -4,18 +4,24 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/RenameComponent_Transaction.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/ClickDrag_Transaction.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/AddCircle_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/data/LogoData.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/EditText_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/app_data/properties/app_properties.xml</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/DecreaseText_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/ChangeFont_Transaction.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/data/LogoRectangle.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/DeleteComponent_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/UnderlineText_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/AddText_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/workspace/goLogoLoWorkspace.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/goLogoLoPropertyType.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/data/LogoCircle.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/BoldText_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/GoLogoLo.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/IncreaseText_Transaction.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/AddRectangle_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/ChangeFontSize_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/PasteComponent_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/workspace/controller/LogoController.java</file>
