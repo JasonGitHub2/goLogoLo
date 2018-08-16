@@ -28,6 +28,7 @@ public class CenterX_Transaction  implements jTPS_Transaction{
     double oldCenterX;
     LogoRectangle selectedRectangle;
     RadialGradient newGradient;
+    RadialGradient oldGradient;
     boolean isCircle=false;
     boolean isRectangle=false;
     boolean isImage=false;
@@ -57,6 +58,7 @@ public class CenterX_Transaction  implements jTPS_Transaction{
           selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setCenterX(centerX);
           selectedRectangle.setFill(newGradient);
+          
           centerXSlider.setValue(centerX);
          }
     }
@@ -66,10 +68,12 @@ public class CenterX_Transaction  implements jTPS_Transaction{
          if(isRectangle){
          
           selectedRectangle=   (LogoRectangle) data.getEditComponents().get(index);
-          newGradient=new RadialGradient(selectedRectangle.getFocusAngle(),selectedRectangle.getFocusDistance(),oldCenterX,
+         System.out.println( oldCenterX);
+         System.out.print(centerX);
+          oldGradient=new RadialGradient(selectedRectangle.getFocusAngle(),selectedRectangle.getFocusDistance(),oldCenterX,
           selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setCenterX(oldCenterX);
-          selectedRectangle.setFill(newGradient);
+          selectedRectangle.setFill(oldGradient);
           centerXSlider.setValue(oldCenterX);
          }
     }

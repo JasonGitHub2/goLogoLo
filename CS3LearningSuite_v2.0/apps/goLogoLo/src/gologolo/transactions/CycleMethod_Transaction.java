@@ -38,11 +38,13 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
      ComboBox cycleMethodBox;
     
     public CycleMethod_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,String method,boolean isCircles,boolean isImages,boolean isRectangles){
+   
         data=thisData;
         cycleMethodBox=(ComboBox)data.getApp().getGUIModule().getGUINode(LOGO_CYCLE_METHOD_COMBO_BOX);
         app=appLogo;
         selected=component;
         cycleMethod=method;
+        System.out.print(cycleMethod);
         if(cycleMethod.equals("NO_CYCLE")){
             newCycleMethod=NO_CYCLE;
         }

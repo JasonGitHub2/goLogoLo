@@ -54,7 +54,7 @@ public class ZeroColor_Transaction  implements jTPS_Transaction{
       if(isRectangle){
           selectedRectangle=   (LogoRectangle) data.getEditComponents().get(index);
           oldStop=selectedRectangle.getStop1();
-          oldColor=oldStop.getColor();
+          oldColor=selectedRectangle.getStop0Color();
           newGradient=new RadialGradient(selectedRectangle.getFocusAngle(),selectedRectangle.getFocusDistance(),selectedRectangle.getCenterX(),
           selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),newStop,selectedRectangle.getStop2());
           selectedRectangle.setStop1(newStop);

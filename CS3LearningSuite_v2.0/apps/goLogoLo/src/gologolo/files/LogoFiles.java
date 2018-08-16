@@ -330,8 +330,8 @@ public class LogoFiles implements AppFileComponent{
      */
     @Override
     public void exportData(AppDataComponent data, String savedFileName) throws IOException {
-//         String exportName = savedFileName.substring(0, savedFileName.indexOf("."));
-//        String fileToExport = exportName+".png";
+         String exportName = savedFileName.substring(0, savedFileName.indexOf("."));
+        String fileToExport = exportName+".png";
         
         try {
             // GET THE ACTUAL DATA
@@ -346,7 +346,7 @@ public class LogoFiles implements AppFileComponent{
 
 
               try {
-              ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", exportedFile);
+              ImageIO.write(SwingFXUtils.fromFXImage(image, null), ".png", exportedFile);
               } catch (IOException e) {
        
             }

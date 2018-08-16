@@ -31,6 +31,7 @@ public class CenterY_Transaction implements jTPS_Transaction{
     int index;
     Slider centerYSlider;
     double oldCenterY;
+    
     public CenterY_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double y,boolean isCircles,boolean isImages,boolean isRectangles){
         data=thisData;
         centerYSlider=(Slider)data.getApp().getGUIModule().getGUINode(LOGO_CENTER_Y_SLIDER);

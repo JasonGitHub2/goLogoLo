@@ -57,7 +57,7 @@ public class OneColor_Transaction  implements jTPS_Transaction{
       if(isRectangle){
           selectedRectangle=   (LogoRectangle) data.getEditComponents().get(index);
           oldStop=selectedRectangle.getStop2();
-          oldColor=oldStop.getColor();
+          oldColor=selectedRectangle.getStop1Color();
           newGradient=new RadialGradient(selectedRectangle.getFocusAngle(),selectedRectangle.getFocusDistance(),selectedRectangle.getCenterX(),
           selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),selectedRectangle.getStop1(),newStop);
           selectedRectangle.setStop2(newStop);

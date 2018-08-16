@@ -12,6 +12,7 @@ import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 import javafx.scene.paint.CycleMethod;
 import static javafx.scene.paint.CycleMethod.NO_CYCLE;
+import static javafx.scene.paint.CycleMethod.REFLECT;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.RadialGradient;
@@ -50,7 +51,7 @@ public class LogoRectangle extends Rectangle implements Cloneable
        
         this.setWidth(300);
         this.setHeight(150);
-        this.setFill(WHITE);
+
         this.setStroke(BLACK);
         this.setY(300);
         this.setX(250);
@@ -72,6 +73,7 @@ public class LogoRectangle extends Rectangle implements Cloneable
         stop2=new Stop(1,Color.WHITE);
         gradient=new RadialGradient(focusAngle,focusDistance,centerX,centerY,radius,proportional,cycleMethod,stop1,stop2);
       
+    
         this.setFill(gradient);    
 
 
@@ -152,6 +154,7 @@ public class LogoRectangle extends Rectangle implements Cloneable
     public void setGradient(RadialGradient gradient) {
         this.gradient = gradient;
     }
+
 
     public void setFocusAngle(double focusAngle) {
         this.focusAngle = focusAngle;

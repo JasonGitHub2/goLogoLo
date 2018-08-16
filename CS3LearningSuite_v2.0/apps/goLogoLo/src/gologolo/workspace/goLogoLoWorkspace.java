@@ -118,6 +118,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
 import javafx.scene.shape.Path;
 import properties_manager.PropertiesManager;
 
@@ -242,23 +243,23 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         
         Label focusAngleTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_FOCUS_ANGLE_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         focusAngleTextfield.setTextFill(Color.WHITE);
-        Slider focusAngle                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_ANGLE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           10,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider focusAngle                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_ANGLE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         
         Label focusDistanceTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_FOCUS_DISTANCE_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         focusDistanceTextfield.setTextFill(Color.WHITE);
-        Slider focusDistance                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_DISTANCE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           10,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider focusDistance                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_DISTANCE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         
         Label centerXTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_CENTER_X_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         centerXTextfield.setTextFill(Color.WHITE);
-        Slider centerX                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_X_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           10,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider centerX                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_X_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         
         Label centerYTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_CENTER_Y_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         centerYTextfield.setTextFill(Color.WHITE);
-        Slider centerY                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_Y_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           10,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider centerY                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_Y_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         
         Label radiusTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_RADIUS_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         radiusTextfield.setTextFill(Color.WHITE);
-        Slider radius                   =goLogoLoBuilder.buildSlider(LOGO_RADIUS_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           10,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider radius                   =goLogoLoBuilder.buildSlider(LOGO_RADIUS_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         
         //combo box for cycle method
         Label cycleMethodTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_CYCLE_METHOD_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
@@ -358,26 +359,47 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
             eventController.processMoveUp();
         });
         
-        focusAngle.valueProperty().addListener(e->{
+       
+            focusAngle.valueProperty().addListener(e->{
+                focusAngle.setOnMouseReleased((x->{
             eventController.processFocusAngle((focusAngle.valueProperty().doubleValue()));
-        });
-         
+        }));
+                      });
+                
+       
         focusDistance.valueProperty().addListener(e->{
-            eventController.processFocusDistance((focusAngle.valueProperty().doubleValue()));
+              focusDistance.setOnMouseReleased((x->{
+            eventController.processFocusDistance((focusDistance.valueProperty().doubleValue()));
+        }));
         });
           
+        
         centerX.valueProperty().addListener(e->{
-            eventController.processCenterX((focusAngle.valueProperty().doubleValue()));
+            centerX.setOnMouseReleased((x->{
+                
+            eventController.processCenterX((centerX.valueProperty().doubleValue()));
+            }));
+            
         });
+        
         centerY.valueProperty().addListener(e->{
-            eventController.processCenterY((focusAngle.valueProperty().doubleValue()));
+             centerY.setOnMouseReleased((x->{
+            eventController.processCenterY((centerY.valueProperty().doubleValue()));
+        }));
+     
         });
+        
          radius.valueProperty().addListener(e->{
-            eventController.processRadius((focusAngle.valueProperty().doubleValue()));
-        });
+               radius.setOnMouseReleased((x->{
+            eventController.processRadius((radius.valueProperty().doubleValue()));
+        }));
+         });
          
             cycleMethodComboBox.setOnAction(e->{
-            eventController.processCycleMethod((String)cycleMethodComboBox.getValue());  
+                       
+               
+            eventController.processCycleMethod(cycleMethodComboBox.getSelectionModel().getSelectedItem().toString());
+    
         });
               zeroColor.setOnAction(e->{
             eventController.processZeroColor(zeroColor.getValue());  
