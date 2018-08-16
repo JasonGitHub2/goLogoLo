@@ -108,7 +108,7 @@
         <property name="DEFAULT_FONT"               value="Times New Roman"></property>
           <property name="DEFAULT_FONT_SIZE"               value="14"></property>
           <property name="DEFAULT_BORDER_COLOR"               value="#ff0000"></property>
-           <property name="DEFAULT_CYCLE_METHOD"               value="No Cycle"></property>
+           <property name="DEFAULT_CYCLE_METHOD"               value="NO_CYCLE"></property>
        
     </property_list>
     <property_options_list>
@@ -132,7 +132,9 @@
             <option>#92a8d1</option>
         </property_options>
         <property_options name="CYCLE_METHOD_OPTIONS">
-            <option>No Cycle</option>
+            <option>NO_CYCLE</option>
+             <option>REFLECT</option>
+              <option>REPEAT</option>
         </property_options>
     </property_options_list>
 </properties>

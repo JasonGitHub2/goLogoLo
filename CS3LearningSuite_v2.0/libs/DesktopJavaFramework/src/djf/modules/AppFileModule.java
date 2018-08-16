@@ -29,7 +29,7 @@ public class AppFileModule {
     public AppFileModule(AppTemplate initApp) {
         app = initApp;
         saved = true;
-        workFile = null;
+        workFile =null;
     }    
     
     public File getWorkFile() {

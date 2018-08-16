@@ -1,0 +1,15 @@
+
+{
+    "table data":[
+        {
+            "name":"DEFAULT",
+            "type":"Rectangle",
+            "rectangle fill color":"0xffffffff",
+            "rectangle border color":"0x000000ff",
+            "rectangle rectangle height":150.0,
+            "rectangle rectangle width":300.0,
+            "rectangle x coordinate":250.0,
+            "rectangle y coordinate":300.0
+        }
+    ]
+}

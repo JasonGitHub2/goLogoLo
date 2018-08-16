@@ -15,20 +15,30 @@ import gologolo.transactions.AddImage_Transaction;
 import gologolo.transactions.AddRectangle_Transaction;
 import gologolo.transactions.AddText_Transaction;
 import gologolo.transactions.BoldText_Transaction;
+import gologolo.transactions.CenterX_Transaction;
+import gologolo.transactions.CenterY_Transaction;
 import gologolo.transactions.ChangeFontSize_Transaction;
 import gologolo.transactions.ChangeFont_Transaction;
+import gologolo.transactions.CycleMethod_Transaction;
 import gologolo.transactions.DecreaseText_Transaction;
 import gologolo.transactions.DeleteComponent_Transaction;
 import gologolo.transactions.EditText_Transaction;
+import gologolo.transactions.FocusAngle_Transaction;
+import gologolo.transactions.FocusDistance_Transaction;
 import gologolo.transactions.IncreaseText_Transaction;
 import gologolo.transactions.ItalicizeText_Transaction;
+import gologolo.transactions.MoveUp_Transaction;
+import gologolo.transactions.OneColor_Transaction;
+import gologolo.transactions.Radius_Transaction;
 import gologolo.transactions.RenameComponent_Transaction;
 import gologolo.transactions.UnderlineText_Transaction;
+import gologolo.transactions.ZeroColor_Transaction;
 import gologolo.workspace.dialog.AddTextDialog;
 import gologolo.workspace.dialog.EditTextDialog;
 import gologolo.workspace.dialog.RenameDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -47,7 +57,117 @@ public class LogoController {
        editDialog=new EditTextDialog(app);
     }
     
+    public void processFocusAngle(Double value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+                
+                
+                 FocusAngle_Transaction transaction = new FocusAngle_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+     }
+    }
     
+    
+      public void processFocusDistance(Double value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+  
+                 FocusDistance_Transaction transaction = new FocusDistance_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+     }
+    }
+       public void processCenterX(Double value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+  
+                 CenterX_Transaction transaction = new CenterX_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+     }
+    }
+        public void processCenterY(Double value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+  
+                CenterY_Transaction transaction = new CenterY_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+     }
+    }
+         public void processRadius(Double value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+  
+                 Radius_Transaction transaction = new Radius_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+     }
+    }
+         
+        public void processCycleMethod(String value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+  
+                CycleMethod_Transaction transaction = new CycleMethod_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+        }
+      }
+        
+        
+         public void processZeroColor(Color value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+  
+                ZeroColor_Transaction transaction = new ZeroColor_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+        }
+      }
+         
+        
+        
+         
+         public void processOneColor(Color value){
+          LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                  if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
+  
+                OneColor_Transaction transaction = new OneColor_Transaction(data, app,selectedItem,value,false,false,true);
+                 app.processTransaction(transaction);
+                  }
+        }
+      }
+         
+        
+        
+        
+      
     public void processAddRectangle(){
     
             LogoData data = (LogoData)app.getDataComponent();
@@ -62,6 +182,22 @@ public class LogoController {
             AddCircle_Transaction transaction = new AddCircle_Transaction(data, app);
             app.processTransaction(transaction);
 
+       
+    }
+     public void processMoveUp(){
+    
+            LogoData data = (LogoData)app.getDataComponent();
+            if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                {
+                    if(selectedItem.getOrder()!=1){
+                        MoveUp_Transaction transaction = new MoveUp_Transaction(selectedItem, app);
+                         app.processTransaction(transaction);
+                    }
+                }
+                
+            }
        
     }
     

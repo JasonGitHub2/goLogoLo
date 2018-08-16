@@ -27,15 +27,15 @@ import jtps.jTPS_Transaction;
 public class AddRectangle_Transaction implements jTPS_Transaction {
     LogoData data;
     LogoPrototype rectangleData;
-
+    
     GoLogoLo app;
     LogoRectangle rectangleShape;
-    Rectangle rectangle;
+   
      
     public AddRectangle_Transaction(LogoData initData,GoLogoLo logoApp) {
         data = initData;
         rectangleShape=new LogoRectangle();
-        rectangle=rectangleShape.getRectangle();
+       
         app=logoApp;
         rectangleData=new LogoPrototype();
         rectangleData.setType("Rectangle");
@@ -45,7 +45,7 @@ public class AddRectangle_Transaction implements jTPS_Transaction {
     public void doTransaction() {
         //add to table and pane
         
-        data.addRectangleDataAndNode(rectangleData,rectangle); 
+        data.addRectangleDataAndNode(rectangleData,rectangleShape); 
         
        
    
@@ -55,7 +55,7 @@ public class AddRectangle_Transaction implements jTPS_Transaction {
     public void undoTransaction() {
      //  remove from table and pane and reselect previous
        
-       data.removeRectangleDataAndNode(rectangleData,rectangle);
+       data.removeRectangleDataAndNode(rectangleData,rectangleShape);
       
        
        //reslect previous 

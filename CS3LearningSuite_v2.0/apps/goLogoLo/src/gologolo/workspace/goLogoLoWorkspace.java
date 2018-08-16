@@ -263,9 +263,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         //combo box for cycle method
         Label cycleMethodTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_CYCLE_METHOD_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         cycleMethodTextfield.setTextFill(Color.WHITE);
-        ArrayList <String> cycleMethodList=new ArrayList<>();
-        String defaultCycleMethod="No Cycle";
-        cycleMethodList.add(defaultCycleMethod);
+              
         ComboBox cycleMethodComboBox           =goLogoLoBuilder.buildComboBox(LOGO_CYCLE_METHOD_COMBO_BOX,           CYCLE_METHOD_OPTIONS,                    DEFAULT_CYCLE_METHOD,            gradientPane,            null,           LOGO_LONG_COMBO_BOX,          HAS_KEY_HANDLER,            FOCUS_TRAVERSABLE,          ENABLED);
         
         Label stopZeroColorTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_STOP_0_COLOR_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
@@ -356,6 +354,40 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
             eventController.processDecreaseText();
         });
         
+        moveUpButton.setOnAction(e->{
+            eventController.processMoveUp();
+        });
+        
+        focusAngle.valueProperty().addListener(e->{
+            eventController.processFocusAngle((focusAngle.valueProperty().doubleValue()));
+        });
+         
+        focusDistance.valueProperty().addListener(e->{
+            eventController.processFocusDistance((focusAngle.valueProperty().doubleValue()));
+        });
+          
+        centerX.valueProperty().addListener(e->{
+            eventController.processCenterX((focusAngle.valueProperty().doubleValue()));
+        });
+        centerY.valueProperty().addListener(e->{
+            eventController.processCenterY((focusAngle.valueProperty().doubleValue()));
+        });
+         radius.valueProperty().addListener(e->{
+            eventController.processRadius((focusAngle.valueProperty().doubleValue()));
+        });
+         
+            cycleMethodComboBox.setOnAction(e->{
+            eventController.processCycleMethod((String)cycleMethodComboBox.getValue());  
+        });
+              zeroColor.setOnAction(e->{
+            eventController.processZeroColor(zeroColor.getValue());  
+        });
+              
+               oneColor.setOnAction(e->{
+            eventController.processOneColor(oneColor.getValue());  
+        });
+         
+         
          
          //edit double click on table
          logoTable.setOnMouseClicked(e -> {

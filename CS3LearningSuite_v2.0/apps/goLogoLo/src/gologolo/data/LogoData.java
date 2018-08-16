@@ -87,11 +87,13 @@ public class LogoData implements AppDataComponent{
         
         Pane paneNode=(Pane)initApp.getGUIModule().getGUINode(LOGO_EDIT_PANE);
         editComponents=paneNode.getChildren();
-                
-
+               
         
     }
-
+ public GoLogoLo getApp(){
+     return initApp;
+ }
+    
     @Override
     public void reset() {
       AppGUIModule gui = initApp.getGUIModule();
@@ -384,6 +386,10 @@ public class LogoData implements AppDataComponent{
         }
         
        }
+
+    public ObservableList<Node> getEditComponents() {
+        return editComponents;
+    }
        
         
         public int remove(LogoPrototype tableData){
@@ -419,7 +425,18 @@ public class LogoData implements AppDataComponent{
         this.selectItem(temp);
     }
     
-    
+    public void swapComponentAndNodes(int indexToMoveUp,int indexToMoveDown){
+        LogoPrototype bottomData=components.get(indexToMoveUp);
+        LogoPrototype topData=components.get(indexToMoveDown);
+//        Node topNode=editComponents.get(top);
+//        Node bottomNode=editComponents.get(bottom);
+        components.remove(topData);
+        components.add(indexToMoveDown, topData);
+        this.clearSelected();
+        this.selectItem(topData);
+//        editComponents.remove(topNode);
+//        editComponents.add(bottom, topNode);
+    }
     
     public Rectangle createRectangle(){
         Rectangle  rectangle=new Rectangle();
@@ -452,7 +469,7 @@ public class LogoData implements AppDataComponent{
         
          
             rectangle.setOnMouseDragged(e->{
-            this.clearSelected();
+              this.clearSelected();
               this.selectCorrespondingData(rectangle);
               selectNodeInPane(rectangle);
               
@@ -720,9 +737,9 @@ public class LogoData implements AppDataComponent{
      
    
              
-     public void addRectangleDataAndNode(LogoPrototype item,Rectangle component) {
+     public void addRectangleDataAndNode(LogoPrototype item,LogoRectangle component) {
         components.add(item);
-        editComponents.add((Node)component);      
+        editComponents.add(component);      
         this.clearSelected();
          this.selectItem(item);
          selectNodeInPane(component);
@@ -758,6 +775,19 @@ public class LogoData implements AppDataComponent{
             this.clearSelected();
             this.selectItem(item);
             selectNodeInPane(component);
+            
+//            double offsetX = e.getSceneX() - orgSceneX;
+//            double offsetY = e.getSceneY() - orgSceneY;
+//            double newTranslateX = orgTranslateX + offsetX;
+//            double newTranslateY = orgTranslateY + offsetY;
+//            component.setWidth(newTranslateX);
+//             component.setHeight(newTranslateY);
+//                
+                    
+                    
+                    
+                    
+              
               
             double offsetX = e.getSceneX() - orgSceneX;
             double offsetY = e.getSceneY() - orgSceneY;
@@ -775,7 +805,7 @@ public class LogoData implements AppDataComponent{
         
            }
         
-        public void removeRectangleDataAndNode(LogoPrototype item,Rectangle component) {
+        public void removeRectangleDataAndNode(LogoPrototype item,LogoRectangle component) {
            components.remove(item);
             editComponents.remove(component);
             this.clearSelected();           
@@ -788,10 +818,7 @@ public class LogoData implements AppDataComponent{
             this.clearSelected();           
             reorderTable(); 
         }
-        
-      
-        
-        
+     
         public void addTextDataAndNode(LogoPrototype item,LogoText component) {
         components.add(item);
         editComponents.add(component);      
@@ -808,7 +835,7 @@ public class LogoData implements AppDataComponent{
                 selectNodeInPane(component);                 
             
               if (e.getClickCount() == 2) {
-                  System.out.println("DOUBLE CLICK!!!");
+            
                 //selection of node in table        
                  
                  this.clearSelected();
@@ -951,8 +978,7 @@ public class LogoData implements AppDataComponent{
             orgTranslateX = component.getTranslateX();
             orgTranslateY = component.getTranslateY();
          });
-        
-         
+       
             component.setOnMouseDragged(e->{
             this.clearSelected();
             this.selectItem(item);

@@ -14,6 +14,7 @@ import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
 import gologolo.data.LogoText;
+import static gologolo.goLogoLoPropertyType.LOGO_EDIT_PANE;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,13 +29,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import static javafx.scene.paint.Paint.valueOf;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javax.imageio.ImageIO;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -230,7 +236,7 @@ public class LogoFiles implements AppFileComponent{
                  LogoPrototype item = loadTableData(jsonItem);
 	    
                  Node node=loadPaneNode(jsonItem,toDoData);
-                  toDoData.addRectangleDataAndNode(item,(Rectangle)node);
+                  toDoData.addRectangleDataAndNode(item,(LogoRectangle)node);
              }
             
 	}
@@ -324,64 +330,34 @@ public class LogoFiles implements AppFileComponent{
      */
     @Override
     public void exportData(AppDataComponent data, String savedFileName) throws IOException {
-//        String toDoListName = savedFileName.substring(0, savedFileName.indexOf("."));
-//        String fileToExport = toDoListName + ".html";
-//        try {
-//            // GET THE ACTUAL DATA
-//            ToDoData toDoData = (ToDoData)data;
-//            PropertiesManager props = PropertiesManager.getPropertiesManager();
-//            String exportDirPath = props.getProperty(APP_PATH_EXPORT) + toDoListName + "/";
+//         String exportName = savedFileName.substring(0, savedFileName.indexOf("."));
+//        String fileToExport = exportName+".png";
+        
+        try {
+            // GET THE ACTUAL DATA
+            LogoData logoData = (LogoData)data;
+            PropertiesManager props = PropertiesManager.getPropertiesManager();
+//            String exportDirPath = props.getProperty(APP_PATH_EXPORT) + "export" + "/";
 //            File exportDir = new File(exportDirPath);
-//            if (!exportDir.exists()) {
-//                exportDir.mkdir();
-//            }
-//
-//            // NOW LOAD THE TEMPLATE DOCUMENT
-//            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-//            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-//            String htmlTemplatePath = props.getPropertiesDataPath() + props.getProperty(TDLM_EXPORT_TEMPLATE_FILE_NAME);
-//            File file = new File(htmlTemplatePath);
-//            System.out.println(file.getPath() + " exists? " + file.exists());
-//            URL templateURL = file.toURI().toURL();
-//            Document exportDoc = docBuilder.parse(templateURL.getPath());
-//
-//            // SET THE WEB PAGE TITLE
-//            Node titleNode = exportDoc.getElementsByTagName(TITLE_TAG).item(0);
-//            titleNode.setTextContent(toDoData.getName());
-//
-//            // SET THE NAME
-//            Node nameNode = getNodeWithId(exportDoc, HTML.Tag.TD.toString(), NAME_TAG);
-//            nameNode.setTextContent(toDoData.getName());
-//
-//            // SET THE OWNER
-//            Node ownerNode = getNodeWithId(exportDoc, HTML.Tag.TD.toString(), OWNER_TAG);
-//            ownerNode.setTextContent(toDoData.getOwner());
-//            
-//            // ADD ALL THE ITEMS
-//            Node tDataNode = getNodeWithId(exportDoc, "tdata", TABLE_DATA_TAG);
-//            Iterator<ToDoItemPrototype> itemsIt = toDoData.itemsIterator();
-//            while (itemsIt.hasNext()) {
-//                ToDoItemPrototype item = itemsIt.next();
-//                Element trElement = exportDoc.createElement(HTML.Tag.TR.toString());
-//                tDataNode.appendChild(trElement);
-//                addCellToRow(exportDoc, trElement, item.getCategory());
-//                addCellToRow(exportDoc, trElement, item.getDescription());
-//                addCellToRow(exportDoc, trElement, item.getStartDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-//                addCellToRow(exportDoc, trElement, item.getEndDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-//                addCellToRow(exportDoc, trElement, item.getAssignedTo());
-//                addCellToRow(exportDoc, trElement, "" + item.isCompleted());
-//            }
-//            
-//            // CORRECT THE APP EXPORT PAGE
-//            props.addProperty(APP_EXPORT_PAGE, exportDirPath + fileToExport);
-//
-//            // EXPORT THE WEB PAGE
-//            saveDocument(exportDoc, props.getProperty(APP_EXPORT_PAGE));
-//        }
-//        catch(SAXException | ParserConfigurationException
-//                | TransformerException exc) {
-//            throw new IOException("Error loading " + fileToExport);
-//        }
+            
+              File exportedFile=new File(savedFileName);
+              Pane editPane=(Pane)logoData.getApp().getGUIModule().getGUINode(LOGO_EDIT_PANE);
+              WritableImage image = editPane.snapshot(new SnapshotParameters(), null);
+
+
+              try {
+              ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", exportedFile);
+              } catch (IOException e) {
+       
+            }
+            
+           
+           
+           
+        }
+        catch(Exception e) {
+            throw new IOException("Error loading " + savedFileName);
+        }
     }
     
     
