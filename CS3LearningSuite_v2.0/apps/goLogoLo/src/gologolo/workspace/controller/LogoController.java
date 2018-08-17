@@ -15,6 +15,9 @@ import gologolo.transactions.AddImage_Transaction;
 import gologolo.transactions.AddRectangle_Transaction;
 import gologolo.transactions.AddText_Transaction;
 import gologolo.transactions.BoldText_Transaction;
+import gologolo.transactions.BorderColor_Transaction;
+import gologolo.transactions.BorderRadius_Transaction;
+import gologolo.transactions.BorderThickness_Transaction;
 import gologolo.transactions.CenterX_Transaction;
 import gologolo.transactions.CenterY_Transaction;
 import gologolo.transactions.ChangeFontSize_Transaction;
@@ -59,6 +62,28 @@ public class LogoController {
        editDialog=new EditTextDialog(app);
     }
     
+    
+    
+    
+     public void processBorderColor(LogoPrototype item, Color color){
+         LogoData data = (LogoData)app.getDataComponent();
+          LogoPrototype selected=item;
+            BorderColor_Transaction transaction = new BorderColor_Transaction(data, selected,app,color);
+                         app.processTransaction(transaction);
+               
+     }
+    public void processBorderRadius(double val){
+        LogoData data = (LogoData)app.getDataComponent();
+          LogoPrototype selected=data.getSelectedItem();
+          if(selected.getType().equalsIgnoreCase("Rectangle")){
+              BorderRadius_Transaction transaction = new BorderRadius_Transaction(data, selected,app,val);
+                         app.processTransaction(transaction);
+          }
+          
+    }
+    
+    
+    
     public void processFocusAngle(Double value){
           LogoData data = (LogoData)app.getDataComponent();
            if (data.isItemSelected())  
@@ -72,10 +97,21 @@ public class LogoController {
                   }
                     else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          FocusAngle_Transaction transaction = new FocusAngle_Transaction(data, app,selectedItem,value,true,false);
-                 app.processTransaction(transaction);
+                         app.processTransaction(transaction);
                     }
                 
      }
+    }
+    
+    public void processBorderThickness(double val){
+           LogoData data = (LogoData)app.getDataComponent();
+           if (data.isItemSelected())  
+           {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                 BorderThickness_Transaction transaction = new BorderThickness_Transaction(data, app,selectedItem,val);
+                 app.processTransaction(transaction);
+                 
+           }
     }
     
     

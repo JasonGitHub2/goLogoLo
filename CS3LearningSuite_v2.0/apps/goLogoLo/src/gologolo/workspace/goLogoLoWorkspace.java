@@ -6,6 +6,8 @@
 package gologolo.workspace;
 
 import djf.AppPropertyType;
+import static djf.AppPropertyType.ZOOM_IN_BUTTON;
+import static djf.AppPropertyType.ZOOM_OUT_BUTTON;
 import djf.AppTemplate;
 import djf.components.AppWorkspaceComponent;
 import static djf.modules.AppGUIModule.ENABLED;
@@ -13,8 +15,10 @@ import static djf.modules.AppGUIModule.FOCUS_TRAVERSABLE;
 import static djf.modules.AppGUIModule.HAS_KEY_HANDLER;
 import djf.ui.AppNodesBuilder;
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
+import gologolo.data.LogoRectangle;
 import static gologolo.goLogoLoPropertyType.ADD_CIRCLE_BUTTON;
 import static gologolo.goLogoLoPropertyType.ADD_IMAGE_BUTTON;
 import static gologolo.goLogoLoPropertyType.ADD_RECTANGLE_BUTTON;
@@ -99,8 +103,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -119,7 +125,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 import properties_manager.PropertiesManager;
 
 /**
@@ -178,7 +188,10 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         //THE PANE IN THE MIDDLE(WHITE ONE) FOR EDITING LOGOS (PLAIN WHITE PANE)
         
         Pane goLogoLoEditPane= goLogoLoBuilder.buildPane(LOGO_EDIT_PANE,     null,   null,   CLASS_LOGO_EDIT_BOX,     HAS_KEY_HANDLER,        FOCUS_TRAVERSABLE,      ENABLED);
-
+     
+        goLogoLoEditPane.layoutBoundsProperty().addListener((ObservableValue<? extends Bounds> observable, Bounds oldBounds, Bounds bounds) -> {
+            goLogoLoEditPane.setClip(new Rectangle(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight()));
+        });
         //THE RIGHT PANE
         VBox goLogoLoRightPane= goLogoLoBuilder.buildVBox(LOGO_RIGHT_PANE,     null,   null,   CLASS_LOGO_RIGHT_BOX,     HAS_KEY_HANDLER,        FOCUS_TRAVERSABLE,      ENABLED);
         goLogoLoRightPane.setSpacing(5);
@@ -224,16 +237,16 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         
         //border thickness 
         Label borderThicknessTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_BORDER_THICKNESS_LABEL, borderControlPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
-        Slider borderThickness                  =goLogoLoBuilder.buildSlider(LOGO_BORDER_THICKNESS_SLIDER,    borderControlPane,              null,   LOGO_SLIDER,    0,           10,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider borderThickness                  =goLogoLoBuilder.buildSlider(LOGO_BORDER_THICKNESS_SLIDER,    borderControlPane,              null,   LOGO_SLIDER,    1,           20,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         borderThicknessTextfield.setTextFill(Color.WHITE);
         //border color
         Label borderColorTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_BORDER_COLOR_LABEL, borderControlPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         borderColorTextfield.setTextFill(Color.WHITE);
-        ColorPicker pickColor=goLogoLoBuilder.buildColorPicker(COLOR_PICKER, borderControlPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
+        ColorPicker pickColorBorder=goLogoLoBuilder.buildColorPicker(COLOR_PICKER, borderControlPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
         //border raidus 
         Label borderRadiusTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_BORDER_RADIUS_LABEL, borderControlPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         borderRadiusTextfield.setTextFill(Color.WHITE);
-        Slider borderRaidus                    =goLogoLoBuilder.buildSlider(LOGO_BORDER_RAIDIUS_SLIDER,        borderControlPane,              null,   LOGO_SLIDER,    0,           10,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider borderRaidus                    =goLogoLoBuilder.buildSlider(LOGO_BORDER_RAIDIUS_SLIDER,        borderControlPane,              null,   LOGO_SLIDER,    0,           100,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         
         
         //gradient pane
@@ -285,7 +298,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
       
         
         //event handlers
-        
+       
         LogoController eventController=new LogoController((GoLogoLo)app);
         addRectangleButton.setOnAction(e->{
             eventController.processAddRectangle();
@@ -396,10 +409,72 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         
          radius.valueProperty().addListener(e->{
                radius.setOnMouseReleased((x->{
-            eventController.processRadius((radius.valueProperty().doubleValue()));
+               eventController.processRadius((radius.valueProperty().doubleValue()));
         }));
          });
          
+         
+         
+         
+         
+   
+         
+             borderThickness.valueProperty().addListener(e->{
+                   LogoData data = (LogoData)app.getDataComponent();
+                   LogoPrototype selected=data.getSelectedItem();
+                   
+                   
+                   
+                   borderThickness.setOnMouseDragged(y->{
+                     
+                     if(selected.getType().equalsIgnoreCase("Rectangle")||selected.getType().equalsIgnoreCase("Circle")){
+                     Shape logoShape=data.getShapeAt(data.getItemIndex(selected));   
+                     logoShape.setStrokeWidth(borderThickness.valueProperty().doubleValue());
+                 }
+                 });
+           
+            borderThickness.setOnMouseReleased((x->{
+            eventController.processBorderThickness((borderThickness.valueProperty().doubleValue()));
+        }));
+         });
+             
+             
+             pickColorBorder.setOnAction(e -> {
+             LogoData data = (LogoData)app.getDataComponent();
+              LogoPrototype selected=data.getSelectedItem();
+                   
+            if (selected.getType().equalsIgnoreCase("Rectangle")||selected.getType().equalsIgnoreCase("Circle")) {
+                
+                eventController.processBorderColor(selected, (Color)pickColorBorder.getValue());
+            }    
+            
+        });
+             
+        
+      
+             borderRaidus.valueProperty().addListener(e->{
+                   LogoData data = (LogoData)app.getDataComponent();
+                   LogoPrototype selected=data.getSelectedItem();   
+                   borderRaidus.setOnMouseDragged(y->{
+                     
+                     if(selected.getType().equalsIgnoreCase("Rectangle")){
+                     int index=data.getItemIndex(selected);
+                     LogoRectangle logoShape=(LogoRectangle)data.getEditComponents().get(index);
+                     logoShape.setArcHeight(borderRaidus.valueProperty().doubleValue());
+                     logoShape.setArcWidth(borderRaidus.valueProperty().doubleValue());
+                 }
+                  
+           
+            borderRaidus.setOnMouseReleased((x->{
+            eventController.processBorderRadius((borderRaidus.valueProperty().doubleValue()));
+        }));
+         });
+        });
+             
+             
+             
+             
+             
             cycleMethodComboBox.setOnAction(e->{        
             eventController.processCycleMethod(cycleMethodComboBox.getSelectionModel().getSelectedItem().toString());
     
@@ -411,8 +486,24 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
                oneColor.setOnAction(e->{
             eventController.processOneColor(oneColor.getValue());  
         });
-         
-         
+            
+         Button zoomInButton=(Button) app.getGUIModule().getGUINode(ZOOM_IN_BUTTON);
+          zoomInButton.setOnAction(e->{
+            double xScale=goLogoLoEditPane.getScaleX();
+              goLogoLoEditPane.setScaleX(xScale*1.5);
+              double yScale=goLogoLoEditPane.getScaleY();
+              goLogoLoEditPane.setScaleY(yScale*1.5);   
+               goLogoLoEditPane.setClip(goLogoLoEditPane);
+          });
+          
+         Button zoomOutButton=(Button) app.getGUIModule().getGUINode(ZOOM_OUT_BUTTON);
+         zoomOutButton.setOnAction(e->{
+            double xScale=goLogoLoEditPane.getScaleX();
+              goLogoLoEditPane.setScaleX(xScale*.5);
+              double yScale=goLogoLoEditPane.getScaleY();
+               goLogoLoEditPane.setScaleY(yScale*.5);   
+              
+          });
          
          //edit double click on table
          logoTable.setOnMouseClicked(e -> {
@@ -421,12 +512,10 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
             if (e.getClickCount() == 2&& data.getSelectedItem().getType().equalsIgnoreCase("Text")) {
                 
                 eventController.processEditText();
-            }
-           
-               
+            }    
             
         });
-         
+      
 
     }
   

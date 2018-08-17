@@ -29,7 +29,7 @@ public class LogoRectangle extends Rectangle implements Cloneable
     double width;
     double height;
     String color;
-    String borderColor;
+    Color borderColor;
     double xCoordinate;
     double yCoordinate;    
     String name;
@@ -46,12 +46,15 @@ public class LogoRectangle extends Rectangle implements Cloneable
    double radius;
    boolean proportional;
    CycleMethod cycleMethod;
-   
+   double strokeWidth;
+   double arcHeight;
+   double arcWidth;
     public LogoRectangle(){
        
         this.setWidth(300);
         this.setHeight(150);
-
+        arcHeight=0;
+        arcWidth=0;
         this.setStroke(BLACK);
         this.setY(300);
         this.setX(250);
@@ -61,10 +64,11 @@ public class LogoRectangle extends Rectangle implements Cloneable
         centerY=0;
         radius=0;
         proportional=true;
-        
+        this.setStrokeWidth(1);
+        strokeWidth=1;
         cycleMethod=NO_CYCLE;
  
-        borderColor="BLACK";
+        borderColor=BLACK;
         color="WHITE";
         name="DEFAULT";
         type="Rectangle";
@@ -88,12 +92,38 @@ public class LogoRectangle extends Rectangle implements Cloneable
       this.setY(y);
       this.setX(x);
         
-        borderColor=this.getStroke().toString();
+       
         color=this.getFill().toString();
         name="DEFAULT";
         type="Rectangle";
         order=0;
        
+    }
+
+    public double getRectangleArcHeight() {
+        return arcHeight;
+    }
+
+    public void setRectangleArcHeight(double arcHeight) {
+        this.arcHeight = arcHeight;
+    }
+
+    public double getRectangleArcWidth() {
+        return arcWidth;
+    }
+
+    public void setRectangleArcWidth(double arcWidth) {
+        this.arcWidth = arcWidth;
+    }
+
+
+       
+    public double getRectangleStrokeWidth() {
+        return strokeWidth;
+    }
+
+    public void setRectangleStrokeWidth(double strokeWidth) {
+        this.strokeWidth = strokeWidth;
     }
       
           
@@ -218,10 +248,10 @@ public class LogoRectangle extends Rectangle implements Cloneable
 //       rectangle.setFill(color);
 //    }
 
-//    public void setBorderColor(String borderColor) {
-//        this.borderColor = borderColor;
-//    }
-
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+    
     public void setXCoordinate(double xCoordinate) {
         this.setX(xCoordinate);
     }
@@ -258,9 +288,9 @@ public class LogoRectangle extends Rectangle implements Cloneable
                 return fill;
     }
 
-    public Paint getBorderColor() {
-       Paint border=this.getStroke();
-                return border;
+    public Color getBorderColor() {
+       
+                return borderColor;
     }
     
     

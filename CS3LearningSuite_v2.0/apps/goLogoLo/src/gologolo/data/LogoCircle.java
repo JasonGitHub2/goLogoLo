@@ -24,8 +24,8 @@ public class LogoCircle extends Circle implements Cloneable {
     double radius;
    
     String color;
-    String borderColor;
     double xCenterCoordinate;
+    Color borderColor;
     double yCenterCoordinate;    
     String name;
     String type;
@@ -42,6 +42,7 @@ public class LogoCircle extends Circle implements Cloneable {
    double gradientRadius;
    boolean proportional;
    CycleMethod cycleMethod;
+   double borderThickness;
    
     public LogoCircle(){
        
@@ -50,7 +51,9 @@ public class LogoCircle extends Circle implements Cloneable {
         this.setStroke(BLACK);
         this.setCenterX(250);
         this.setCenterY(350);
-        borderColor="BLACK";
+        this.setStrokeWidth(1);
+        borderThickness=1;
+        borderColor=BLACK;
         color="WHITE";
         name="DEFAULT";
         type="Circle";
@@ -81,7 +84,7 @@ public class LogoCircle extends Circle implements Cloneable {
         this.setStroke(stroke);
         this.setCenterX(x);
         this.setCenterY(y);
-        borderColor=this.getStroke().toString();
+        
         color=this.getFill().toString();
         
         radius=radiusCircle;
@@ -93,6 +96,14 @@ public class LogoCircle extends Circle implements Cloneable {
         type="Rectangle";
         order=0;
        
+    }
+
+    public double getCircleBorderThickness() {
+        return borderThickness;
+    }
+
+    public void setCircleBorderThickness(double borderThickness) {
+        this.borderThickness = borderThickness;
     }
 
     public Stop getStop1() {
@@ -193,12 +204,12 @@ public class LogoCircle extends Circle implements Cloneable {
         this.setFill(color);
     }
 
-    public String getBorderColor() {
-        return this.getStroke().toString();
+    public Color getBorderColor() {
+        return borderColor;
     }
 
-    public void setBorderColor(Paint borderColor) {
-        this.setStroke(borderColor);
+    public void setBorderColor(Color borderColor) {
+        this.borderColor=borderColor;
     }
 
     public double getxCenterCoordinate() {

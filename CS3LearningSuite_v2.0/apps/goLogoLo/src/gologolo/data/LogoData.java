@@ -37,6 +37,7 @@ import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.BLUE;
 import static javafx.scene.paint.Color.WHITE;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 /**
@@ -479,6 +480,9 @@ public class LogoData implements AppDataComponent{
               this.selectCorrespondingData(rectangle);
               selectNodeInPane(rectangle);
               
+      
+                         
+              
             double offsetX = e.getSceneX() - orgSceneX;
             double offsetY = e.getSceneY() - orgSceneY;
             double newTranslateX = orgTranslateX + offsetX;
@@ -500,7 +504,12 @@ public class LogoData implements AppDataComponent{
         
     }
     
-    
+    public Shape getShapeAt(int index){
+        return (Shape)editComponents.get(index);
+    }
+    public Text getTextAt(int index){
+        return (Text)editComponents.get(index);
+    }
     
     public Node deepCloneNode(int nodeIndexToCopy){
         
