@@ -360,6 +360,11 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         });
         
        
+          moveDownButton.setOnAction(e->{
+            eventController.processMoveDown();
+        });
+        
+       
             focusAngle.valueProperty().addListener(e->{
                 focusAngle.setOnMouseReleased((x->{
             eventController.processFocusAngle((focusAngle.valueProperty().doubleValue()));
@@ -395,9 +400,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         }));
          });
          
-            cycleMethodComboBox.setOnAction(e->{
-                       
-               
+            cycleMethodComboBox.setOnAction(e->{        
             eventController.processCycleMethod(cycleMethodComboBox.getSelectionModel().getSelectedItem().toString());
     
         });

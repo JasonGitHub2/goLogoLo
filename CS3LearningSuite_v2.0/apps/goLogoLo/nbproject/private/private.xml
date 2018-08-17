@@ -5,6 +5,7 @@
         <group>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/RenameComponent_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/OneColor_Transaction.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/CutComponents_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/ClickDrag_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/workspace/foolproof/LogoFoolproofDesign.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/ZeroColor_Transaction.java</file>
@@ -16,10 +17,13 @@
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/data/LogoRectangle.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/DeleteComponent_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/UnderlineText_Transaction.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/export/sampleRecent.png</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/FocusDistance_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/PasteComponent_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/files/LogoFiles.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/MoveDown_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/ItalicizeText_Transaction.java</file>
+            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/app_data/recent/RecentWork.txt</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/Radius_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/DecreaseText_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/CenterY_Transaction.java</file>
@@ -30,7 +34,6 @@
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/CycleMethod_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/data/LogoCircle.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/BoldText_Transaction.java</file>
-            <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/work/sample%201.</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/GoLogoLo.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/IncreaseText_Transaction.java</file>
             <file>file:/Users/jasoncao/Documents/JC/SBU/CSE219/FinalProject/goLogoLoClone/CS3LearningSuite_v2.0/apps/goLogoLo/src/gologolo/transactions/AddRectangle_Transaction.java</file>

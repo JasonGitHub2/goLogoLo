@@ -6,6 +6,7 @@
 package gologolo.transactions;
 
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
@@ -27,11 +28,12 @@ public class FocusDistance_Transaction  implements jTPS_Transaction{
     RadialGradient newGradient;
     boolean isCircle=false;
     boolean isRectangle=false;
-    boolean isImage=false;
+ LogoCircle selectedCircle;
+     RadialGradient oldGradient;
     int index;
      Slider focusDistanceSlider;
     double oldDistance;
-    public FocusDistance_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double newDistance,boolean isCircles,boolean isImages,boolean isRectangles){
+    public FocusDistance_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double newDistance,boolean isCircles,boolean isRectangles){
         data=thisData;
         app=appLogo;
         selected=component;
@@ -40,7 +42,7 @@ public class FocusDistance_Transaction  implements jTPS_Transaction{
      focusDistanceSlider=(Slider)data.getApp().getGUIModule().getGUINode(LOGO_FOCUS_DISTANCE_SLIDER);
         isCircle=isCircles;
         isRectangle=isRectangles;
-        isImage=isImages;
+
     }
     
     @Override
@@ -52,6 +54,16 @@ public class FocusDistance_Transaction  implements jTPS_Transaction{
           selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setFocusDistance(distance);
           selectedRectangle.setFill(newGradient);
+          focusDistanceSlider.setValue(distance);
+         }
+       else if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+           oldDistance=selectedCircle.getFocusDistance();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),distance,selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+           selectedCircle.setFocusDistance(distance);
+          selectedCircle.setFill(newGradient);
           focusDistanceSlider.setValue(distance);
          }
     }
@@ -67,6 +79,15 @@ public class FocusDistance_Transaction  implements jTPS_Transaction{
           selectedRectangle.setFill(newGradient);
           focusDistanceSlider.setValue(oldDistance);
          }
+        else  if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),oldDistance,selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+           selectedCircle.setFocusDistance(oldDistance);
+          selectedCircle.setFill(oldGradient);
+          focusDistanceSlider.setValue(oldDistance);
+    }
     }
     
 }

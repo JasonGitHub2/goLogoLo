@@ -6,6 +6,7 @@
 package gologolo.transactions;
 
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
@@ -27,11 +28,12 @@ public class Radius_Transaction  implements jTPS_Transaction{
     RadialGradient newGradient;
     boolean isCircle=false;
     boolean isRectangle=false;
-    boolean isImage=false;
+LogoCircle selectedCircle;
+     RadialGradient oldGradient;
     int index;
     double oldRadius;
      Slider radiusSlider;
-    public Radius_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double newRadius,boolean isCircles,boolean isImages,boolean isRectangles){
+    public Radius_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double newRadius,boolean isCircles,boolean isRectangles){
         data=thisData;
         radiusSlider=(Slider)data.getApp().getGUIModule().getGUINode(LOGO_RADIUS_SLIDER);
         app=appLogo;
@@ -41,7 +43,7 @@ public class Radius_Transaction  implements jTPS_Transaction{
      
         isCircle=isCircles;
         isRectangle=isRectangles;
-        isImage=isImages;
+
     }
     
     @Override
@@ -54,6 +56,16 @@ public class Radius_Transaction  implements jTPS_Transaction{
           selectedRectangle.setRadius(radius);
           selectedRectangle.setFill(newGradient);
           radiusSlider.setValue(radius);
+         }
+       else if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+            oldRadius=selectedCircle.getGradientRadius();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),radius,selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+             selectedCircle.setGradientRadius(radius);
+          selectedCircle.setFill(newGradient);
+            radiusSlider.setValue(radius);
          }
     }
 
@@ -68,6 +80,15 @@ public class Radius_Transaction  implements jTPS_Transaction{
           selectedRectangle.setFill(newGradient);
           radiusSlider.setValue(oldRadius);
          }
+      else  if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),oldRadius,selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+           selectedCircle.setRadius(oldRadius);
+          selectedCircle.setFill(oldGradient);
+       radiusSlider.setValue(oldRadius);    
+    }
     }
     
 }

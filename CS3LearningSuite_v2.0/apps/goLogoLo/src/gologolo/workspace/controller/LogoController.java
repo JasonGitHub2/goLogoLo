@@ -27,6 +27,7 @@ import gologolo.transactions.FocusAngle_Transaction;
 import gologolo.transactions.FocusDistance_Transaction;
 import gologolo.transactions.IncreaseText_Transaction;
 import gologolo.transactions.ItalicizeText_Transaction;
+import gologolo.transactions.MoveDown_Transaction;
 import gologolo.transactions.MoveUp_Transaction;
 import gologolo.transactions.OneColor_Transaction;
 import gologolo.transactions.Radius_Transaction;
@@ -66,9 +67,14 @@ public class LogoController {
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
                 
                 
-                 FocusAngle_Transaction transaction = new FocusAngle_Transaction(data, app,selectedItem,value,false,false,true);
+                 FocusAngle_Transaction transaction = new FocusAngle_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
                   }
+                    else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         FocusAngle_Transaction transaction = new FocusAngle_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
      }
     }
     
@@ -80,9 +86,16 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
   
-                 FocusDistance_Transaction transaction = new FocusDistance_Transaction(data, app,selectedItem,value,false,false,true);
+                 FocusDistance_Transaction transaction = new FocusDistance_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
+                 
                   }
+                  else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         FocusDistance_Transaction transaction = new FocusDistance_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
+                  
      }
     }
        public void processCenterX(Double value){
@@ -92,9 +105,14 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
   
-                 CenterX_Transaction transaction = new CenterX_Transaction(data, app,selectedItem,value,false,false,true);
+                 CenterX_Transaction transaction = new CenterX_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
                   }
+                  else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         CenterX_Transaction transaction = new CenterX_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
      }
     }
         public void processCenterY(Double value){
@@ -104,9 +122,14 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
   
-                CenterY_Transaction transaction = new CenterY_Transaction(data, app,selectedItem,value,false,false,true);
+                CenterY_Transaction transaction = new CenterY_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
                   }
+                  else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         CenterY_Transaction transaction = new CenterY_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
      }
     }
          public void processRadius(Double value){
@@ -116,9 +139,14 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
   
-                 Radius_Transaction transaction = new Radius_Transaction(data, app,selectedItem,value,false,false,true);
+                 Radius_Transaction transaction = new Radius_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
                   }
+                  else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         Radius_Transaction transaction = new Radius_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
      }
     }
          
@@ -129,9 +157,14 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
   
-                CycleMethod_Transaction transaction = new CycleMethod_Transaction(data, app,selectedItem,value,false,false,true);
+                CycleMethod_Transaction transaction = new CycleMethod_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
                   }
+                  else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         CycleMethod_Transaction transaction = new CycleMethod_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
         }
       }
         
@@ -143,9 +176,14 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
   
-                ZeroColor_Transaction transaction = new ZeroColor_Transaction(data, app,selectedItem,value,false,false,true);
+                ZeroColor_Transaction transaction = new ZeroColor_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
                   }
+                  else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         ZeroColor_Transaction transaction = new ZeroColor_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
         }
       }
          
@@ -159,9 +197,14 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                   if(selectedItem.getType().equalsIgnoreCase("Rectangle")){
   
-                OneColor_Transaction transaction = new OneColor_Transaction(data, app,selectedItem,value,false,false,true);
+                OneColor_Transaction transaction = new OneColor_Transaction(data, app,selectedItem,value,false,true);
                  app.processTransaction(transaction);
                   }
+                  else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
+                         OneColor_Transaction transaction = new OneColor_Transaction(data, app,selectedItem,value,true,false);
+                 app.processTransaction(transaction);
+                    }
+                
         }
       }
          
@@ -194,6 +237,23 @@ public class LogoController {
                 {
                     if(selectedItem.getOrder()!=1){
                         MoveUp_Transaction transaction = new MoveUp_Transaction(selectedItem, app);
+                         app.processTransaction(transaction);
+                    }
+                }
+                
+            }
+       
+    }
+     
+      public void processMoveDown(){
+    
+            LogoData data = (LogoData)app.getDataComponent();
+            if (data.isItemSelected())  
+            {
+                LogoPrototype selectedItem=data.getSelectedItem();
+                {
+                    if(selectedItem.getOrder()!=data.getComponents().size()){
+                        MoveDown_Transaction transaction = new MoveDown_Transaction(selectedItem, app);
                          app.processTransaction(transaction);
                     }
                 }

@@ -324,29 +324,29 @@ public class LogoFiles implements AppFileComponent{
 	return json;
     }
     
+    
+    
+  
+        
     /**
      * This method would be used to export data to another format,
      * which we're not doing in this assignment.
      */
     @Override
     public void exportData(AppDataComponent data, String savedFileName) throws IOException {
-         String exportName = savedFileName.substring(0, savedFileName.indexOf("."));
-        String fileToExport = exportName+".png";
-        
+         String fileName = savedFileName.substring(0, savedFileName.indexOf("."));
+         String fileToExport = fileName + ".png";
         try {
-            // GET THE ACTUAL DATA
-            LogoData logoData = (LogoData)data;
-            PropertiesManager props = PropertiesManager.getPropertiesManager();
-//            String exportDirPath = props.getProperty(APP_PATH_EXPORT) + "export" + "/";
-//            File exportDir = new File(exportDirPath);
-            
-              File exportedFile=new File(savedFileName);
+             LogoData logoData = (LogoData)data;
+            PropertiesManager props = PropertiesManager.getPropertiesManager();          
+            String exportDirPath = props.getProperty(APP_PATH_EXPORT) + fileName +".png";      
+              File exportedFile=new File(exportDirPath);
               Pane editPane=(Pane)logoData.getApp().getGUIModule().getGUINode(LOGO_EDIT_PANE);
               WritableImage image = editPane.snapshot(new SnapshotParameters(), null);
 
 
               try {
-              ImageIO.write(SwingFXUtils.fromFXImage(image, null), ".png", exportedFile);
+              ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", exportedFile);
               } catch (IOException e) {
        
             }
@@ -359,24 +359,14 @@ public class LogoFiles implements AppFileComponent{
             throw new IOException("Error loading " + savedFileName);
         }
     }
+            
+
+           
+       
+            
+  
     
-    
-//    private void addCellToRow(Document doc, Node rowNode, String text) {
-//        Element tdElement = doc.createElement(HTML.Tag.TD.toString());
-//        tdElement.setTextContent(text);
-//        rowNode.appendChild(tdElement);
-//    }
-//    private Node getNodeWithId(Document doc, String tagType, String searchID) {
-//        NodeList testNodes = doc.getElementsByTagName(tagType);
-//        for (int i = 0; i < testNodes.getLength(); i++) {
-//            Node testNode = testNodes.item(i);
-//            Node testAttr = testNode.getAttributes().getNamedItem(HTML.Attribute.ID.toString());
-//            if ((testAttr != null) && testAttr.getNodeValue().equals(searchID)) {
-//                return testNode;
-//            }
-//        }
-//        return null;
-//    }
+
     private void saveDocument(Document doc, String outputFilePath)
             throws TransformerException, TransformerConfigurationException {
 //        TransformerFactory factory = TransformerFactory.newInstance();

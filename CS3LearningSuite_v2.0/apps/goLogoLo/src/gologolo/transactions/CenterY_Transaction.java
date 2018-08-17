@@ -6,6 +6,7 @@
 package gologolo.transactions;
 
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
@@ -25,14 +26,15 @@ public class CenterY_Transaction implements jTPS_Transaction{
     double centerY;
     LogoRectangle selectedRectangle;
     RadialGradient newGradient;
+    RadialGradient oldGradient;
     boolean isCircle=false;
     boolean isRectangle=false;
-    boolean isImage=false;
+    LogoCircle selectedCircle;
     int index;
     Slider centerYSlider;
     double oldCenterY;
     
-    public CenterY_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double y,boolean isCircles,boolean isImages,boolean isRectangles){
+    public CenterY_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double y,boolean isCircles,boolean isRectangles){
         data=thisData;
         centerYSlider=(Slider)data.getApp().getGUIModule().getGUINode(LOGO_CENTER_Y_SLIDER);
         app=appLogo;
@@ -42,7 +44,7 @@ public class CenterY_Transaction implements jTPS_Transaction{
      
         isCircle=isCircles;
         isRectangle=isRectangles;
-        isImage=isImages;
+
     }
     
     @Override
@@ -56,6 +58,17 @@ public class CenterY_Transaction implements jTPS_Transaction{
           selectedRectangle.setFill(newGradient);
           centerYSlider.setValue(centerY);
          }
+       else if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldCenterY=selectedCircle.getCenterY();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          centerY,selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setCenterX(centerY);
+          selectedCircle.setFill(newGradient);
+          
+          centerYSlider.setValue(centerY);
+         }
     }
 
     @Override
@@ -67,6 +80,15 @@ public class CenterY_Transaction implements jTPS_Transaction{
           oldCenterY,selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setCenterY(oldCenterY);
           selectedRectangle.setFill(newGradient);
+          centerYSlider.setValue(oldCenterY);
+         }
+        else  if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          oldCenterY,selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setCenterY(oldCenterY);
+          selectedCircle.setFill(oldGradient);
           centerYSlider.setValue(oldCenterY);
          }
     }

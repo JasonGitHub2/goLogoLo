@@ -4,7 +4,7 @@
         {
             "name":"DEFAULT",
             "type":"Rectangle",
-            "rectangle fill color":"0xffffffff",
+            "rectangle fill color":"radial-gradient(focus-angle 0.0deg, focus-distance 0.0% , center 0.0% 0.0%, radius 0.0%, 0xffffffff 0.0%, 0xffffffff 100.0%)",
             "rectangle border color":"0x000000ff",
             "rectangle rectangle height":150.0,
             "rectangle rectangle width":300.0,

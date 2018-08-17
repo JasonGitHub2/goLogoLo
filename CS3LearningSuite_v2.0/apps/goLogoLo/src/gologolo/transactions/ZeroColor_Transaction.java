@@ -6,6 +6,7 @@
 package gologolo.transactions;
 
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
@@ -29,14 +30,15 @@ public class ZeroColor_Transaction  implements jTPS_Transaction{
     RadialGradient newGradient;
     boolean isCircle=false;
     boolean isRectangle=false;
-    boolean isImage=false;
+    LogoCircle selectedCircle;
+     RadialGradient oldGradient;
     int index;
     Stop newStop;
        ColorPicker colorOneBox;
       Stop oldStop;
       Color oldColor;
     
-    public ZeroColor_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,Color color,boolean isCircles,boolean isImages,boolean isRectangles){
+    public ZeroColor_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,Color color,boolean isCircles,boolean isRectangles){
         data=thisData;
         app=appLogo;
          colorOneBox=(ColorPicker)data.getApp().getGUIModule().getGUINode(LOGO_ZERO_COLOR);
@@ -46,7 +48,7 @@ public class ZeroColor_Transaction  implements jTPS_Transaction{
         newStop=new Stop(0,newColor);
         isCircle=isCircles;
         isRectangle=isRectangles;
-        isImage=isImages;
+
     }
     
     @Override
@@ -59,6 +61,16 @@ public class ZeroColor_Transaction  implements jTPS_Transaction{
           selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),newStop,selectedRectangle.getStop2());
           selectedRectangle.setStop1(newStop);
           selectedRectangle.setFill(newGradient);
+          colorOneBox.setValue(newColor);
+         }
+      else if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+           oldStop=selectedCircle.getStop0();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),newStop,selectedCircle.getStop1());
+             selectedCircle.setStop0(newStop);
+          selectedCircle.setFill(newGradient);
           colorOneBox.setValue(newColor);
          }
     }
@@ -74,6 +86,15 @@ public class ZeroColor_Transaction  implements jTPS_Transaction{
           selectedRectangle.setFill(newGradient);
                   colorOneBox.setValue(oldColor);
          }
+       else  if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),oldStop,selectedCircle.getStop1());
+            selectedCircle.setStop0(oldStop);
+          selectedCircle.setFill(oldGradient);
+            colorOneBox.setValue(oldColor);
+    }
     }
     
 }

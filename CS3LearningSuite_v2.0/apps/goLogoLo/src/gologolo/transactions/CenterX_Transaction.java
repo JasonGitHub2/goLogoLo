@@ -6,6 +6,7 @@
 package gologolo.transactions;
 
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
@@ -27,15 +28,17 @@ public class CenterX_Transaction  implements jTPS_Transaction{
     double centerX;
     double oldCenterX;
     LogoRectangle selectedRectangle;
+     LogoCircle selectedCircle;
+     RadialGradient oldGradient;
     RadialGradient newGradient;
-    RadialGradient oldGradient;
+    
     boolean isCircle=false;
     boolean isRectangle=false;
-    boolean isImage=false;
+
     int index;
     Slider centerXSlider;
     
-    public CenterX_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double newX,boolean isCircles,boolean isImages,boolean isRectangles){
+    public CenterX_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double newX,boolean isCircles,boolean isRectangles){
         data=thisData;
         centerXSlider=(Slider)data.getApp().getGUIModule().getGUINode(LOGO_CENTER_X_SLIDER);
         app=appLogo;
@@ -45,7 +48,7 @@ public class CenterX_Transaction  implements jTPS_Transaction{
          
         isCircle=isCircles;
         isRectangle=isRectangles;
-        isImage=isImages;
+
     }
     
     @Override
@@ -61,19 +64,38 @@ public class CenterX_Transaction  implements jTPS_Transaction{
           
           centerXSlider.setValue(centerX);
          }
+      else if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldCenterX=selectedCircle.getCenterX();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),centerX,
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setCenterX(centerX);
+          selectedCircle.setFill(newGradient);
+          
+          centerXSlider.setValue(centerX);
+         }
     }
 
     @Override
     public void undoTransaction() {
          if(isRectangle){
          
-          selectedRectangle=   (LogoRectangle) data.getEditComponents().get(index);
-         System.out.println( oldCenterX);
-         System.out.print(centerX);
+          selectedRectangle=   (LogoRectangle) data.getEditComponents().get(index);     
           oldGradient=new RadialGradient(selectedRectangle.getFocusAngle(),selectedRectangle.getFocusDistance(),oldCenterX,
           selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),selectedRectangle.getCycleMethod(),selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setCenterX(oldCenterX);
           selectedRectangle.setFill(oldGradient);
+          centerXSlider.setValue(oldCenterX);
+         }
+         
+         else  if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),oldCenterX,
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setCenterX(oldCenterX);
+          selectedCircle.setFill(oldGradient);
           centerXSlider.setValue(oldCenterX);
          }
     }

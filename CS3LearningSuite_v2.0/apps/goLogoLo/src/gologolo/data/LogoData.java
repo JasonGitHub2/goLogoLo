@@ -93,6 +93,10 @@ public class LogoData implements AppDataComponent{
  public GoLogoLo getApp(){
      return initApp;
  }
+
+    public ObservableList<LogoPrototype> getComponents() {
+        return components;
+    }
     
     @Override
     public void reset() {
@@ -428,14 +432,16 @@ public class LogoData implements AppDataComponent{
     public void swapComponentAndNodes(int indexToMoveUp,int indexToMoveDown){
         LogoPrototype bottomData=components.get(indexToMoveUp);
         LogoPrototype topData=components.get(indexToMoveDown);
-//        Node topNode=editComponents.get(top);
-//        Node bottomNode=editComponents.get(bottom);
+        Node topNode=editComponents.get(indexToMoveDown);
+        Node bottomNode=editComponents.get(indexToMoveUp);
         components.remove(topData);
-        components.add(indexToMoveDown, topData);
+        components.add(indexToMoveUp, topData);
         this.clearSelected();
-        this.selectItem(topData);
-//        editComponents.remove(topNode);
-//        editComponents.add(bottom, topNode);
+        this.selectItem(bottomData);
+       editComponents.remove(topNode);
+       editComponents.add(indexToMoveUp, topNode);
+       selectNodeInPane(bottomNode);
+        this.reorderTable();
     }
     
     public Rectangle createRectangle(){
@@ -696,11 +702,10 @@ public class LogoData implements AppDataComponent{
        for(Node node:editComponents){
            node.setEffect(null);
        }
-       Glow glow=new Glow();
-        editComponents.get(index).setEffect(glow);
-//      InnerShadow innerShadow = new InnerShadow();
-//      innerShadow.setColor(BLUE);
-//       editComponents.get(index).setEffect(innerShadow);
+   
+      InnerShadow innerShadow = new InnerShadow();
+      innerShadow.setColor(BLUE);
+       editComponents.get(index).setEffect(innerShadow);
        
     }
     
@@ -708,11 +713,11 @@ public class LogoData implements AppDataComponent{
         for(Node node:editComponents){
            node.setEffect(null);
        }
-         Glow glow=new Glow();
-        editComponents.get(index).setEffect(glow);
-//       InnerShadow innerShadow = new InnerShadow();
-//      innerShadow.setColor(BLUE);
-//       editComponents.get(index).setEffect(innerShadow);
+      
+       InnerShadow innerShadow = new InnerShadow();
+      innerShadow.setColor(BLUE);
+      
+      editComponents.get(index).setEffect(innerShadow);
     }
     
     public void selectNodeInPane(Node node){

@@ -14,23 +14,23 @@ import jtps.jTPS_Transaction;
  *
  * @author jasoncao
  */
-public class MoveUp_Transaction implements jTPS_Transaction {
+public class MoveDown_Transaction implements jTPS_Transaction {
     LogoPrototype selectedComponent;
     GoLogoLo app;
     LogoData data;
     int indexToMoveUp;
     int indexToMoveDown;
-    public MoveUp_Transaction(LogoPrototype selected,GoLogoLo initApp){
+    public MoveDown_Transaction(LogoPrototype selected,GoLogoLo initApp){
         selectedComponent=selected;
         app=initApp;
         data=(LogoData)app.getDataComponent();   
-        indexToMoveUp=data.getItemIndex(selectedComponent);
-        indexToMoveDown=indexToMoveUp-1;
+        indexToMoveDown=data.getItemIndex(selectedComponent);
+        indexToMoveUp=indexToMoveUp+1;
     }
     
     @Override
     public void doTransaction() {
-       data.swapComponentAndNodes(indexToMoveUp, indexToMoveDown);
+       data.swapComponentAndNodes( indexToMoveUp,indexToMoveDown);
     }
 
     @Override
@@ -39,3 +39,6 @@ public class MoveUp_Transaction implements jTPS_Transaction {
     }
     
 }
+
+    
+

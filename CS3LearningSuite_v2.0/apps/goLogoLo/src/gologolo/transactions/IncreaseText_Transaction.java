@@ -11,6 +11,7 @@ import gologolo.data.LogoPrototype;
 import gologolo.data.LogoText;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import jtps.jTPS_Transaction;
 
 /**
@@ -27,7 +28,8 @@ public class IncreaseText_Transaction implements jTPS_Transaction{
     int oldSize;
     Font oldFont;
     Font newFont;
-    
+    boolean isBold;
+    boolean isItalic;
     public IncreaseText_Transaction(LogoPrototype selectedData, GoLogoLo appData){
         selectedText=selectedData;
         app=appData;
@@ -35,10 +37,23 @@ public class IncreaseText_Transaction implements jTPS_Transaction{
         textNode=(LogoText) data.getSelectedNode(selectedText);    
         fontName=textNode.getFontName();
         oldSize=textNode.getFontSize();
-        oldFont=new Font(fontName,oldSize);
+       
         newSize=oldSize+2;
-        newFont=new Font(fontName,newSize);
-        
+       
+         isBold=textNode.getIsBold();
+        isItalic=textNode.getIsItalicized();
+         if(isBold){    
+         newFont=Font.font(fontName, FontWeight.BOLD,newSize);
+          oldFont=Font.font(fontName,FontWeight.BOLD,oldSize);
+         }
+         else if (isItalic){    
+         newFont=Font.font(fontName, FontPosture.ITALIC,newSize);
+               oldFont=Font.font(fontName,FontPosture.ITALIC,oldSize);
+         }
+         else{
+              newFont=new Font(fontName,newSize);
+         }
+       
     }
 
     @Override

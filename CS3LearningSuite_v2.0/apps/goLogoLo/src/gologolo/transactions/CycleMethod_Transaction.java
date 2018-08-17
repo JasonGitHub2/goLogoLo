@@ -6,6 +6,7 @@
 package gologolo.transactions;
 
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
@@ -31,13 +32,14 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
     RadialGradient newGradient;
     boolean isCircle=false;
     boolean isRectangle=false;
-    boolean isImage=false;
+     LogoCircle selectedCircle;
+     RadialGradient oldGradient;
     int index;
     CycleMethod newCycleMethod;
     CycleMethod oldCycleMethod;
      ComboBox cycleMethodBox;
     
-    public CycleMethod_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,String method,boolean isCircles,boolean isImages,boolean isRectangles){
+    public CycleMethod_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,String method,boolean isCircles,boolean isRectangles){
    
         data=thisData;
         cycleMethodBox=(ComboBox)data.getApp().getGUIModule().getGUINode(LOGO_CYCLE_METHOD_COMBO_BOX);
@@ -58,7 +60,7 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
      
         isCircle=isCircles;
         isRectangle=isRectangles;
-        isImage=isImages;
+
     }
     
     @Override
@@ -70,6 +72,17 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
          selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),newCycleMethod,selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setCycleMethod(newCycleMethod);
           selectedRectangle.setFill(newGradient);
+          cycleMethodBox.setValue(newCycleMethod);
+         }
+       else if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldCycleMethod=selectedCircle.getCycleMethod();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),newCycleMethod,selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setCycleMethod(newCycleMethod);
+          selectedCircle.setFill(newGradient);
+          
           cycleMethodBox.setValue(newCycleMethod);
          }
     }
@@ -84,6 +97,15 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
           selectedRectangle.setCycleMethod(oldCycleMethod);
           selectedRectangle.setFill(newGradient);
           cycleMethodBox.setValue(oldCycleMethod);
+         }
+        else  if(isCircle){
+         
+          selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
+          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),oldCycleMethod,selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setCycleMethod(oldCycleMethod);
+          selectedCircle.setFill(oldGradient);
+         cycleMethodBox.setValue(oldCycleMethod);
          }
     }
     
