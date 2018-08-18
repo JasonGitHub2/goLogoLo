@@ -321,9 +321,8 @@ public class AppGUIModule {
        } 
       if (props.isTrue(HAS_RESIZE)) {
             Button resizeButton = nodesBuilder.buildIconButton(RESIZE_BUTTON, null, navigationToolbar, CLASS_DJF_ICON_BUTTON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
-            resizeButton.setOnAction(e -> {
-            navigationController.processResizeRequest();
-        });
+           
+     
       
       } 
       

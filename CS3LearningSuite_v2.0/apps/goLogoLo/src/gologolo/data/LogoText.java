@@ -5,6 +5,8 @@
  */
 package gologolo.data;
 
+import javafx.scene.paint.Color;
+import static javafx.scene.paint.Color.BLACK;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -21,6 +23,7 @@ public class LogoText extends Text implements Cloneable{
     String type;
     int order;
     Font font;
+    Color fontColor;
     String fontName;
     int fontSize;
     boolean isBold;
@@ -41,6 +44,7 @@ public class LogoText extends Text implements Cloneable{
         yCoordinate=200;
         name="DEFAULT";
         type="Text";
+        fontColor=BLACK;
         order=0;
         this.setFont(font);
         this.setText(stringInput);
@@ -104,6 +108,14 @@ public class LogoText extends Text implements Cloneable{
     
     public Text getTextNode() {
         return text;
+    }
+
+    public Color getFontColor() {
+        return fontColor;
+    }
+
+    public void setFontColor(Color fontColor) {
+        this.fontColor = fontColor;
     }
 
     public void setTextNode(Text text) {

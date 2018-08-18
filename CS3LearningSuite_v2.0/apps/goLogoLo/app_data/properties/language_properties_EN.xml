@@ -7,6 +7,13 @@
     <property_list>
 
         <!-- ENGLISH LANGUAGE SETTINGS GOLOGOLO CONTROLS -->
+        
+         <property name="LOGO_HEIGHT_LABEL_TEXT"           value="Height:"></property>
+          <property name="LOGO_WIDTH_LABEL_TEXT"           value="Width:"></property>
+           <property name="LOGO_RESIZE_OK_LABEL_TEXT"           value="Ok"></property>
+            <property name="LOGO_RESIZE_CANCEL_LABEL_TEXT"           value="Cancel"></property>
+            
+        
          <property name="LOGO_DIALOG_RENAME_HEADER_TEXT"           value="Rename Component"></property>
                 <property name="LOGO_CHANGE_NAME_LABEL_TEXT"            value="Change Name:"></property>
          <property name="LOGO_EDIT_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>

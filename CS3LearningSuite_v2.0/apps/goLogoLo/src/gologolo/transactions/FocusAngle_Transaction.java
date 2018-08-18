@@ -63,10 +63,10 @@ public class FocusAngle_Transaction implements jTPS_Transaction{
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
            oldFocusAngle=selectedCircle.getFocusAngle();
-          newGradient=new RadialGradient(angle,selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
-           selectedCircle.setFocusAngle(angle);
-          selectedCircle.setFill(newGradient);
+          newGradient=new RadialGradient(angle,selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setFocusAngle(angle);
+           selectedCircle.setFill(newGradient);
           focusAngleSlider.setValue(angle);
          }
     }
@@ -86,8 +86,8 @@ public class FocusAngle_Transaction implements jTPS_Transaction{
          else  if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldGradient=new RadialGradient(angle,selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          oldGradient=new RadialGradient(angle,selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
            selectedCircle.setFocusAngle(oldFocusAngle);
           selectedCircle.setFill(oldGradient);
          focusAngleSlider.setValue(oldFocusAngle);

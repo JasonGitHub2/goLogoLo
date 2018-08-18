@@ -67,10 +67,10 @@ public class CenterX_Transaction  implements jTPS_Transaction{
       else if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldCenterX=selectedCircle.getCenterX();
+          oldCenterX=selectedCircle.getGradientCenterX();
           newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),centerX,
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
-          selectedCircle.setCenterX(centerX);
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setGradientCenterX(centerX);
           selectedCircle.setFill(newGradient);
           
           centerXSlider.setValue(centerX);
@@ -93,8 +93,8 @@ public class CenterX_Transaction  implements jTPS_Transaction{
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
           oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),oldCenterX,
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
-          selectedCircle.setCenterX(oldCenterX);
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setGradientCenterX(oldCenterX);
           selectedCircle.setFill(oldGradient);
           centerXSlider.setValue(oldCenterX);
          }

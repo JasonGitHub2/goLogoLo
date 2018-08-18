@@ -6,6 +6,8 @@
 package gologolo.workspace;
 
 import djf.AppPropertyType;
+import static djf.AppPropertyType.RESET_BUTTON;
+import static djf.AppPropertyType.RESIZE_BUTTON;
 import static djf.AppPropertyType.ZOOM_IN_BUTTON;
 import static djf.AppPropertyType.ZOOM_OUT_BUTTON;
 import djf.AppTemplate;
@@ -41,6 +43,7 @@ import static gologolo.goLogoLoPropertyType.DEFAULT_CYCLE_METHOD;
 import static gologolo.goLogoLoPropertyType.DEFAULT_FONT;
 import static gologolo.goLogoLoPropertyType.DEFAULT_FONT_SIZE;
 import static gologolo.goLogoLoPropertyType.DELETE_BUTTON;
+import static gologolo.goLogoLoPropertyType.FONT_COLOR_PICKER;
 import static gologolo.goLogoLoPropertyType.FONT_OPTIONS;
 import static gologolo.goLogoLoPropertyType.FONT_SIZE_OPTIONS;
 import static gologolo.goLogoLoPropertyType.GOLOGOLO_BORDER_COLOR_LABEL;
@@ -78,6 +81,7 @@ import static gologolo.goLogoLoPropertyType.LOGO_FOCUS_ANGLE_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_FOCUS_DISTANCE_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_GRADIENT_PANE;
 import static gologolo.goLogoLoPropertyType.LOGO_ONE_COLOR;
+import static gologolo.goLogoLoPropertyType.LOGO_PARENT_EDIT;
 import static gologolo.goLogoLoPropertyType.LOGO_RADIUS_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_ZERO_COLOR;
 import static gologolo.goLogoLoPropertyType.UNDERLINE_BUTTON;
@@ -97,6 +101,7 @@ import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_TABLE;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_TITLE_LABEL;
 import static gologolo.workspace.style.LogoStyle.LOGO_COMBO_BOX;
 import static gologolo.workspace.style.LogoStyle.LOGO_LONG_COMBO_BOX;
+import static gologolo.workspace.style.LogoStyle.LOGO_SHORT_COMBO_BOX;
 import static gologolo.workspace.style.LogoStyle.LOGO_SLIDER;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -122,10 +127,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.Paint;
+import javafx.scene.paint.RadialGradient;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -186,12 +193,21 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         
         
         //THE PANE IN THE MIDDLE(WHITE ONE) FOR EDITING LOGOS (PLAIN WHITE PANE)
+        StackPane parentEditPane=new StackPane();
+        Pane goLogoLoEditPane= goLogoLoBuilder.buildPane(LOGO_EDIT_PANE,    null,   null,   CLASS_LOGO_EDIT_BOX,     HAS_KEY_HANDLER,        FOCUS_TRAVERSABLE,      ENABLED);
+        parentEditPane.getChildren().add(goLogoLoEditPane);
         
-        Pane goLogoLoEditPane= goLogoLoBuilder.buildPane(LOGO_EDIT_PANE,     null,   null,   CLASS_LOGO_EDIT_BOX,     HAS_KEY_HANDLER,        FOCUS_TRAVERSABLE,      ENABLED);
-     
+        
+        //boundary for dragging from online
         goLogoLoEditPane.layoutBoundsProperty().addListener((ObservableValue<? extends Bounds> observable, Bounds oldBounds, Bounds bounds) -> {
             goLogoLoEditPane.setClip(new Rectangle(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight()));
         });
+        //boundary for zoom in from online
+        parentEditPane.layoutBoundsProperty().addListener((ObservableValue<? extends Bounds> observable, Bounds oldBounds, Bounds bounds) -> {
+            parentEditPane.setClip(new Rectangle(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(), bounds.getHeight()));
+        });
+        
+        
         //THE RIGHT PANE
         VBox goLogoLoRightPane= goLogoLoBuilder.buildVBox(LOGO_RIGHT_PANE,     null,   null,   CLASS_LOGO_RIGHT_BOX,     HAS_KEY_HANDLER,        FOCUS_TRAVERSABLE,      ENABLED);
         goLogoLoRightPane.setSpacing(5);
@@ -220,16 +236,17 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
          ArrayList<String> fontSizes=new ArrayList<>();
          String defaultSize="72";
          fontNames.add(defaultFont);
-         ComboBox fontSizeComboBox           =goLogoLoBuilder.buildComboBox(LOGO_FONT_SIZE_COMBO_BOX,          FONT_SIZE_OPTIONS,                    DEFAULT_FONT_SIZE,            fontButtonsPane,            null,           LOGO_COMBO_BOX,          HAS_KEY_HANDLER,            FOCUS_TRAVERSABLE,          ENABLED);
+         ComboBox fontSizeComboBox           =goLogoLoBuilder.buildComboBox(LOGO_FONT_SIZE_COMBO_BOX,          FONT_SIZE_OPTIONS,                    DEFAULT_FONT_SIZE,            fontButtonsPane,            null,           LOGO_SHORT_COMBO_BOX,          HAS_KEY_HANDLER,            FOCUS_TRAVERSABLE,          ENABLED);
          fontButtonsPane.rowValignmentProperty();
         //font buttons
         Button boldButton                = goLogoLoBuilder.buildIconButton(BOLD_BUTTON,                  fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button italicizeButton           = goLogoLoBuilder.buildIconButton(ITALICIZE_BUTTON,             fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button increaseTextButton       = goLogoLoBuilder.buildIconButton(INCREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button decreaseTextButton        = goLogoLoBuilder.buildIconButton(DECREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button underlineButton           = goLogoLoBuilder.buildIconButton(UNDERLINE_BUTTON,             fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        
-        
+       
+      
+        ColorPicker fontColor=goLogoLoBuilder.buildColorPicker(FONT_COLOR_PICKER,  fontButtonsPane, null, CLASS_LOGO_ICON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
+     
               
         
         //border pane (boder sliders)
@@ -291,7 +308,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
     
          
         goLogoLoPane.setLeft(goLogoLoLeftPane);
-        goLogoLoPane.setCenter(goLogoLoEditPane);
+        goLogoLoPane.setCenter(parentEditPane);
         goLogoLoPane.setRight(goLogoLoRightPane);
         workspace = new BorderPane();
 	((BorderPane)workspace).setCenter(goLogoLoPane);
@@ -355,11 +372,9 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
             }
         });
          
-         
-         underlineButton.setOnAction(e->{
-            eventController.processUnderlineText();
-        });
-         
+         fontColor.setOnAction(e->{
+           eventController.processChangeFontColor((Color)fontColor.getValue());
+          });
         increaseTextButton.setOnAction(e->{
             eventController.processIncreaseText();
         });
@@ -379,20 +394,123 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         
        
             focusAngle.valueProperty().addListener(e->{
-                focusAngle.setOnMouseReleased((x->{
+                 LogoData data = (LogoData)app.getDataComponent();
+                   LogoPrototype selected=data.getSelectedItem();
+
+                   focusAngle.setOnMouseDragged(y->{
+                     if(selected.getType().equalsIgnoreCase("Rectangle")){
+                         LogoRectangle rectangle=(LogoRectangle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(focusAngle.valueProperty().doubleValue(),
+                                                                      rectangle.getFocusDistance(),
+                                                                      rectangle.getCenterX(),
+                                                                      rectangle.getCenterY(),
+                                                                      rectangle.getRadius(),
+                                                                      rectangle.getProportion(),
+                                                                      rectangle.getCycleMethod(),   
+                                                                      rectangle.getStop1(),
+                                                                       rectangle.getStop2()) ;  
+                         rectangle.setFill(gradient);
+                 }
+                    else if(selected.getType().equalsIgnoreCase("Circle")){
+                        LogoCircle circle=(LogoCircle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(focusAngle.valueProperty().doubleValue(),
+                                                                     circle.getFocusDistance(),
+                                                                      circle.getGradientCenterX(),
+                                                                      circle.getGradientCenterY(),
+                                                                      circle.getGradientRadius(),
+                                                                      circle.getProportion(),
+                                                                      circle.getCycleMethod(),
+                                                                      circle.getStop0(),
+                                                                     circle.getStop1());
+                         circle.setFill(gradient);
+                    }
+                   });
+                
+                
+            focusAngle.setOnMouseReleased((x->{
             eventController.processFocusAngle((focusAngle.valueProperty().doubleValue()));
-        }));
-                      });
+         }));
+      });
                 
        
+            
         focusDistance.valueProperty().addListener(e->{
+            LogoData data = (LogoData)app.getDataComponent();
+                   LogoPrototype selected=data.getSelectedItem();
+
+                   focusDistance.setOnMouseDragged(y->{
+                     if(selected.getType().equalsIgnoreCase("Rectangle")){
+                         LogoRectangle rectangle=(LogoRectangle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(rectangle.getFocusAngle(),
+                                                                      focusDistance.valueProperty().doubleValue(),
+                                                                      rectangle.getCenterX(),
+                                                                      rectangle.getCenterY(),
+                                                                      rectangle.getRadius(),
+                                                                      rectangle.getProportion(),
+                                                                      rectangle.getCycleMethod(),   
+                                                                      rectangle.getStop1(),
+                                                                       rectangle.getStop2()) ;  
+                         rectangle.setFill(gradient);
+                 }
+              
+                     else if(selected.getType().equalsIgnoreCase("Circle")){
+                        LogoCircle circle=(LogoCircle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(circle.getFocusAngle(),
+                                                                     focusDistance.valueProperty().doubleValue(),
+                                                                      circle.getGradientCenterX(),
+                                                                      circle.getGradientCenterY(),
+                                                                      circle.getGradientRadius(),
+                                                                      circle.getProportion(),
+                                                                      circle.getCycleMethod(),
+                                                                      circle.getStop0(),
+                                                                     circle.getStop1());
+                         circle.setFill(gradient);
+                    }
+            
+               });
+                   
               focusDistance.setOnMouseReleased((x->{
             eventController.processFocusDistance((focusDistance.valueProperty().doubleValue()));
         }));
         });
           
         
+        
         centerX.valueProperty().addListener(e->{
+              LogoData data = (LogoData)app.getDataComponent();
+                   LogoPrototype selected=data.getSelectedItem();
+
+                   centerX.setOnMouseDragged(y->{
+                     if(selected.getType().equalsIgnoreCase("Rectangle")){
+                         LogoRectangle rectangle=(LogoRectangle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(rectangle.getFocusAngle(),
+                                                                      rectangle.getFocusDistance(),
+                                                                      centerX.valueProperty().doubleValue(),
+                                                                      rectangle.getCenterY(),
+                                                                      rectangle.getRadius(),
+                                                                      rectangle.getProportion(),
+                                                                      rectangle.getCycleMethod(),   
+                                                                      rectangle.getStop1(),
+                                                                      rectangle.getStop2()) ;  
+                         rectangle.setFill(gradient);
+                 }
+              
+                     else if(selected.getType().equalsIgnoreCase("Circle")){
+                        LogoCircle circle=(LogoCircle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(circle.getFocusAngle(),
+                                                                     circle.getFocusDistance(),
+                                                                      centerX.valueProperty().doubleValue(),
+                                                                      circle.getGradientCenterY(),
+                                                                      circle.getGradientRadius(),
+                                                                      circle.getProportion(),
+                                                                      circle.getCycleMethod(),
+                                                                      circle.getStop0(),
+                                                                     circle.getStop1());
+                         circle.setFill(gradient);
+                    }
+            
+               });
+                           
             centerX.setOnMouseReleased((x->{
                 
             eventController.processCenterX((centerX.valueProperty().doubleValue()));
@@ -400,24 +518,97 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
             
         });
         
+        
+        
+        
         centerY.valueProperty().addListener(e->{
+            LogoData data = (LogoData)app.getDataComponent();
+                   LogoPrototype selected=data.getSelectedItem();
+
+                   centerY.setOnMouseDragged(y->{
+                     if(selected.getType().equalsIgnoreCase("Rectangle")){
+                         LogoRectangle rectangle=(LogoRectangle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(rectangle.getFocusAngle(),
+                                                                      rectangle.getFocusDistance(),
+                                                                      rectangle.getCenterX(),
+                                                                      centerY.valueProperty().doubleValue(),
+                                                                      rectangle.getRadius(),
+                                                                      rectangle.getProportion(),
+                                                                      rectangle.getCycleMethod(),   
+                                                                      rectangle.getStop1(),
+                                                                      rectangle.getStop2()) ;  
+                         rectangle.setFill(gradient);
+                 }
+              
+                     else if(selected.getType().equalsIgnoreCase("Circle")){
+                        LogoCircle circle=(LogoCircle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(circle.getFocusAngle(),
+                                                                     circle.getFocusDistance(),
+                                                                      circle.getGradientCenterX(),
+                                                                      centerY.valueProperty().doubleValue(),
+                                                                      circle.getGradientRadius(),
+                                                                      circle.getProportion(),
+                                                                      circle.getCycleMethod(),
+                                                                      circle.getStop0(),
+                                                                     circle.getStop1());
+                         circle.setFill(gradient);
+                    }
+            
+               });      
              centerY.setOnMouseReleased((x->{
             eventController.processCenterY((centerY.valueProperty().doubleValue()));
         }));
      
         });
         
+        
+        
+        
+        
          radius.valueProperty().addListener(e->{
+             
+              LogoData data = (LogoData)app.getDataComponent();
+                   LogoPrototype selected=data.getSelectedItem();
+
+                   radius.setOnMouseDragged(y->{
+                     if(selected.getType().equalsIgnoreCase("Rectangle")){
+                         LogoRectangle rectangle=(LogoRectangle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(rectangle.getFocusAngle(),
+                                                                      rectangle.getFocusDistance(),
+                                                                      rectangle.getCenterX(),
+                                                                      rectangle.getCenterY(),
+                                                                      radius.valueProperty().doubleValue(),
+                                                                      rectangle.getProportion(),
+                                                                      rectangle.getCycleMethod(),   
+                                                                      rectangle.getStop1(),
+                                                                      rectangle.getStop2()) ;  
+                         rectangle.setFill(gradient);
+                 }
+              
+                     else if(selected.getType().equalsIgnoreCase("Circle")){
+                        LogoCircle circle=(LogoCircle) data.getEditComponents().get(data.getItemIndex(selected));
+                         RadialGradient gradient=new RadialGradient(circle.getFocusAngle(),
+                                                                     circle.getFocusDistance(),
+                                                                      circle.getGradientCenterX(),
+                                                                      circle.getGradientCenterY(),
+                                                                      radius.valueProperty().doubleValue(),
+                                                                      circle.getProportion(),
+                                                                      circle.getCycleMethod(),
+                                                                      circle.getStop0(),
+                                                                     circle.getStop1());
+                         circle.setFill(gradient);
+                    }
+            
+               });    
+             
+             
                radius.setOnMouseReleased((x->{
                eventController.processRadius((radius.valueProperty().doubleValue()));
         }));
          });
          
+
          
-         
-         
-         
-   
          
              borderThickness.valueProperty().addListener(e->{
                    LogoData data = (LogoData)app.getDataComponent();
@@ -455,6 +646,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
              borderRaidus.valueProperty().addListener(e->{
                    LogoData data = (LogoData)app.getDataComponent();
                    LogoPrototype selected=data.getSelectedItem();   
+                
                    borderRaidus.setOnMouseDragged(y->{
                      
                      if(selected.getType().equalsIgnoreCase("Rectangle")){
@@ -464,19 +656,16 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
                      logoShape.setArcWidth(borderRaidus.valueProperty().doubleValue());
                  }
                   
-           
+            });
             borderRaidus.setOnMouseReleased((x->{
             eventController.processBorderRadius((borderRaidus.valueProperty().doubleValue()));
-        }));
-         });
+       
+         }));
         });
              
              
-             
-             
-             
-            cycleMethodComboBox.setOnAction(e->{        
-            eventController.processCycleMethod(cycleMethodComboBox.getSelectionModel().getSelectedItem().toString());
+         cycleMethodComboBox.setOnAction(e->{        
+            eventController.processCycleMethod(cycleMethodComboBox.getValue().toString());
     
         });
               zeroColor.setOnAction(e->{
@@ -493,18 +682,43 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
               goLogoLoEditPane.setScaleX(xScale*1.5);
               double yScale=goLogoLoEditPane.getScaleY();
               goLogoLoEditPane.setScaleY(yScale*1.5);   
-               goLogoLoEditPane.setClip(goLogoLoEditPane);
+            
           });
+          
           
          Button zoomOutButton=(Button) app.getGUIModule().getGUINode(ZOOM_OUT_BUTTON);
          zoomOutButton.setOnAction(e->{
-            double xScale=goLogoLoEditPane.getScaleX();
+              double xScale=goLogoLoEditPane.getScaleX();
               goLogoLoEditPane.setScaleX(xScale*.5);
               double yScale=goLogoLoEditPane.getScaleY();
                goLogoLoEditPane.setScaleY(yScale*.5);   
-              
           });
          
+          Button resetViewButton=(Button) app.getGUIModule().getGUINode(RESET_BUTTON);
+          resetViewButton.setOnAction(e->{
+            
+              goLogoLoEditPane.setScaleX(1);        
+              goLogoLoEditPane.setScaleY(1);   
+           });
+         
+          //====FINISH ZOOM USING MOUSE SCROLL=================================================================================================
+//          goLogoLoEditPane.setOnScroll(e -> {
+//         
+//       
+//            goLogoLoEditPane.setScaleX( goLogoLoEditPane.getScaleX() * 1.1);
+//             goLogoLoEditPane.setScaleY( goLogoLoEditPane.getScaleY() * 1.1);
+//          
+//          });
+          
+         Button resizeButton=(Button) app.getGUIModule().getGUINode(RESIZE_BUTTON);
+         resizeButton.setOnAction(e->{
+               eventController.processResizePane();
+             
+              
+         });
+          
+          
+          
          //edit double click on table
          logoTable.setOnMouseClicked(e -> {
              LogoData data = (LogoData)app.getDataComponent();

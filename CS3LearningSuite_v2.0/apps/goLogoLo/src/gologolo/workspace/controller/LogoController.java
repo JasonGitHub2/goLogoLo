@@ -10,6 +10,7 @@ import gologolo.GoLogoLo;
 
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
+import static gologolo.goLogoLoPropertyType.LOGO_EDIT_PANE;
 import gologolo.transactions.AddCircle_Transaction;
 import gologolo.transactions.AddImage_Transaction;
 import gologolo.transactions.AddRectangle_Transaction;
@@ -28,6 +29,7 @@ import gologolo.transactions.DeleteComponent_Transaction;
 import gologolo.transactions.EditText_Transaction;
 import gologolo.transactions.FocusAngle_Transaction;
 import gologolo.transactions.FocusDistance_Transaction;
+import gologolo.transactions.FontColor_Transaction;
 import gologolo.transactions.IncreaseText_Transaction;
 import gologolo.transactions.ItalicizeText_Transaction;
 import gologolo.transactions.MoveDown_Transaction;
@@ -40,8 +42,10 @@ import gologolo.transactions.ZeroColor_Transaction;
 import gologolo.workspace.dialog.AddTextDialog;
 import gologolo.workspace.dialog.EditTextDialog;
 import gologolo.workspace.dialog.RenameDialog;
+import gologolo.workspace.dialog.ResizePaneDialog;
 import java.io.File;
 import java.io.FileNotFoundException;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 
@@ -51,6 +55,7 @@ import javafx.scene.paint.Color;
  */
 public class LogoController {
     GoLogoLo app;
+    ResizePaneDialog resizeDialog;
     RenameDialog itemDialog;
     EditTextDialog editDialog;
     AddTextDialog addTextDialog;
@@ -58,10 +63,20 @@ public class LogoController {
         app = initApp;
         
        itemDialog = new RenameDialog(app);
+       resizeDialog = new ResizePaneDialog(app);
        addTextDialog=new AddTextDialog(app);
        editDialog=new EditTextDialog(app);
     }
     
+     public void processResizePane(){
+         resizeDialog.showResizeDialog();
+         double height=resizeDialog.getResizeHeight();
+         double width=resizeDialog.getResizeWidth();
+         Pane editPane=(Pane) app.getGUIModule().getGUINode(LOGO_EDIT_PANE);
+         
+         editPane.setMaxSize((width),height);
+        
+     }
     
     
     
@@ -72,6 +87,22 @@ public class LogoController {
                          app.processTransaction(transaction);
                
      }
+     
+     
+      public void processChangeFontColor(Color color){
+          Color newColor=color;
+          LogoData data = (LogoData)app.getDataComponent();
+          LogoPrototype selected=data.getSelectedItem();
+          if(selected.getType().equalsIgnoreCase("Text"))
+          {
+              FontColor_Transaction transaction = new FontColor_Transaction(data, selected,app,newColor);
+              app.processTransaction(transaction);
+          }
+      }
+      
+      
+      
+     
     public void processBorderRadius(double val){
         LogoData data = (LogoData)app.getDataComponent();
           LogoPrototype selected=data.getSelectedItem();

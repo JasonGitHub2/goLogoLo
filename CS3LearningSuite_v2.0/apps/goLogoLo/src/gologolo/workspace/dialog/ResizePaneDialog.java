@@ -8,36 +8,22 @@ package gologolo.workspace.dialog;
 import djf.modules.AppLanguageModule;
 import gologolo.GoLogoLo;
 import gologolo.data.LogoData;
-import gologolo.data.LogoPrototype;
-import static gologolo.goLogoLoPropertyType.LOGO_ADD_DIALOG_CANCEL_BUTTON;
-import static gologolo.goLogoLoPropertyType.LOGO_ADD_DIALOG_CANCEL_BUTTON_TEXT;
-import static gologolo.goLogoLoPropertyType.LOGO_ADD_DIALOG_NAME_LABEL;
-import static gologolo.goLogoLoPropertyType.LOGO_ADD_DIALOG_OK_BUTTON;
-import static gologolo.goLogoLoPropertyType.LOGO_ADD_DIALOG_OK_BUTTON_TEXT;
-import static gologolo.goLogoLoPropertyType.LOGO_CHANGE_NAME_LABEL;
-import static gologolo.goLogoLoPropertyType.LOGO_CHANGE_NAME_LABEL_TEXT;
-import static gologolo.goLogoLoPropertyType.LOGO_DIALOG_ADD_HEADER;
-import static gologolo.goLogoLoPropertyType.LOGO_DIALOG_CANCEL_BUTTON;
-import static gologolo.goLogoLoPropertyType.LOGO_DIALOG_HEADER;
-import static gologolo.goLogoLoPropertyType.LOGO_DIALOG_HEADER_TEXT;
-import static gologolo.goLogoLoPropertyType.LOGO_DIALOG_OK_BUTTON;
-import static gologolo.goLogoLoPropertyType.LOGO_DIALOG_RENAME_HEADER;
-import static gologolo.goLogoLoPropertyType.LOGO_DIALOG_RENAME_HEADER_TEXT;
-import static gologolo.goLogoLoPropertyType.LOGO_NAME_LABEL;
+import static gologolo.goLogoLoPropertyType.LOGO_HEIGHT_LABEL;
+import static gologolo.goLogoLoPropertyType.LOGO_RESIZE_CANCEL;
+import static gologolo.goLogoLoPropertyType.LOGO_RESIZE_CANCEL_LABEL_TEXT;
+import static gologolo.goLogoLoPropertyType.LOGO_RESIZE_OK;
+import static gologolo.goLogoLoPropertyType.LOGO_RESIZE_OK_LABEL_TEXT;
+import static gologolo.goLogoLoPropertyType.LOGO_WIDTH_LABEL;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_DIALOG_BUTTON;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_DIALOG_GRID;
-import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_DIALOG_HEADER;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_DIALOG_PANE;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_DIALOG_PROMPT;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_DIALOG_TEXT_FIELD;
-import java.time.LocalDate;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
@@ -52,34 +38,31 @@ import properties_manager.PropertiesManager;
  *
  * @author jasoncao
  */
-public class RenameDialog extends Stage {
+public class ResizePaneDialog extends Stage {
     GoLogoLo app; 
- 
+   
     GridPane gridPane;
-    String newName;
-    Label headerLabel = new Label();    
-    Label changeNameLabel = new Label();
-    TextField nameTextField = new TextField();   
+    String height;
+    String width;
+    Label heightLabel = new Label();    
+    Label widthLabel = new Label();
+    TextField heightTextField = new TextField();   
+    TextField widthTextField = new TextField();   
     HBox okCancelPane = new HBox();
     Button okButton = new Button();
     Button cancelButton = new Button();
 
 
-    LogoPrototype itemToEdit;
-    LogoPrototype newItem;
-    LogoPrototype editItem;
-  
-
     EventHandler cancelHandler;
     EventHandler addItemOkHandler;
     EventHandler editItemOkHandler;  
-    boolean editing;
+  
 
-    
-    
-    public RenameDialog(GoLogoLo initApp) {
+     public ResizePaneDialog(GoLogoLo initApp) {
         // KEEP THIS FOR WHEN THE WORK IS ENTERED
-        newName="";
+      
+        height="";
+        width="";
         app = initApp;
         // EVERYTHING GOES IN HERE
         gridPane = new GridPane();
@@ -99,8 +82,8 @@ public class RenameDialog extends Stage {
         this.initModality(Modality.APPLICATION_MODAL);
       }
     
-
-     protected void initGridNode(Node node, Object nodeId, String styleClass, int col, int row, int colSpan, int rowSpan, boolean isLanguageDependent) {
+    
+        protected void initGridNode(Node node, Object nodeId, String styleClass, int col, int row, int colSpan, int rowSpan, boolean isLanguageDependent) {
         // GET THE LANGUAGE SETTINGS
         AppLanguageModule languageSettings = app.getLanguageModule();
         
@@ -118,19 +101,20 @@ public class RenameDialog extends Stage {
         // SETUP IT'S STYLE SHEET
         node.getStyleClass().add(styleClass);
     }
-
-     
-    private void initDialog() {
+    
+        private void initDialog() {
         // THE NODES ABOVE GO DIRECTLY INSIDE THE GRID
-        initGridNode(headerLabel,           LOGO_DIALOG_RENAME_HEADER,                CLASS_LOGO_DIALOG_HEADER,       0, 0, 3, 1, true);
-        initGridNode(changeNameLabel,           LOGO_CHANGE_NAME_LABEL,        CLASS_LOGO_DIALOG_PROMPT,       0, 1, 1, 1, true);
-        initGridNode(nameTextField,         null,                              CLASS_LOGO_DIALOG_TEXT_FIELD,   1, 1, 1, 1, false);
-        initGridNode(okCancelPane,          null,                                   CLASS_LOGO_DIALOG_PANE,    0, 2, 3, 1, false);
+       
+        initGridNode(heightLabel,           LOGO_HEIGHT_LABEL,        CLASS_LOGO_DIALOG_PROMPT,       0, 1, 1, 1, true);
+        initGridNode(heightTextField,         null,                   CLASS_LOGO_DIALOG_TEXT_FIELD,   1, 1, 1, 1, false);
+        initGridNode(widthLabel,           LOGO_WIDTH_LABEL,        CLASS_LOGO_DIALOG_PROMPT,       0, 2, 1, 1, true);
+        initGridNode(widthTextField,         null,                   CLASS_LOGO_DIALOG_TEXT_FIELD,   1, 2, 1, 1, false);
+        initGridNode(okCancelPane,          null,                                   CLASS_LOGO_DIALOG_PANE,    0, 3, 3, 1, false);
 
         okButton = new Button();
         cancelButton = new Button();
-       app.getGUIModule().addGUINode(LOGO_ADD_DIALOG_OK_BUTTON, okButton);
-       app.getGUIModule().addGUINode(LOGO_ADD_DIALOG_CANCEL_BUTTON, cancelButton);
+       app.getGUIModule().addGUINode(LOGO_RESIZE_OK, okButton);
+       app.getGUIModule().addGUINode(LOGO_RESIZE_CANCEL, cancelButton);
        okButton.getStyleClass().add(CLASS_LOGO_DIALOG_BUTTON);
        cancelButton.getStyleClass().add(CLASS_LOGO_DIALOG_BUTTON);
        okCancelPane.getChildren().add(okButton);
@@ -138,8 +122,8 @@ public class RenameDialog extends Stage {
        okCancelPane.setAlignment(Pos.CENTER);
 
         AppLanguageModule languageSettings = app.getLanguageModule();
-        languageSettings.addLabeledControlProperty(LOGO_ADD_DIALOG_OK_BUTTON + "_TEXT",    okButton.textProperty());
-        languageSettings.addLabeledControlProperty(LOGO_ADD_DIALOG_CANCEL_BUTTON + "_TEXT",    cancelButton.textProperty());
+        languageSettings.addLabeledControlProperty(LOGO_RESIZE_OK+ "_TEXT",    okButton.textProperty());
+        languageSettings.addLabeledControlProperty(LOGO_RESIZE_CANCEL + "_TEXT",    cancelButton.textProperty());
        
         // AND SETUP THE EVENT HANDLERS
        
@@ -147,50 +131,50 @@ public class RenameDialog extends Stage {
             processCompleteWork();
        });
        cancelButton.setOnAction(e->{
-           newName="";
+         height="";
+         width="";
        
            this.hide();
         });   
     }
-    
-    
-    public void showRenameDialog(LogoPrototype selectedItem){
-        PropertiesManager props = PropertiesManager.getPropertiesManager();
-        String headerText = props.getProperty(LOGO_DIALOG_RENAME_HEADER_TEXT);
-        headerLabel.setText(headerText);
-        setTitle(headerText);
-        String renameText = props.getProperty( LOGO_CHANGE_NAME_LABEL_TEXT);
-        changeNameLabel.setText(renameText);
-
-        String okText=props.getProperty( LOGO_ADD_DIALOG_OK_BUTTON_TEXT);
+        
+    public void showResizeDialog(){
+         PropertiesManager props = PropertiesManager.getPropertiesManager();
+        
+        heightTextField.setText("");
+        widthTextField.setText("");
+        
+        String okText=props.getProperty(LOGO_RESIZE_OK_LABEL_TEXT);
         okButton.setText(okText);
-        String cancelText=props.getProperty( LOGO_ADD_DIALOG_CANCEL_BUTTON_TEXT);
-        cancelButton.setText(cancelText);
-
-        
-        // USE THE TEXT IN THE HEADER FOR ADD
-        
-        nameTextField.setText(selectedItem.getName());
+        String cancelText=props.getProperty( LOGO_RESIZE_CANCEL_LABEL_TEXT);
+        cancelButton.setText(cancelText);    
         // AND OPEN THE DIALOG
         showAndWait();
     }
     
-    
     public void processCompleteWork(){
-        String name = nameTextField.getText();
-        LogoData data=(LogoData)app.getDataComponent();
-         if (data.isValidLogoData(name)) {
-         newName=name;
+        String heightInput = heightTextField.getText();
+        String widthInput = widthTextField.getText();
+        
+         if (!heightInput.equals("0")||!widthInput.equals("0")) {
+             double heightUserInput=Double.parseDouble((heightInput));
+             double widthUserInput=Double.parseDouble((widthInput));
+             height=heightInput;
+              width=widthInput;
          }
          else{
              //create dialog saying name field is empty
          }
          this.hide();
     }
-        
-    public String getNewName() {
-        return newName;
+
+    public Double getResizeHeight() {
+        return Double.parseDouble(height);
+    }
+
+    public Double getResizeWidth() {
+          return Double.parseDouble(width);
     }
     
-}   
-   
+    
+}

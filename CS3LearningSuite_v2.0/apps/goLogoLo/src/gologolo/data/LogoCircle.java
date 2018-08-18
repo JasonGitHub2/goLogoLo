@@ -186,7 +186,6 @@ public class LogoCircle extends Circle implements Cloneable {
         this.cycleMethod = cycleMethod;
     }
        
-       
 
     public double getCircleRadius() {
         return this.getRadius();

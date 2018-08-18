@@ -31,6 +31,7 @@ public class LogoImage extends ImageView{
         yCoordinate=300;
         name="DEFAULT";
         type="Image";
+        order=0;
     }
     public LogoImage(ImageView image,double x,double y,String imageName){
         imageView=image;

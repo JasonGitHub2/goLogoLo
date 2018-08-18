@@ -28,11 +28,12 @@ public class FocusDistance_Transaction  implements jTPS_Transaction{
     RadialGradient newGradient;
     boolean isCircle=false;
     boolean isRectangle=false;
- LogoCircle selectedCircle;
+    LogoCircle selectedCircle;
      RadialGradient oldGradient;
     int index;
      Slider focusDistanceSlider;
     double oldDistance;
+    
     public FocusDistance_Transaction(LogoData thisData,GoLogoLo appLogo,LogoPrototype component,double newDistance,boolean isCircles,boolean isRectangles){
         data=thisData;
         app=appLogo;
@@ -60,8 +61,8 @@ public class FocusDistance_Transaction  implements jTPS_Transaction{
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
            oldDistance=selectedCircle.getFocusDistance();
-          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),distance,selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),distance,selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
            selectedCircle.setFocusDistance(distance);
           selectedCircle.setFill(newGradient);
           focusDistanceSlider.setValue(distance);
@@ -82,8 +83,8 @@ public class FocusDistance_Transaction  implements jTPS_Transaction{
         else  if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),oldDistance,selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),oldDistance,selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
            selectedCircle.setFocusDistance(oldDistance);
           selectedCircle.setFill(oldGradient);
           focusDistanceSlider.setValue(oldDistance);

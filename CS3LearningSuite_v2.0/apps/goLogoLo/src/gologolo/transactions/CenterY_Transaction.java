@@ -61,10 +61,10 @@ public class CenterY_Transaction implements jTPS_Transaction{
        else if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldCenterY=selectedCircle.getCenterY();
-          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          centerY,selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
-          selectedCircle.setCenterX(centerY);
+          oldCenterY=selectedCircle.getGradientCenterY();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          centerY,selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setGradientCenterY(centerY);
           selectedCircle.setFill(newGradient);
           
           centerYSlider.setValue(centerY);
@@ -85,9 +85,9 @@ public class CenterY_Transaction implements jTPS_Transaction{
         else  if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          oldCenterY,selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
-          selectedCircle.setCenterY(oldCenterY);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          oldCenterY,selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          selectedCircle.setGradientCenterY(oldCenterY);
           selectedCircle.setFill(oldGradient);
           centerYSlider.setValue(oldCenterY);
          }

@@ -46,7 +46,7 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
         app=appLogo;
         selected=component;
         cycleMethod=method;
-        System.out.print(cycleMethod);
+       
         if(cycleMethod.equals("NO_CYCLE")){
             newCycleMethod=NO_CYCLE;
         }
@@ -57,33 +57,40 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
             newCycleMethod=REPEAT;
         }
        index=data.getItemIndex(selected);
-     
+       
         isCircle=isCircles;
         isRectangle=isRectangles;
-
+          if(isRectangle){
+              selectedRectangle=   (LogoRectangle) data.getEditComponents().get(index);
+              oldCycleMethod=selectedRectangle.getCycleMethod();
+          }
+            else if(isCircle){
+            selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
+            oldCycleMethod=selectedCircle.getCycleMethod();
+           }
     }
     
     @Override
     public void doTransaction() {
       if(isRectangle){
           selectedRectangle=   (LogoRectangle) data.getEditComponents().get(index);
-          oldCycleMethod=selectedRectangle.getCycleMethod();
+//          oldCycleMethod=selectedRectangle.getCycleMethod();
           newGradient=new RadialGradient(selectedRectangle.getFocusAngle(),selectedRectangle.getFocusDistance(),selectedRectangle.getCenterX(),
          selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),newCycleMethod,selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setCycleMethod(newCycleMethod);
           selectedRectangle.setFill(newGradient);
-          cycleMethodBox.setValue(newCycleMethod);
+          cycleMethodBox.setValue(newCycleMethod.name());
          }
        else if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldCycleMethod=selectedCircle.getCycleMethod();
-          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),newCycleMethod,selectedCircle.getStop0(),selectedCircle.getStop1());
+//          oldCycleMethod=selectedCircle.getCycleMethod();
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),newCycleMethod,selectedCircle.getStop0(),selectedCircle.getStop1());
           selectedCircle.setCycleMethod(newCycleMethod);
           selectedCircle.setFill(newGradient);
           
-          cycleMethodBox.setValue(newCycleMethod);
+          cycleMethodBox.setValue(newCycleMethod.name());
          }
     }
 
@@ -96,16 +103,16 @@ public class CycleMethod_Transaction implements jTPS_Transaction{
          selectedRectangle.getCenterY(),selectedRectangle.getRadius(),selectedRectangle.getProportion(),oldCycleMethod,selectedRectangle.getStop1(),selectedRectangle.getStop2());
           selectedRectangle.setCycleMethod(oldCycleMethod);
           selectedRectangle.setFill(newGradient);
-          cycleMethodBox.setValue(oldCycleMethod);
+          cycleMethodBox.setValue(oldCycleMethod.name());
          }
         else  if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),oldCycleMethod,selectedCircle.getStop0(),selectedCircle.getStop1());
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),oldCycleMethod,selectedCircle.getStop0(),selectedCircle.getStop1());
           selectedCircle.setCycleMethod(oldCycleMethod);
           selectedCircle.setFill(oldGradient);
-         cycleMethodBox.setValue(oldCycleMethod);
+         cycleMethodBox.setValue(oldCycleMethod.name());
          }
     }
     

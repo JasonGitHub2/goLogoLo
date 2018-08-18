@@ -61,8 +61,8 @@ LogoCircle selectedCircle;
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
             oldRadius=selectedCircle.getGradientRadius();
-          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),radius,selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),radius,selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
              selectedCircle.setGradientRadius(radius);
           selectedCircle.setFill(newGradient);
             radiusSlider.setValue(radius);
@@ -83,9 +83,9 @@ LogoCircle selectedCircle;
       else  if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),oldRadius,selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
-           selectedCircle.setRadius(oldRadius);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),oldRadius,selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),selectedCircle.getStop1());
+           selectedCircle.setGradientRadius(oldRadius);
           selectedCircle.setFill(oldGradient);
        radiusSlider.setValue(oldRadius);    
     }

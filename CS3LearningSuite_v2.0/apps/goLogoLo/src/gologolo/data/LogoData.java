@@ -9,9 +9,22 @@ import djf.components.AppDataComponent;
 import djf.modules.AppGUIModule;
 
 import gologolo.GoLogoLo;
+import static gologolo.goLogoLoPropertyType.COLOR_PICKER;
+import static gologolo.goLogoLoPropertyType.LOGO_BORDER_RAIDIUS_SLIDER;
+import static gologolo.goLogoLoPropertyType.LOGO_BORDER_THICKNESS_SLIDER;
+import static gologolo.goLogoLoPropertyType.LOGO_CENTER_X_SLIDER;
+import static gologolo.goLogoLoPropertyType.LOGO_CENTER_Y_SLIDER;
+import static gologolo.goLogoLoPropertyType.LOGO_CYCLE_METHOD_COMBO_BOX;
 
 import static gologolo.goLogoLoPropertyType.LOGO_EDIT_PANE;
+import static gologolo.goLogoLoPropertyType.LOGO_FOCUS_ANGLE_SLIDER;
+import static gologolo.goLogoLoPropertyType.LOGO_FOCUS_DISTANCE_SLIDER;
+import static gologolo.goLogoLoPropertyType.LOGO_FONT_COMBO_BOX;
+import static gologolo.goLogoLoPropertyType.LOGO_FONT_SIZE_COMBO_BOX;
+import static gologolo.goLogoLoPropertyType.LOGO_ONE_COLOR;
+import static gologolo.goLogoLoPropertyType.LOGO_RADIUS_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_TABLE_VIEW;
+import static gologolo.goLogoLoPropertyType.LOGO_ZERO_COLOR;
 import gologolo.transactions.ClickDrag_Transaction;
 import gologolo.workspace.controller.LogoController;
 
@@ -22,8 +35,11 @@ import javafx.collections.ObservableList;
 
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SelectionModel;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
@@ -190,7 +206,7 @@ public class LogoData implements AppDataComponent{
               selectNodeInPane(component);
            
         
-        if(component instanceof Rectangle){
+        if(item.getType().equalsIgnoreCase("Rectangle")||item.getType().equalsIgnoreCase("Image")||item.getType().equalsIgnoreCase("Circle")){
               component.setOnMouseClicked(e -> {
             //app.getFoolproofModule().updateAll();
             {
@@ -199,9 +215,7 @@ public class LogoData implements AppDataComponent{
               selectNodeInPane(component);
             }
         });
-       
-            
-            
+        
           component.setOnMousePressed(e->{
             this.clearSelected();
            this.selectItem(item);
@@ -236,7 +250,7 @@ public class LogoData implements AppDataComponent{
            }
         
         
-        if(component instanceof Text){
+        else if(item.getType().equalsIgnoreCase("Text")){
              //SELECTION 
         //double click edit in pane
              LogoController eventController=new LogoController((GoLogoLo)initApp);
@@ -254,16 +268,9 @@ public class LogoData implements AppDataComponent{
                     this.selectItem(item);
                     selectNodeInPane(component);
                     eventController.processEditText();
-                }
-           
-             
-                          
-            
+                }          
         });
         
-          
-          //dragging rectangle
-          
             component.setOnMousePressed(e->{
             this.clearSelected();
            this.selectItem(item);
@@ -294,10 +301,13 @@ public class LogoData implements AppDataComponent{
                 initApp.processTransaction(transaction);
             });
         });
-        
            }
+        
+        
          reorderTable();
     }
+    
+  
 
     
     public boolean isItemSelected() {
@@ -705,7 +715,7 @@ public class LogoData implements AppDataComponent{
     }
     
     
-       //for highlighting nodes in pane, call these 3 methods
+       //for highlighting nodes in pane, call these 3 methods================================
     public void selectNodeInPane(LogoPrototype connectedItem){
        int index=components.indexOf(connectedItem);
        for(Node node:editComponents){
@@ -715,6 +725,95 @@ public class LogoData implements AppDataComponent{
       InnerShadow innerShadow = new InnerShadow();
       innerShadow.setColor(BLUE);
        editComponents.get(index).setEffect(innerShadow);
+       
+        //Get all slider and combobox info related to selected Component
+       ComboBox fontNameComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_FONT_COMBO_BOX);
+       ComboBox fontSizeComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_FONT_SIZE_COMBO_BOX);
+       Slider borderThicknessSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_BORDER_THICKNESS_SLIDER);
+       ColorPicker borderColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(COLOR_PICKER);
+       Slider borderRadiusSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_BORDER_RAIDIUS_SLIDER);
+       Slider focusAngleSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_FOCUS_ANGLE_SLIDER);
+       Slider focusDistanceSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_FOCUS_DISTANCE_SLIDER);
+       Slider centerXSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_CENTER_X_SLIDER);
+       Slider centerYSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_CENTER_Y_SLIDER);
+       Slider radiusSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_RADIUS_SLIDER);
+       ComboBox cycleMethodComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_CYCLE_METHOD_COMBO_BOX);
+       ColorPicker zeroColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(LOGO_ZERO_COLOR);
+       ColorPicker oneColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(LOGO_ONE_COLOR);
+       
+       //set the nodes to appropriate values
+       LogoPrototype selectedData=components.get(index);
+       if(selectedData.getType().equals("Rectangle")){
+           LogoRectangle rectangle=(LogoRectangle) editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(rectangle.getRectangleStrokeWidth());
+           borderColorComboBox.setValue(rectangle.getBorderColor());
+           borderRadiusSlider.setValue(rectangle.getRectangleArcHeight());
+           focusAngleSlider.setValue(rectangle.getFocusAngle());
+           focusDistanceSlider.setValue(rectangle.getFocusDistance());
+           centerXSlider.setValue(rectangle.getCenterX());
+           centerYSlider.setValue(rectangle.getCenterY());
+           radiusSlider.setValue(rectangle.getRadius());
+           cycleMethodComboBox.setValue(rectangle.getCycleMethod().name());
+           zeroColorComboBox.setValue(rectangle.getStop0Color());
+           oneColorComboBox.setValue(rectangle.getStop1Color());
+   
+       }
+        else if(selectedData.getType().equals("Circle")){
+           
+           LogoCircle circle=(LogoCircle)editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(circle.getCircleBorderThickness());
+           borderColorComboBox.setValue(circle.getBorderColor());
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(circle.getFocusAngle());
+           focusDistanceSlider.setValue(circle.getFocusDistance());
+           centerXSlider.setValue(circle.getGradientCenterX());
+           centerYSlider.setValue(circle.getGradientCenterY());
+           radiusSlider.setValue(circle.getGradientRadius());
+           cycleMethodComboBox.setValue(circle.getCycleMethod().name());
+           zeroColorComboBox.setValue(circle.getStop0().getColor());
+           oneColorComboBox.setValue(circle.getStop1().getColor());      
+       }
+       
+       else if(selectedData.getType().equals("Text")){
+           
+           LogoText text=(LogoText)editComponents.get(index);
+           fontNameComboBox.setValue(text.getFontName());
+           fontSizeComboBox.setValue(Integer.toString(text.getFontSize()));
+           borderThicknessSlider.setValue(0);
+           borderColorComboBox.setValue(WHITE);
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(0);
+           focusDistanceSlider.setValue(0);
+           centerXSlider.setValue(0);
+           centerYSlider.setValue(0);
+           radiusSlider.setValue(0);
+           cycleMethodComboBox.setValue("NO_CYCLE");
+           zeroColorComboBox.setValue(WHITE);
+           oneColorComboBox.setValue(WHITE);      
+       }
+       
+       else if(selectedData.getType().equals("Image")){
+           
+           ImageView image=(ImageView)editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(0);
+           borderColorComboBox.setValue(WHITE);
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(0);
+           focusDistanceSlider.setValue(0);
+           centerXSlider.setValue(0);
+           centerYSlider.setValue(0);
+           radiusSlider.setValue(0);
+           cycleMethodComboBox.setValue("NO_CYCLE");
+           zeroColorComboBox.setValue(WHITE);
+           oneColorComboBox.setValue(WHITE);      
+       }
+       
        
     }
     
@@ -727,6 +826,95 @@ public class LogoData implements AppDataComponent{
       innerShadow.setColor(BLUE);
       
       editComponents.get(index).setEffect(innerShadow);
+      
+       //Get all slider and combobox info related to selected Component
+       ComboBox fontNameComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_FONT_COMBO_BOX);
+       ComboBox fontSizeComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_FONT_SIZE_COMBO_BOX);
+       Slider borderThicknessSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_BORDER_THICKNESS_SLIDER);
+       ColorPicker borderColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(COLOR_PICKER);
+       Slider borderRadiusSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_BORDER_RAIDIUS_SLIDER);
+       Slider focusAngleSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_FOCUS_ANGLE_SLIDER);
+       Slider focusDistanceSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_FOCUS_DISTANCE_SLIDER);
+       Slider centerXSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_CENTER_X_SLIDER);
+       Slider centerYSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_CENTER_Y_SLIDER);
+       Slider radiusSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_RADIUS_SLIDER);
+       ComboBox cycleMethodComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_CYCLE_METHOD_COMBO_BOX);
+       ColorPicker zeroColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(LOGO_ZERO_COLOR);
+       ColorPicker oneColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(LOGO_ONE_COLOR);
+       
+       //set the nodes to appropriate values
+       LogoPrototype selectedData=components.get(index);
+       if(selectedData.getType().equals("Rectangle")){
+           LogoRectangle rectangle=(LogoRectangle) editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(rectangle.getRectangleStrokeWidth());
+           borderColorComboBox.setValue(rectangle.getBorderColor());
+           borderRadiusSlider.setValue(rectangle.getRectangleArcHeight());
+           focusAngleSlider.setValue(rectangle.getFocusAngle());
+           focusDistanceSlider.setValue(rectangle.getFocusDistance());
+           centerXSlider.setValue(rectangle.getCenterX());
+           centerYSlider.setValue(rectangle.getCenterY());
+           radiusSlider.setValue(rectangle.getRadius());
+           cycleMethodComboBox.setValue(rectangle.getCycleMethod().name());
+           zeroColorComboBox.setValue(rectangle.getStop0Color());
+           oneColorComboBox.setValue(rectangle.getStop1Color());
+   
+       }
+        else if(selectedData.getType().equals("Circle")){
+           
+           LogoCircle circle=(LogoCircle)editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(circle.getCircleBorderThickness());
+           borderColorComboBox.setValue(circle.getBorderColor());
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(circle.getFocusAngle());
+           focusDistanceSlider.setValue(circle.getFocusDistance());
+           centerXSlider.setValue(circle.getGradientCenterX());
+           centerYSlider.setValue(circle.getGradientCenterY());
+           radiusSlider.setValue(circle.getGradientRadius());
+           cycleMethodComboBox.setValue(circle.getCycleMethod().name());
+           zeroColorComboBox.setValue(circle.getStop0().getColor());
+           oneColorComboBox.setValue(circle.getStop1().getColor());      
+       }
+       
+       else if(selectedData.getType().equals("Text")){
+           
+           LogoText text=(LogoText)editComponents.get(index);
+           fontNameComboBox.setValue(text.getFontName());
+           fontSizeComboBox.setValue(Integer.toString(text.getFontSize()));
+           borderThicknessSlider.setValue(0);
+           borderColorComboBox.setValue(WHITE);
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(0);
+           focusDistanceSlider.setValue(0);
+           centerXSlider.setValue(0);
+           centerYSlider.setValue(0);
+           radiusSlider.setValue(0);
+           cycleMethodComboBox.setValue("NO_CYCLE");
+           zeroColorComboBox.setValue(WHITE);
+           oneColorComboBox.setValue(WHITE);      
+       }
+       
+       else if(selectedData.getType().equals("Image")){
+           
+           ImageView image=(ImageView)editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(0);
+           borderColorComboBox.setValue(WHITE);
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(0);
+           focusDistanceSlider.setValue(0);
+           centerXSlider.setValue(0);
+           centerYSlider.setValue(0);
+           radiusSlider.setValue(0);
+           cycleMethodComboBox.setValue("NO_CYCLE");
+           zeroColorComboBox.setValue(WHITE);
+           oneColorComboBox.setValue(WHITE);      
+       }
+       
     }
     
     public void selectNodeInPane(Node node){
@@ -738,6 +926,98 @@ public class LogoData implements AppDataComponent{
       InnerShadow innerShadow = new InnerShadow();
       innerShadow.setColor(BLUE);
        editComponents.get(index).setEffect(innerShadow);
+       
+       
+       //Get all slider and combobox info related to selected Component
+       ComboBox fontNameComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_FONT_COMBO_BOX);
+       ComboBox fontSizeComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_FONT_SIZE_COMBO_BOX);
+       Slider borderThicknessSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_BORDER_THICKNESS_SLIDER);
+       ColorPicker borderColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(COLOR_PICKER);
+       Slider borderRadiusSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_BORDER_RAIDIUS_SLIDER);
+       Slider focusAngleSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_FOCUS_ANGLE_SLIDER);
+       Slider focusDistanceSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_FOCUS_DISTANCE_SLIDER);
+       Slider centerXSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_CENTER_X_SLIDER);
+       Slider centerYSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_CENTER_Y_SLIDER);
+       Slider radiusSlider=(Slider) initApp.getGUIModule().getGUINode(LOGO_RADIUS_SLIDER);
+       ComboBox cycleMethodComboBox=(ComboBox) initApp.getGUIModule().getGUINode(LOGO_CYCLE_METHOD_COMBO_BOX);
+       ColorPicker zeroColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(LOGO_ZERO_COLOR);
+       ColorPicker oneColorComboBox=(ColorPicker) initApp.getGUIModule().getGUINode(LOGO_ONE_COLOR);
+       
+       
+       //set the nodes to appropriate values
+       LogoPrototype selectedData=components.get(index);
+       if(selectedData.getType().equals("Rectangle")){
+           LogoRectangle rectangle=(LogoRectangle) editComponents.get(index);
+           
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(rectangle.getRectangleStrokeWidth());
+           borderColorComboBox.setValue(rectangle.getBorderColor());
+           borderRadiusSlider.setValue(rectangle.getRectangleArcHeight());
+           focusAngleSlider.setValue(rectangle.getFocusAngle());
+           focusDistanceSlider.setValue(rectangle.getFocusDistance());
+           centerXSlider.setValue(rectangle.getCenterX());
+           centerYSlider.setValue(rectangle.getCenterY());
+           radiusSlider.setValue(rectangle.getRadius());
+           cycleMethodComboBox.setValue(rectangle.getCycleMethod().name());
+           zeroColorComboBox.setValue(rectangle.getStop0Color());
+           oneColorComboBox.setValue(rectangle.getStop1Color());
+       }
+       else if(selectedData.getType().equals("Circle")){
+           
+           LogoCircle circle=(LogoCircle)editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(circle.getCircleBorderThickness());
+           borderColorComboBox.setValue(circle.getBorderColor());
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(circle.getFocusAngle());
+           focusDistanceSlider.setValue(circle.getFocusDistance());
+           centerXSlider.setValue(circle.getGradientCenterX());
+           centerYSlider.setValue(circle.getGradientCenterY());
+           radiusSlider.setValue(circle.getGradientRadius());
+           cycleMethodComboBox.setValue(circle.getCycleMethod().name());
+           zeroColorComboBox.setValue(circle.getStop0().getColor());
+           oneColorComboBox.setValue(circle.getStop1().getColor());      
+       }
+       
+       else if(selectedData.getType().equals("Text")){
+           
+           LogoText text=(LogoText)editComponents.get(index);
+           fontNameComboBox.setValue(text.getFontName());
+           fontSizeComboBox.setValue(Integer.toString(text.getFontSize()));
+           borderThicknessSlider.setValue(0);
+           borderColorComboBox.setValue(WHITE);
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(0);
+           focusDistanceSlider.setValue(0);
+           centerXSlider.setValue(0);
+           centerYSlider.setValue(0);
+           radiusSlider.setValue(0);
+           cycleMethodComboBox.setValue("NO_CYCLE");
+           zeroColorComboBox.setValue(WHITE);
+           oneColorComboBox.setValue(WHITE);      
+       }
+       
+       else if(selectedData.getType().equals("Image")){
+           
+           ImageView image=(ImageView)editComponents.get(index);
+           fontNameComboBox.setValue("");
+           fontSizeComboBox.setValue("");
+           borderThicknessSlider.setValue(0);
+           borderColorComboBox.setValue(WHITE);
+           borderRadiusSlider.setValue(0);
+           focusAngleSlider.setValue(0);
+           focusDistanceSlider.setValue(0);
+           centerXSlider.setValue(0);
+           centerYSlider.setValue(0);
+           radiusSlider.setValue(0);
+           cycleMethodComboBox.setValue("NO_CYCLE");
+           zeroColorComboBox.setValue(WHITE);
+           oneColorComboBox.setValue(WHITE);      
+       }
+       
+         
     }
     
     public Iterator<LogoPrototype> componentsIterator() {
@@ -906,9 +1186,7 @@ public class LogoData implements AppDataComponent{
         
        
            component.setOnMouseClicked(e -> {
-            
-            
-  
+
                 //selection of node in table 
                 this.clearSelected();
                  this.selectItem(item);
@@ -918,9 +1196,7 @@ public class LogoData implements AppDataComponent{
             
            
           component.setOnMousePressed(e->{
-           this.clearSelected();
-           this.selectItem(item);
-           selectNodeInPane(component);
+           
 
             orgSceneX = e.getSceneX();
             orgSceneY = e.getSceneY();
@@ -976,6 +1252,7 @@ public class LogoData implements AppDataComponent{
               this.clearSelected();
               this.selectItem(item);
               selectNodeInPane(component);
+              
               
             }
         });

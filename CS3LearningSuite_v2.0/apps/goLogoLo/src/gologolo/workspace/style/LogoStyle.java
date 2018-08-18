@@ -30,6 +30,7 @@ public class LogoStyle {
     public static final String CLASS_LOGO_RIGHT_BOX          = "goLogoLo_right_box";
     
     //style for combo box
+    public static final String LOGO_SHORT_COMBO_BOX          =  "goLogoLo_short_combo_box";
      public static final String LOGO_COMBO_BOX          =  "goLogoLo_combo_box";
       public static final String LOGO_LONG_COMBO_BOX          =  "goLogoLo_long_combo_box";
      public static final String LOGO_SLIDER          = "goLogoLo_slider";

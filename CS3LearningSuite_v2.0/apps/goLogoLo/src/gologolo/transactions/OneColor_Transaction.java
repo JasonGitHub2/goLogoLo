@@ -70,8 +70,8 @@ public class OneColor_Transaction  implements jTPS_Transaction{
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
            oldStop=selectedCircle.getStop1();
-          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),newStop);
+          newGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),newStop);
              selectedCircle.setStop1(newStop);
           selectedCircle.setFill(newGradient);
           colorOneBox.setValue(newColor);
@@ -92,8 +92,8 @@ public class OneColor_Transaction  implements jTPS_Transaction{
      else  if(isCircle){
          
           selectedCircle=   (LogoCircle) data.getEditComponents().get(index);
-          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getCenterX(),
-          selectedCircle.getCenterY(),selectedCircle.getRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),oldStop);
+          oldGradient=new RadialGradient(selectedCircle.getFocusAngle(),selectedCircle.getFocusDistance(),selectedCircle.getGradientCenterX(),
+          selectedCircle.getGradientCenterY(),selectedCircle.getGradientRadius(),selectedCircle.getProportion(),selectedCircle.getCycleMethod(),selectedCircle.getStop0(),oldStop);
             selectedCircle.setStop1(oldStop);
           selectedCircle.setFill(oldGradient);
             colorOneBox.setValue(oldColor);

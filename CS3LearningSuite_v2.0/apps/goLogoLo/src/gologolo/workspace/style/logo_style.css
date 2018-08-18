@@ -107,14 +107,19 @@ and open the template in the editor.
 
      BACKGROUND PANE
 **/
-.goLogoLo_pane, .goLogoLo_box {
+.goLogoLo_pane {
     -fx-background-color: rgb(153, 102, 255);   
     -fx-border-color: black;
     -fx-border-radius: 0;
     -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);
       
 }
-
+.goLogoLo_box {
+     -fx-background-color:rgb(204, 235, 255);
+    -fx-border-color: black;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);
+}
 
 /**
 
@@ -279,6 +284,15 @@ css for combo box
     -fx-font-size: 11pt;
     -fx-padding:5 5 5 5;
     -fx-border: 1 1 0 0;  
+}
+
+.goLogoLo_short_combo_box {
+   
+    -fx-border-color:#ACACAC;
+    -fx-font-size: 11pt;
+    -fx-padding:5 5 5 5;
+    -fx-border: 1 1 0 0;  
+      -fx-pref-width:100px;
 }
 
 .goLogoLo_long_combo_box {
