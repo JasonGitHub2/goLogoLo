@@ -41,7 +41,7 @@ public class PasteComponent_Transaction implements jTPS_Transaction{
             int index = indexOfSelected+1;
        
             data.addItemAt(dataToPaste, index,nodeToPaste);
-       
+            app.getFoolproofModule().updateAll();
     }
 
     @Override
@@ -49,6 +49,7 @@ public class PasteComponent_Transaction implements jTPS_Transaction{
          LogoData data = (LogoData)app.getDataComponent();
          data.remove(dataToPaste);
          data.removeFromPane(indexOfSelected+1);
+              app.getFoolproofModule().updateAll();
     }
     
 }

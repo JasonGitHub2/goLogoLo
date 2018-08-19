@@ -20,7 +20,7 @@ public class CutComponents_Transaction implements jTPS_Transaction{
     LogoPrototype tableCutData; 
     int indexOfData;
     Node cutNode;
-    
+    LogoData data;
     
     
     
@@ -28,19 +28,23 @@ public class CutComponents_Transaction implements jTPS_Transaction{
     
      public CutComponents_Transaction(GoLogoLo appData, LogoPrototype clipboardCutData,Node nodeCut ){
         app=appData;
+        data = (LogoData)app.getDataComponent();
         tableCutData=clipboardCutData;   
         cutNode=nodeCut;
+        
+        indexOfData=data.getItemIndex(tableCutData);
      }
     
     
     @Override
     public void doTransaction() {
-        LogoData data = (LogoData)app.getDataComponent();
+      
        
         
-        indexOfData=data.remove(tableCutData);
-        cutNode=data.removeFromPane(indexOfData);
-        
+        data.getComponents().remove(tableCutData);        
+        data.getEditComponents().remove(indexOfData);
+        data.reorderTable();
+             app.getFoolproofModule().updateAll();
    
         // app.getFoolproofModule().updateControls(APP_CLIPBOARD_FOOLPROOF_SETTINGS);
     }
@@ -49,9 +53,13 @@ public class CutComponents_Transaction implements jTPS_Transaction{
     public void undoTransaction() {
         LogoData data = (LogoData)app.getDataComponent();
         
-       data.addItemAt(tableCutData, indexOfData, cutNode);
-        
-        
+        data.getComponents().add(indexOfData, tableCutData);
+        data.getEditComponents().add(indexOfData, cutNode);
+        data.clearSelected();
+        data.selectItem(tableCutData);
+       data.selectNodeInPane(cutNode);
+       data.reorderTable();
+             app.getFoolproofModule().updateAll();
      //   app.getFoolproofModule().updateControls(APP_CLIPBOARD_FOOLPROOF_SETTINGS);
     
     }

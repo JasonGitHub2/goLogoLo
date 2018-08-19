@@ -56,18 +56,6 @@ public class AddRectangle_Transaction implements jTPS_Transaction {
      //  remove from table and pane and reselect previous
        
        data.removeRectangleDataAndNode(rectangleData,rectangleShape);
-      
-       
-       //reslect previous 
-        ArrayList<LogoPrototype> componentList= data.getCurrentItemsOrder(); 
-        if(componentList.size()>0)
-        {           
-            data.selectItem(componentList.size()-1);
-            data.selectNodeInPane(componentList.size()-1);
-            
-        }
-        
-        
-      
+  
     }
 }

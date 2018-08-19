@@ -390,9 +390,9 @@ public class AppGUIModule {
         // THIS IS AN ALL OR NOTHING TOOLBAR
         
         //CHANGE CUT TOOLBAR BACK TO DISABLE
-        Button cutButton = nodesBuilder.buildIconButton(CUT_BUTTON, null, clipboardToolbar, CLASS_DJF_ICON_BUTTON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
-        Button copyButton = nodesBuilder.buildIconButton(COPY_BUTTON, null, clipboardToolbar, CLASS_DJF_ICON_BUTTON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
-        Button pasteButton = nodesBuilder.buildIconButton(PASTE_BUTTON, null, clipboardToolbar, CLASS_DJF_ICON_BUTTON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Button cutButton = nodesBuilder.buildIconButton(CUT_BUTTON, null, clipboardToolbar, CLASS_DJF_ICON_BUTTON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
+        Button copyButton = nodesBuilder.buildIconButton(COPY_BUTTON, null, clipboardToolbar, CLASS_DJF_ICON_BUTTON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
+        Button pasteButton = nodesBuilder.buildIconButton(PASTE_BUTTON, null, clipboardToolbar, CLASS_DJF_ICON_BUTTON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
     }
 
     public void registerClipboardComponent() {

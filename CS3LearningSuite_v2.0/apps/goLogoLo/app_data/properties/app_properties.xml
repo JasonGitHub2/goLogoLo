@@ -105,6 +105,8 @@
         <!-- ENGLISH IS THE DEFAULT -->
         <property name="DEFAULT_LANGUAGE"               value="English"></property>
         <property name="ENGLISH_ABBREVIATION"           value="EN"></property>
+         <property name="SPANISH_ABBREVIATION"           value="ES"></property>
+          <property name="KOREAN_ABBREVIATION"           value="KO"></property>
         <property name="DEFAULT_FONT"               value="Times New Roman"></property>
           <property name="DEFAULT_FONT_SIZE"               value="14"></property>
           <property name="DEFAULT_BORDER_COLOR"               value="#ff0000"></property>
@@ -114,6 +116,8 @@
     <property_options_list>
         <property_options name="LANGUAGE_OPTIONS">
             <option>English</option>
+             <option>Spanish</option>
+              <option>Korean</option>
         </property_options>
          <property_options name="FONT_OPTIONS">
             <option>Times New Roman</option>

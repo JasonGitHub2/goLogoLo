@@ -32,16 +32,17 @@ public class AddText_Transaction implements jTPS_Transaction{
     LogoPrototype textToAdd;
     GoLogoLo app;
     LogoText textNode;
-    Text addText;
+  
     String textInput;
    
     public AddText_Transaction(LogoData initData, LogoPrototype initNewComponent,GoLogoLo logoApp) {
+         app=logoApp;
         data = initData;
         textToAdd = initNewComponent;
-        app=logoApp;
-        textInput=textToAdd.getText();
+       
+        textInput=initNewComponent.getText();
         textNode=new LogoText(textInput);
-        addText=textNode.getTextNode();
+       
         
     }
     
@@ -65,19 +66,7 @@ public class AddText_Transaction implements jTPS_Transaction{
        
 
         data.removeTextDataAndNode(textToAdd,textNode);
-       
-        ArrayList<LogoPrototype> componentList= data.getCurrentItemsOrder();
-        data.clearSelected();
-        if(componentList.size()>0)
-        {
-            LogoPrototype firstComponent=componentList.get(componentList.size()-1);
-            data.selectItem(firstComponent);
-            
-        }
-        
-        
-       
-   
+
     }
     
 }

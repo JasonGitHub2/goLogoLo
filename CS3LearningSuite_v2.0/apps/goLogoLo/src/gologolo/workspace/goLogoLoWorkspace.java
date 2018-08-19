@@ -12,6 +12,11 @@ import static djf.AppPropertyType.ZOOM_IN_BUTTON;
 import static djf.AppPropertyType.ZOOM_OUT_BUTTON;
 import djf.AppTemplate;
 import djf.components.AppWorkspaceComponent;
+import djf.modules.AppFoolproofModule;
+import djf.modules.AppGUIModule;
+
+
+import static djf.modules.AppGUIModule.DISABLED;
 import static djf.modules.AppGUIModule.ENABLED;
 import static djf.modules.AppGUIModule.FOCUS_TRAVERSABLE;
 import static djf.modules.AppGUIModule.HAS_KEY_HANDLER;
@@ -43,7 +48,8 @@ import static gologolo.goLogoLoPropertyType.DEFAULT_CYCLE_METHOD;
 import static gologolo.goLogoLoPropertyType.DEFAULT_FONT;
 import static gologolo.goLogoLoPropertyType.DEFAULT_FONT_SIZE;
 import static gologolo.goLogoLoPropertyType.DELETE_BUTTON;
-import static gologolo.goLogoLoPropertyType.FONT_COLOR_PICKER;
+import static gologolo.goLogoLoPropertyType.FONT_COLOR_PICKER_BUTTON;
+
 import static gologolo.goLogoLoPropertyType.FONT_OPTIONS;
 import static gologolo.goLogoLoPropertyType.FONT_SIZE_OPTIONS;
 import static gologolo.goLogoLoPropertyType.GOLOGOLO_BORDER_COLOR_LABEL;
@@ -79,6 +85,7 @@ import static gologolo.goLogoLoPropertyType.LOGO_CENTER_Y_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_CYCLE_METHOD_COMBO_BOX;
 import static gologolo.goLogoLoPropertyType.LOGO_FOCUS_ANGLE_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_FOCUS_DISTANCE_SLIDER;
+import static gologolo.goLogoLoPropertyType.LOGO_FOOLPROOF_SETTINGS;
 import static gologolo.goLogoLoPropertyType.LOGO_GRADIENT_PANE;
 import static gologolo.goLogoLoPropertyType.LOGO_ONE_COLOR;
 import static gologolo.goLogoLoPropertyType.LOGO_PARENT_EDIT;
@@ -86,6 +93,7 @@ import static gologolo.goLogoLoPropertyType.LOGO_RADIUS_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_ZERO_COLOR;
 import static gologolo.goLogoLoPropertyType.UNDERLINE_BUTTON;
 import gologolo.workspace.controller.LogoController;
+import gologolo.workspace.foolproof.LogoFoolproofDesign;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_BOX;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_COLUMN;
 import static gologolo.workspace.style.LogoStyle.CLASS_LOGO_DIALOG_TEXT_FIELD;
@@ -152,8 +160,8 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         // LAYOUT THE APP
         initLayout();
         
-        // 
-        //initFoolproofDesign();
+         
+        initFoolproofDesign();
     }
         
     
@@ -187,9 +195,9 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
 
         //the logo under the table
         HBox tableButtonsPane        = goLogoLoBuilder.buildHBox(LOGO_TABLE_BUTTONS_PANE,          goLogoLoLeftPane,         null,   CLASS_LOGO_ICON_PANE, HAS_KEY_HANDLER,     FOCUS_TRAVERSABLE,  ENABLED);
-        Button moveUpButton          = goLogoLoBuilder.buildIconButton(MOVE_UP_BUTTON,        tableButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button moveDownButton        = goLogoLoBuilder.buildIconButton(MOVE_DOWN_BUTTON,        tableButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button editButton            = goLogoLoBuilder.buildIconButton(RENAME_BUTTON,        tableButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
+        Button moveUpButton          = goLogoLoBuilder.buildIconButton(MOVE_UP_BUTTON,        tableButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  DISABLED);
+        Button moveDownButton        = goLogoLoBuilder.buildIconButton(MOVE_DOWN_BUTTON,        tableButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE, DISABLED);
+        Button editButton            = goLogoLoBuilder.buildIconButton(RENAME_BUTTON,        tableButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  DISABLED);
         
         
         //THE PANE IN THE MIDDLE(WHITE ONE) FOR EDITING LOGOS (PLAIN WHITE PANE)
@@ -219,7 +227,7 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         Button addRectangleButton         = goLogoLoBuilder.buildIconButton(ADD_RECTANGLE_BUTTON,        componentButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button addCircleButton            = goLogoLoBuilder.buildIconButton(ADD_CIRCLE_BUTTON,           componentButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
         Button addTriangleButton          = goLogoLoBuilder.buildIconButton(ADD_TRIANGLE_BUTTON,         componentButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button deleteButton               = goLogoLoBuilder.buildIconButton(DELETE_BUTTON,     componentButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
+        Button deleteButton               = goLogoLoBuilder.buildIconButton(DELETE_BUTTON,     componentButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  DISABLED);
 
         
    
@@ -239,13 +247,13 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
          ComboBox fontSizeComboBox           =goLogoLoBuilder.buildComboBox(LOGO_FONT_SIZE_COMBO_BOX,          FONT_SIZE_OPTIONS,                    DEFAULT_FONT_SIZE,            fontButtonsPane,            null,           LOGO_SHORT_COMBO_BOX,          HAS_KEY_HANDLER,            FOCUS_TRAVERSABLE,          ENABLED);
          fontButtonsPane.rowValignmentProperty();
         //font buttons
-        Button boldButton                = goLogoLoBuilder.buildIconButton(BOLD_BUTTON,                  fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button italicizeButton           = goLogoLoBuilder.buildIconButton(ITALICIZE_BUTTON,             fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button increaseTextButton       = goLogoLoBuilder.buildIconButton(INCREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
-        Button decreaseTextButton        = goLogoLoBuilder.buildIconButton(DECREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  ENABLED);
+        Button boldButton                = goLogoLoBuilder.buildIconButton(BOLD_BUTTON,                  fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE, DISABLED);
+        Button italicizeButton           = goLogoLoBuilder.buildIconButton(ITALICIZE_BUTTON,             fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE, DISABLED);
+        Button increaseTextButton       = goLogoLoBuilder.buildIconButton(INCREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE,  DISABLED);
+        Button decreaseTextButton        = goLogoLoBuilder.buildIconButton(DECREASE_TEXT_BUTTON,         fontButtonsPane,         null,    CLASS_LOGO_ICON, HAS_KEY_HANDLER,   FOCUS_TRAVERSABLE, DISABLED);
        
       
-        ColorPicker fontColor=goLogoLoBuilder.buildColorPicker(FONT_COLOR_PICKER,  fontButtonsPane, null, CLASS_LOGO_ICON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
+        ColorPicker fontColor=goLogoLoBuilder.buildColorPicker(FONT_COLOR_PICKER_BUTTON,  fontButtonsPane, null, CLASS_LOGO_ICON, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
      
               
         
@@ -254,16 +262,16 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         
         //border thickness 
         Label borderThicknessTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_BORDER_THICKNESS_LABEL, borderControlPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
-        Slider borderThickness                  =goLogoLoBuilder.buildSlider(LOGO_BORDER_THICKNESS_SLIDER,    borderControlPane,              null,   LOGO_SLIDER,    1,           20,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider borderThickness                  =goLogoLoBuilder.buildSlider(LOGO_BORDER_THICKNESS_SLIDER,    borderControlPane,              null,   LOGO_SLIDER,    1,           20,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         borderThicknessTextfield.setTextFill(Color.WHITE);
         //border color
         Label borderColorTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_BORDER_COLOR_LABEL, borderControlPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         borderColorTextfield.setTextFill(Color.WHITE);
-        ColorPicker pickColorBorder=goLogoLoBuilder.buildColorPicker(COLOR_PICKER, borderControlPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
+        ColorPicker pickColorBorder=goLogoLoBuilder.buildColorPicker(COLOR_PICKER, borderControlPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         //border raidus 
         Label borderRadiusTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_BORDER_RADIUS_LABEL, borderControlPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         borderRadiusTextfield.setTextFill(Color.WHITE);
-        Slider borderRaidus                    =goLogoLoBuilder.buildSlider(LOGO_BORDER_RAIDIUS_SLIDER,        borderControlPane,              null,   LOGO_SLIDER,    0,           100,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider borderRaidus                    =goLogoLoBuilder.buildSlider(LOGO_BORDER_RAIDIUS_SLIDER,        borderControlPane,              null,   LOGO_SLIDER,    0,           100,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         
         
         //gradient pane
@@ -273,37 +281,37 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
         
         Label focusAngleTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_FOCUS_ANGLE_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         focusAngleTextfield.setTextFill(Color.WHITE);
-        Slider focusAngle                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_ANGLE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider focusAngle                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_ANGLE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         
         Label focusDistanceTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_FOCUS_DISTANCE_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         focusDistanceTextfield.setTextFill(Color.WHITE);
-        Slider focusDistance                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_DISTANCE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider focusDistance                    =goLogoLoBuilder.buildSlider(LOGO_FOCUS_DISTANCE_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         
         Label centerXTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_CENTER_X_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         centerXTextfield.setTextFill(Color.WHITE);
-        Slider centerX                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_X_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider centerX                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_X_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         
         Label centerYTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_CENTER_Y_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         centerYTextfield.setTextFill(Color.WHITE);
-        Slider centerY                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_Y_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider centerY                    =goLogoLoBuilder.buildSlider(LOGO_CENTER_Y_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE,DISABLED);
         
         Label radiusTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_RADIUS_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         radiusTextfield.setTextFill(Color.WHITE);
-        Slider radius                   =goLogoLoBuilder.buildSlider(LOGO_RADIUS_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
+        Slider radius                   =goLogoLoBuilder.buildSlider(LOGO_RADIUS_SLIDER,        gradientPane,              null,   LOGO_SLIDER,    0,           5,      HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         
         //combo box for cycle method
         Label cycleMethodTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_CYCLE_METHOD_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         cycleMethodTextfield.setTextFill(Color.WHITE);
               
-        ComboBox cycleMethodComboBox           =goLogoLoBuilder.buildComboBox(LOGO_CYCLE_METHOD_COMBO_BOX,           CYCLE_METHOD_OPTIONS,                    DEFAULT_CYCLE_METHOD,            gradientPane,            null,           LOGO_LONG_COMBO_BOX,          HAS_KEY_HANDLER,            FOCUS_TRAVERSABLE,          ENABLED);
+        ComboBox cycleMethodComboBox           =goLogoLoBuilder.buildComboBox(LOGO_CYCLE_METHOD_COMBO_BOX,           CYCLE_METHOD_OPTIONS,                    DEFAULT_CYCLE_METHOD,            gradientPane,            null,           LOGO_LONG_COMBO_BOX,          HAS_KEY_HANDLER,            FOCUS_TRAVERSABLE,       DISABLED);
         
         Label stopZeroColorTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_STOP_0_COLOR_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         stopZeroColorTextfield.setTextFill(Color.WHITE);
-        ColorPicker zeroColor=goLogoLoBuilder.buildColorPicker(LOGO_ZERO_COLOR, gradientPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
+        ColorPicker zeroColor=goLogoLoBuilder.buildColorPicker(LOGO_ZERO_COLOR, gradientPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
         
         Label stopOneColorTextfield      =goLogoLoBuilder.buildLabel(GOLOGOLO_STOP_1_COLOR_LABEL, gradientPane,     null,   CLASS_LOGO_REGULAR_LABEL, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);
         stopOneColorTextfield.setTextFill(Color.WHITE);
-        ColorPicker oneColor=goLogoLoBuilder.buildColorPicker(LOGO_ONE_COLOR, gradientPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, ENABLED);    
+        ColorPicker oneColor=goLogoLoBuilder.buildColorPicker(LOGO_ONE_COLOR, gradientPane, null, LOGO_LONG_COMBO_BOX, HAS_KEY_HANDLER, FOCUS_TRAVERSABLE, DISABLED);
      
     
          
@@ -701,15 +709,22 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
               goLogoLoEditPane.setScaleY(1);   
            });
          
-          //====FINISH ZOOM USING MOUSE SCROLL=================================================================================================
-//          goLogoLoEditPane.setOnScroll(e -> {
-//         
-//       
-//            goLogoLoEditPane.setScaleX( goLogoLoEditPane.getScaleX() * 1.1);
-//             goLogoLoEditPane.setScaleY( goLogoLoEditPane.getScaleY() * 1.1);
-//          
-//          });
+         
+             goLogoLoEditPane.setOnScroll(e -> {
+            double eDelta = e.getDeltaY();
+            double scaleZoom = 1.1;
+           
+            if (eDelta < 0){
+                scaleZoom = 2.0 - scaleZoom;
+            }
+            goLogoLoEditPane.setScaleY( scaleZoom* goLogoLoEditPane.getScaleY() );
+            goLogoLoEditPane.setScaleX( scaleZoom*goLogoLoEditPane.getScaleX() );
+             
           
+            });
+          
+             
+             
          Button resizeButton=(Button) app.getGUIModule().getGUINode(RESIZE_BUTTON);
          resizeButton.setOnAction(e->{
                eventController.processResizePane();
@@ -732,7 +747,13 @@ public class goLogoLoWorkspace extends AppWorkspaceComponent{
       
 
     }
-  
+    
+  public void initFoolproofDesign() {
+        AppGUIModule gui = app.getGUIModule();
+        AppFoolproofModule foolproofSettings = app.getFoolproofModule();
+        foolproofSettings.registerModeSettings(LOGO_FOOLPROOF_SETTINGS,
+        new LogoFoolproofDesign((GoLogoLo)app));
+    }
     
     @Override
     public void processWorkspaceKeyEvent(KeyEvent ke) {

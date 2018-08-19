@@ -26,6 +26,7 @@ import static gologolo.goLogoLoPropertyType.LOGO_RADIUS_SLIDER;
 import static gologolo.goLogoLoPropertyType.LOGO_TABLE_VIEW;
 import static gologolo.goLogoLoPropertyType.LOGO_ZERO_COLOR;
 import gologolo.transactions.ClickDrag_Transaction;
+import gologolo.transactions.ResizeCircle_Transaction;
 import gologolo.workspace.controller.LogoController;
 
 import java.util.ArrayList;
@@ -455,6 +456,21 @@ public class LogoData implements AppDataComponent{
         this.reorderTable();
     }
     
+      public void swapComponentAndNodeMoveDown(int indexToMoveUp,int indexToMoveDown){
+        LogoPrototype bottomData=components.get(indexToMoveUp);
+        LogoPrototype topData=components.get(indexToMoveDown);
+        Node topNode=editComponents.get(indexToMoveDown);
+        Node bottomNode=editComponents.get(indexToMoveUp);
+        components.remove(topData);
+        components.add(indexToMoveUp, topData);
+        this.clearSelected();
+        this.selectItem(topData);
+       editComponents.remove(topNode);
+       editComponents.add(indexToMoveUp, topNode);
+       selectNodeInPane(topNode);
+        this.reorderTable();
+    }
+    
     public Rectangle createRectangle(){
         Rectangle  rectangle=new Rectangle();
         rectangle.setWidth(300);
@@ -798,7 +814,7 @@ public class LogoData implements AppDataComponent{
        
        else if(selectedData.getType().equals("Image")){
            
-           ImageView image=(ImageView)editComponents.get(index);
+     
            fontNameComboBox.setValue("");
            fontSizeComboBox.setValue("");
            borderThicknessSlider.setValue(0);
@@ -814,7 +830,7 @@ public class LogoData implements AppDataComponent{
            oneColorComboBox.setValue(WHITE);      
        }
        
-       
+         initApp.getFoolproofModule().updateAll();
     }
     
     public void selectNodeInPane(int index){
@@ -899,7 +915,7 @@ public class LogoData implements AppDataComponent{
        
        else if(selectedData.getType().equals("Image")){
            
-           ImageView image=(ImageView)editComponents.get(index);
+          
            fontNameComboBox.setValue("");
            fontSizeComboBox.setValue("");
            borderThicknessSlider.setValue(0);
@@ -914,7 +930,7 @@ public class LogoData implements AppDataComponent{
            zeroColorComboBox.setValue(WHITE);
            oneColorComboBox.setValue(WHITE);      
        }
-       
+         initApp.getFoolproofModule().updateAll();
     }
     
     public void selectNodeInPane(Node node){
@@ -1001,7 +1017,7 @@ public class LogoData implements AppDataComponent{
        
        else if(selectedData.getType().equals("Image")){
            
-           ImageView image=(ImageView)editComponents.get(index);
+         
            fontNameComboBox.setValue("");
            fontSizeComboBox.setValue("");
            borderThicknessSlider.setValue(0);
@@ -1017,7 +1033,7 @@ public class LogoData implements AppDataComponent{
            oneColorComboBox.setValue(WHITE);      
        }
        
-         
+           initApp.getFoolproofModule().updateAll();
     }
     
     public Iterator<LogoPrototype> componentsIterator() {
@@ -1107,7 +1123,7 @@ public class LogoData implements AppDataComponent{
         }
         
          public void removeTextDataAndNode(LogoPrototype item,Text component) {
-           components.remove(item);
+            components.remove(item);
             editComponents.remove(component);
             this.clearSelected();           
             reorderTable(); 
@@ -1170,8 +1186,9 @@ public class LogoData implements AppDataComponent{
             });
          });
             
-     
+          
         reorderTable(); 
+          
        
         }
             
@@ -1256,9 +1273,24 @@ public class LogoData implements AppDataComponent{
               
             }
         });
-       
-            
-            
+    
+             component.setOnScroll(e -> {
+            double scaleZoom = 1.05;
+            double deltaY = e.getDeltaY();
+            if (deltaY < 0){
+                scaleZoom = 2.0 - scaleZoom;
+            }
+            component.setScaleX( component.getScaleX() *scaleZoom);
+            component.setScaleY( component.getScaleY() * scaleZoom);
+  
+            });
+             
+             component.setOnScrollFinished(p -> {
+                 ResizeCircle_Transaction transaction = new ResizeCircle_Transaction(component,initApp,component.getRadius());
+                initApp.processTransaction(transaction); 
+               });
+          
+             
           component.setOnMousePressed(e->{
            this.clearSelected();
            this.selectItem(item);
@@ -1297,4 +1329,5 @@ public class LogoData implements AppDataComponent{
             this.clearSelected();           
             reorderTable(); 
         }
+        
 }

@@ -45,19 +45,11 @@ public class AddCircle_Transaction implements jTPS_Transaction {
 
     @Override
     public void undoTransaction() {
-     //  remove from table and pane and reselect previous
-       
+     //  remove from table and pane and reselect previous     
        data.removeCircleDataAndNode(circleData,circleShape);
       
        
-       //reslect previous 
-        ArrayList<LogoPrototype> componentList= data.getCurrentItemsOrder(); 
-        if(componentList.size()>0)
-        {           
-            data.selectItem(componentList.size()-1);
-            data.selectNodeInPane(componentList.size()-1);
-            
-        }
+       
  
     }
 }

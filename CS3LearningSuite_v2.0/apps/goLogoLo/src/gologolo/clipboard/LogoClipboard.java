@@ -7,7 +7,9 @@ package gologolo.clipboard;
 
 import djf.components.AppClipboardComponent;
 import gologolo.GoLogoLo;
+import gologolo.data.LogoCircle;
 import gologolo.data.LogoData;
+import gologolo.data.LogoImage;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoRectangle;
 import gologolo.data.LogoText;
@@ -16,6 +18,7 @@ import gologolo.transactions.PasteComponent_Transaction;
 import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 import javafx.scene.shape.Rectangle;
@@ -95,27 +98,50 @@ public class LogoClipboard implements AppClipboardComponent{
     public void copyToCopyNode(Node temp,LogoPrototype refData){
         LogoData data = (LogoData)app.getDataComponent();
        
-         if(temp instanceof Rectangle){
-             LogoRectangle rect=new LogoRectangle(((Rectangle)temp).getWidth(),
-                                        ((Rectangle)temp).getHeight(),
-                                        ((Rectangle)temp).getFill(),
-                                       ((Rectangle)temp).getStroke(),
-                                        ((Rectangle)temp).getX(),
-                                       ((Rectangle)temp).getY()
-                                        );
-             Rectangle rectangle=rect.getRectangle();
+         if(refData.getType().equalsIgnoreCase("Rectangle")){
+             
+             LogoRectangle rectTemp=(LogoRectangle)temp;
+             LogoRectangle rectangle=rectTemp.clone();
                clipboardCutNode=null;
              
+         
                clipboardCopyNode=rectangle;
          }
         
-         else if(temp instanceof Text){
-             LogoText logoText=new LogoText (((Text)temp).getX(),((Text)temp).getY(),((Text)temp).getText());
+         else if(refData.getType().equalsIgnoreCase("Text")){
+             LogoText textTemp=(LogoText)temp;
              
-            Text text=logoText.getTextNode();
+             LogoText logoText=(LogoText) textTemp.clone();
+             
+          
                clipboardCutNode=null;
              
-               clipboardCopyNode=text;
+               clipboardCopyNode=logoText;
+         }
+         else if(refData.getType().equalsIgnoreCase("Circle")){
+             LogoCircle circleTemp=(LogoCircle)temp;
+             
+             LogoCircle logoCircle=(LogoCircle) circleTemp.clone();
+             
+          
+               clipboardCutNode=null;
+             
+               clipboardCopyNode=logoCircle;
+         }
+          else if(refData.getType().equalsIgnoreCase("Image")){
+            ImageView image=(ImageView)temp;
+             
+             
+             ImageView imageView=new ImageView(image.getImage());
+             imageView.setX(image.getX());
+               imageView.setY(image.getY());
+          
+     
+             
+          
+               clipboardCutNode=null;
+             
+               clipboardCopyNode=imageView;
          }
         
     }
@@ -127,44 +153,58 @@ public class LogoClipboard implements AppClipboardComponent{
     }
 
     public void copyToCutNode(Node temp,LogoPrototype refData){
-        LogoData data = (LogoData)app.getDataComponent();
+     
          
-         if(temp instanceof Rectangle){
-             LogoRectangle rect=new LogoRectangle(((Rectangle)temp).getWidth(),
-                                        ((Rectangle)temp).getHeight(),
-                                        ((Rectangle)temp).getFill(),
-                                       ((Rectangle)temp).getStroke(),
-                                        ((Rectangle)temp).getX(),
-                                       ((Rectangle)temp).getY()
-                                        );
-             Rectangle rectangle=rect.getRectangle();
+         if(refData.getType().equalsIgnoreCase("Rectangle")){
+             
+             LogoRectangle rectTemp=(LogoRectangle)temp;
+             LogoRectangle rectangle=rectTemp.clone();
                clipboardCutNode=rectangle;
              
+         
                clipboardCopyNode=null;
          }
         
-         else if(temp instanceof Text){
-             LogoText logoText=new LogoText (((Text)temp).getX(),((Text)temp).getY(),((Text)temp).getText());
+         else if(refData.getType().equalsIgnoreCase("Text")){
+             LogoText textTemp=(LogoText)temp;
              
-            Text text=logoText.getTextNode();
-               clipboardCutNode=text;
+             LogoText logoText=(LogoText) textTemp.clone();
+             
+          
+               clipboardCutNode=logoText;
              
                clipboardCopyNode=null;
          }
-        
-   
-       
+         else if(refData.getType().equalsIgnoreCase("Circle")){
+             LogoCircle circleTemp=(LogoCircle)temp;
+             
+             LogoCircle logoCircle=(LogoCircle) circleTemp.clone();
+             
+          
+               clipboardCutNode=logoCircle;
+             
+               clipboardCopyNode=null;
+         }
+          else if(refData.getType().equalsIgnoreCase("Image")){
+             ImageView image=(ImageView)temp;
+             
+             
+             ImageView imageView=new ImageView(image.getImage());
+             imageView.setX(image.getX());
+               imageView.setY(image.getY());
+          
+               clipboardCutNode=imageView;
+             
+               clipboardCopyNode=null;
+         }
+    
     }
 
-
-
-
-
-     
+  
     @Override
     public void paste() {
       LogoData data = (LogoData)app.getDataComponent();
-        if (data.isItemSelected()) {
+        if (data.isItemSelected()||data.getComponents().size()==0) {
             int selectedIndex = data.getItemIndex(data.getSelectedItem());  
             
          
@@ -189,7 +229,7 @@ public class LogoClipboard implements AppClipboardComponent{
                 copyToCopyNode(clipboardCopyNode,clipboardCopyTableData);
                 copyToCopyData(clipboardCopyTableData);
                 app.processTransaction(transaction);
-            
+                
                 // NOW WE HAVE TO RE-COPY THE COPIED ITEMS TO MAKE
                 // SURE IF WE PASTE THEM AGAIN THEY ARE BRAND NEW OBJECTS
                
@@ -202,24 +242,23 @@ public class LogoClipboard implements AppClipboardComponent{
     
     @Override
     public boolean hasSomethingToCut() {
-        return ((LogoData)app.getDataComponent()).isItemSelected()
-        || ((LogoData)app.getDataComponent()).areItemsSelected();
+        return ((LogoData)app.getDataComponent()).isItemSelected();
+       
     }
 
     @Override
     public boolean hasSomethingToCopy() {
-       return ((LogoData)app.getDataComponent()).isItemSelected()
-                || ((LogoData)app.getDataComponent()).areItemsSelected();
+       return ((LogoData)app.getDataComponent()).isItemSelected();
+        
     }
 
     @Override
     public boolean hasSomethingToPaste() {
-         if ((clipboardCutTableData != null))
-            return true;
-        else if ((clipboardCopyTableData != null) )
-            return true;
-        else
-            return false;
+       if(clipboardCutTableData!=null||clipboardCopyTableData!=null)
+           return true;
+                   else return false;
+       
+        
     }
 
     

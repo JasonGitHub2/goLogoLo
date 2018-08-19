@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
  * @author jasoncao
  */
 public class LogoText extends Text implements Cloneable{
-    Text text;
+
     String textToPut;
     double xCoordinate;
     double yCoordinate; 
@@ -31,15 +31,12 @@ public class LogoText extends Text implements Cloneable{
     boolean isItalicized;
     
     public LogoText(String stringInput){
-        text=new Text();
+       
         textToPut=stringInput;
         font=new Font("Times New Roman",14);
         fontName="Times New Roman";
         fontSize=14;
-        text.setText(stringInput);
-        text.setX(200);
-        text.setFont(font);
-        text.setY(200);
+      
         xCoordinate=200;
         yCoordinate=200;
         name="DEFAULT";
@@ -59,17 +56,38 @@ public class LogoText extends Text implements Cloneable{
     
     //add in font, font name and font size parameter
        public LogoText(double x,double y,String input){
-        text=new Text();
+     
         textToPut=input;
-        text.setText(input);
-        text.setX(x);
-        text.setY(y);
+     
         xCoordinate=x;
         yCoordinate=y;
        name="DEFAULT";
         type="Text";
         order=0;
        
+    }
+
+    public LogoText(String text, Font font, String fontName, int fontSize, double x, double y, Color fontColor, boolean isBold, boolean isItalicized) {
+        
+        textToPut=text;
+        this.font=font;
+        this.fontName=fontName;
+        this.fontSize=fontSize;
+        this.setX(x);
+        this.setY(y);
+       
+        name="DEFAULT";
+        type="Text";
+        this.fontColor=fontColor;
+        order=0;
+        this.setFont(font);
+        this.setText(textToPut);
+        this.setX(x);
+        this.setY(y);
+        this.isBold=isBold;
+        this.isItalicized=isItalicized;
+        isUnderline=false;
+
     }
  
     public String getName() {
@@ -105,10 +123,7 @@ public class LogoText extends Text implements Cloneable{
         this.order = order;
     }
     
-    
-    public Text getTextNode() {
-        return text;
-    }
+  
 
     public Color getFontColor() {
         return fontColor;
@@ -118,10 +133,6 @@ public class LogoText extends Text implements Cloneable{
         this.fontColor = fontColor;
     }
 
-    public void setTextNode(Text text) {
-        
-        this.text = text;
-    }
 
     public String getFontName() {
         return fontName;
@@ -132,50 +143,8 @@ public class LogoText extends Text implements Cloneable{
         font=new Font(fontName,fontSize);
     }
  
-   
-    public String getTextInput() {
-        return text.getText();
-    }
-
-    public void setTextInput(String textToPut) {
-        this.textToPut = textToPut;
-        text.setText(textToPut);
-        this.setText(textToPut);
-    }
 
 
-    public Font getTextFont() {
-        return text.getFont();
-    }
-
-    public void setTextFont(Font font) {
-        text.setFont(font);
-        this.setFont(font);
-    }
-
-    public double getxCoordinate() {
-        return text.getX();
-    }
-
-    public void setxCoordinate(double xCoordinateInput) {
-        this.xCoordinate = xCoordinateInput;
-        text.setX(xCoordinateInput);
-        this.setxCoordinate(xCoordinateInput);
-    }
-
-    public double getyCoordinate() {
-        return text.getY();
-    }
-
-    public void setyCoordinate(double yCoordinateInput) {
-        this.yCoordinate = yCoordinateInput;
-        text.setY(yCoordinateInput);
-        this.setY(yCoordinateInput);
-    }
-     public Object clone() {
-       
-             return new LogoText(   text.getX(),text.getY(),this.getTextInput());
-     }
 
     public boolean getIsBold() {
         return isBold;
@@ -200,5 +169,9 @@ public class LogoText extends Text implements Cloneable{
     public void setIsItalicized(boolean isItalicized) {
         this.isItalicized = isItalicized;
     }
-    
+ 
+
+     public Object clone() {
+         return new LogoText( this.getText(),this.getFont(),getFontName(),getFontSize(),this.getX(),this.getY(),getFontColor(),getIsBold(),getIsItalicized() );
+     }
 }

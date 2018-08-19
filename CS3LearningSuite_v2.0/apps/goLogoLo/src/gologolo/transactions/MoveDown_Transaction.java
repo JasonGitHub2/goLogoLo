@@ -20,22 +20,27 @@ public class MoveDown_Transaction implements jTPS_Transaction {
     LogoData data;
     int indexToMoveUp;
     int indexToMoveDown;
+    
     public MoveDown_Transaction(LogoPrototype selected,GoLogoLo initApp){
         selectedComponent=selected;
         app=initApp;
         data=(LogoData)app.getDataComponent();   
         indexToMoveDown=data.getItemIndex(selectedComponent);
-        indexToMoveUp=indexToMoveUp+1;
+        indexToMoveUp=indexToMoveDown+1;
     }
     
     @Override
     public void doTransaction() {
-       data.swapComponentAndNodes( indexToMoveUp,indexToMoveDown);
+       data.swapComponentAndNodeMoveDown( indexToMoveUp,indexToMoveDown);
+       
+       
     }
 
     @Override
     public void undoTransaction() {
-        data.swapComponentAndNodes(indexToMoveDown,indexToMoveUp );
+        data.swapComponentAndNodeMoveDown(indexToMoveDown,indexToMoveUp );
+        
+     
     }
     
 }

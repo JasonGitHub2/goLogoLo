@@ -7,6 +7,26 @@
     <property_list>
 
         <!-- ENGLISH LANGUAGE SETTINGS GOLOGOLO CONTROLS -->
+          <property name="RESET_BUTTON_TOOLTIP"        value="Reset View"></property>
+            <property name="ZOOM_IN_BUTTON_TOOLTIP"        value="Zoom In"></property>
+            <property name="ZOOM_OUT_BUTTON_TOOLTIP"        value="Zoom Out"></property>
+             <property name="TOGGLE_BUTTON_OFF_TOOLTIP"        value="Toggle Snap"></property>
+             <property name="RESIZE_BUTTON_TOOLTIP"        value="Resize"></property>
+              <property name="MOVE_UP_BUTTON_TOOLTIP"        value="Move Component Up"></property>
+               <property name="MOVE_DOWN_BUTTON_TOOLTIP"        value="Move Component Down"></property>
+                <property name="RENAME_BUTTON_TOOLTIP"        value="Rename"></property>
+                 <property name="ADD_TEXT_BUTTON_TOOLTIP"        value="Add Text"></property>
+                  <property name="ADD_IMAGE_BUTTON_TOOLTIP"        value="Add Image"></property>
+                   <property name="ADD_RECTANGLE_BUTTON_TOOLTIP"        value="Add Rectangle"></property>
+                    <property name="ADD_CIRCLE_BUTTON_TOOLTIP"        value="Add Circle"></property>
+                     <property name="ADD_TRIANGLE_BUTTON_TOOLTIP"        value="Add Triangle"></property>
+                      <property name="DELETE_BUTTON_TOOLTIP"        value="Delete Component"></property>
+                       <property name="BOLD_BUTTON_TOOLTIP"        value="Bold Text"></property>
+                        <property name="ITALICIZE_BUTTON_TOOLTIP"        value="Italicize Text"></property>
+                         <property name="INCREASE_TEXT_BUTTON_TOOLTIP"        value="Increase Font"></property>
+                          <property name="DECREASE_TEXT_BUTTON_TOOLTIP"        value="Decrease Font"></property>
+                           <property name="FONT_COLOR_PICKER_BUTTON_TOOLTIP"        value="Change Font Color"></property>
+              
         
          <property name="LOGO_HEIGHT_LABEL_TEXT"           value="Height:"></property>
           <property name="LOGO_WIDTH_LABEL_TEXT"           value="Width:"></property>
@@ -137,7 +157,9 @@
     <!-- LOGO COMBO BOX CHOICES -->
     <property_options_list>
         <property_options name="LANGUAGE_OPTIONS">
-            <option>English</option>    
+            <option>English</option>  
+            <option>Spanish</option>
+              <option>Korean</option>  
         </property_options>
     </property_options_list>
 </properties>

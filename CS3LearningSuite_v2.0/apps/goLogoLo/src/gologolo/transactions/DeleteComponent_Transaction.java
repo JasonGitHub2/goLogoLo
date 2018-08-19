@@ -33,15 +33,24 @@ public class DeleteComponent_Transaction implements jTPS_Transaction{
     public void doTransaction() {
         
         deletedIndex=data.getItemIndex(deleteComponent);
-        deletedNode=data.deleteComponent(deleteComponent,data);
-        
+        deletedNode=data.getEditComponents().get(deletedIndex);
+        data.getEditComponents().remove(deletedNode);
+        data.getComponents().remove(deletedIndex);
+        data.reorderTable();
+    
+
         
     }
 
     @Override
     public void undoTransaction() {
      
-      data.addItemAt(deleteComponent, deletedIndex,deletedNode);
+      data.getComponents().add(deletedIndex, deleteComponent);
+      data.getEditComponents().add(deletedIndex, deletedNode);
+      data.reorderTable();
+      data.clearSelected();
+      data.selectNodeInPane(deletedNode);
+      data.selectItem(deleteComponent);
     }
     
 }

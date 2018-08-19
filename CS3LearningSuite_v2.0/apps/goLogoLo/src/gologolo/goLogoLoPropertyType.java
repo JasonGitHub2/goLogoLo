@@ -11,7 +11,8 @@ package gologolo;
  */
 public enum goLogoLoPropertyType {
     //background pane
-    FONT_COLOR_PICKER,
+    LOGO_FOOLPROOF_SETTINGS,
+    FONT_COLOR_PICKER_BUTTON,
     LOGO_RESIZE_OK_LABEL_TEXT,
     LOGO_RESIZE_CANCEL_LABEL_TEXT,
     LOGO_RESIZE_OK,

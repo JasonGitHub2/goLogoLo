@@ -64,17 +64,7 @@ public class AddImage_Transaction implements jTPS_Transaction
         
         data.removeImageDataAndNode(imageProtoType,actualImageView);
       
-       
-       //reslect previous 
-        ArrayList<LogoPrototype> componentList= data.getCurrentItemsOrder(); 
-        if(componentList.size()>0)
-        {           
-            data.selectItem(componentList.size()-1);
-            data.selectNodeInPane(componentList.size()-1);
-            
-        }
-        
-        
+    
       
     }
     

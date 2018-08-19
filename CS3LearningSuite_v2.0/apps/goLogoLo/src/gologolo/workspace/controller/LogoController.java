@@ -66,6 +66,7 @@ public class LogoController {
        resizeDialog = new ResizePaneDialog(app);
        addTextDialog=new AddTextDialog(app);
        editDialog=new EditTextDialog(app);
+  
     }
     
      public void processResizePane(){
@@ -85,6 +86,7 @@ public class LogoController {
           LogoPrototype selected=item;
             BorderColor_Transaction transaction = new BorderColor_Transaction(data, selected,app,color);
                          app.processTransaction(transaction);
+                          app.getFoolproofModule().updateAll();
                
      }
      
@@ -97,6 +99,7 @@ public class LogoController {
           {
               FontColor_Transaction transaction = new FontColor_Transaction(data, selected,app,newColor);
               app.processTransaction(transaction);
+               app.getFoolproofModule().updateAll();
           }
       }
       
@@ -109,6 +112,7 @@ public class LogoController {
           if(selected.getType().equalsIgnoreCase("Rectangle")){
               BorderRadius_Transaction transaction = new BorderRadius_Transaction(data, selected,app,val);
                          app.processTransaction(transaction);
+                          app.getFoolproofModule().updateAll();
           }
           
     }
@@ -129,6 +133,7 @@ public class LogoController {
                     else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          FocusAngle_Transaction transaction = new FocusAngle_Transaction(data, app,selectedItem,value,true,false);
                          app.processTransaction(transaction);
+                          app.getFoolproofModule().updateAll();
                     }
                 
      }
@@ -141,6 +146,7 @@ public class LogoController {
                 LogoPrototype selectedItem=data.getSelectedItem();
                  BorderThickness_Transaction transaction = new BorderThickness_Transaction(data, app,selectedItem,val);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                  
            }
     }
@@ -160,6 +166,7 @@ public class LogoController {
                   else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          FocusDistance_Transaction transaction = new FocusDistance_Transaction(data, app,selectedItem,value,true,false);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                     }
                 
                   
@@ -178,6 +185,7 @@ public class LogoController {
                   else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          CenterX_Transaction transaction = new CenterX_Transaction(data, app,selectedItem,value,true,false);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                     }
                 
      }
@@ -195,6 +203,7 @@ public class LogoController {
                   else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          CenterY_Transaction transaction = new CenterY_Transaction(data, app,selectedItem,value,true,false);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                     }
                 
      }
@@ -212,6 +221,7 @@ public class LogoController {
                   else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          Radius_Transaction transaction = new Radius_Transaction(data, app,selectedItem,value,true,false);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                     }
                 
      }
@@ -230,6 +240,7 @@ public class LogoController {
                   else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          CycleMethod_Transaction transaction = new CycleMethod_Transaction(data, app,selectedItem,value,true,false);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                     }
                 
         }
@@ -249,6 +260,7 @@ public class LogoController {
                   else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          ZeroColor_Transaction transaction = new ZeroColor_Transaction(data, app,selectedItem,value,true,false);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                     }
                 
         }
@@ -270,6 +282,7 @@ public class LogoController {
                   else  if(selectedItem.getType().equalsIgnoreCase("Circle")){
                          OneColor_Transaction transaction = new OneColor_Transaction(data, app,selectedItem,value,true,false);
                  app.processTransaction(transaction);
+                  app.getFoolproofModule().updateAll();
                     }
                 
         }
@@ -284,6 +297,7 @@ public class LogoController {
             LogoData data = (LogoData)app.getDataComponent();
             AddRectangle_Transaction transaction = new AddRectangle_Transaction(data, app);
             app.processTransaction(transaction);
+             
 
        
     }
@@ -292,6 +306,7 @@ public class LogoController {
             LogoData data = (LogoData)app.getDataComponent();
             AddCircle_Transaction transaction = new AddCircle_Transaction(data, app);
             app.processTransaction(transaction);
+             app.getFoolproofModule().updateAll();
 
        
     }
@@ -305,6 +320,7 @@ public class LogoController {
                     if(selectedItem.getOrder()!=1){
                         MoveUp_Transaction transaction = new MoveUp_Transaction(selectedItem, app);
                          app.processTransaction(transaction);
+                          app.getFoolproofModule().updateAll();
                     }
                 }
                 
@@ -322,6 +338,7 @@ public class LogoController {
                     if(selectedItem.getOrder()!=data.getComponents().size()){
                         MoveDown_Transaction transaction = new MoveDown_Transaction(selectedItem, app);
                          app.processTransaction(transaction);
+                          app.getFoolproofModule().updateAll();
                     }
                 }
                 
@@ -338,6 +355,7 @@ public class LogoController {
                   font=newFont;
                    ChangeFont_Transaction transaction = new ChangeFont_Transaction(font,selectedText,app);
                     app.processTransaction(transaction);
+                     app.getFoolproofModule().updateAll();
                }
           
           }     
@@ -351,6 +369,7 @@ public class LogoController {
                if(selectedText.getType().equalsIgnoreCase("Text")){
                    BoldText_Transaction transaction = new BoldText_Transaction(selectedText,app);
                     app.processTransaction(transaction);
+                     app.getFoolproofModule().updateAll();
                 }
            }
          }
@@ -363,6 +382,7 @@ public class LogoController {
                if(selectedText.getType().equalsIgnoreCase("Text")){
                    ItalicizeText_Transaction transaction = new ItalicizeText_Transaction(selectedText,app);
                     app.processTransaction(transaction);
+                     app.getFoolproofModule().updateAll();
                 }
            }
          }
@@ -378,6 +398,7 @@ public class LogoController {
                     newFontSize=newIntSize;
                     ChangeFontSize_Transaction transaction = new ChangeFontSize_Transaction(newFontSize,selectedText,app);
                     app.processTransaction(transaction);
+                     app.getFoolproofModule().updateAll();
                }
         }
     }
@@ -387,14 +408,11 @@ public class LogoController {
         
         //GOES TO ELSE
         if (newItem != null) {
-            //IF NEWITEM IS VALID
-         //  String name=newItem.getName();
-         //  String text=newItem.getText();
-           
-          
+        
             LogoData data = (LogoData)app.getDataComponent();
             AddText_Transaction transaction = new AddText_Transaction(data, newItem,app);
             app.processTransaction(transaction);
+             app.getFoolproofModule().updateAll();
            
         }    
         // OTHERWISE TELL THE USER WHAT THEY
@@ -421,6 +439,7 @@ public class LogoController {
                if(selectedText.getType().equalsIgnoreCase("Text")){
                    DecreaseText_Transaction transaction = new DecreaseText_Transaction(selectedText,app);
                     app.processTransaction(transaction);
+                     app.getFoolproofModule().updateAll();
                 }
            }
       }
@@ -431,6 +450,8 @@ public class LogoController {
                if(selectedText.getType().equalsIgnoreCase("Text")){
                    IncreaseText_Transaction transaction = new IncreaseText_Transaction(selectedText,app);
                     app.processTransaction(transaction);
+                     app.getFoolproofModule().updateAll();
+                     
                 }
            }
      }
@@ -449,6 +470,7 @@ public class LogoController {
               else{
                RenameComponent_Transaction transaction = new RenameComponent_Transaction(name,componentToRename,app);
               app.processTransaction(transaction);
+               app.getFoolproofModule().updateAll();
              }
         }
     }
@@ -457,8 +479,12 @@ public class LogoController {
         String imagePath=path;
         if(file!=null){
            
+            
+            
+            
             AddImage_Transaction transaction = new AddImage_Transaction(imageFile,app,imagePath);
             app.processTransaction(transaction);
+             app.getFoolproofModule().updateAll();
         }        
     }
     
@@ -475,6 +501,7 @@ public class LogoController {
                 
             EditText_Transaction transaction = new EditText_Transaction(textToEdit,changedText.getText(),app,data );
             app.processTransaction(transaction);
+             app.getFoolproofModule().updateAll();
             }     
         }
     }
@@ -486,6 +513,7 @@ public class LogoController {
             LogoPrototype dataToDelete=data.getSelectedItem();
             DeleteComponent_Transaction transaction = new DeleteComponent_Transaction(app,dataToDelete,data);
             app.processTransaction(transaction);
+             app.getFoolproofModule().updateAll();
         }
         
     }

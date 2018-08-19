@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file provides all the text to be used when the application
+    is to be displayed in English.
+-->
+<properties>
+    <property_list>
+
+        <!--SPANISH LANGUAGE SETTINGS GOLOGOLO CONTROLS -->
+          <property name="RESET_BUTTON_TOOLTIP"        value="Reestablecer vista"></property>
+            <property name="ZOOM_IN_BUTTON_TOOLTIP"        value="Acercarse"></property>
+            <property name="ZOOM_OUT_BUTTON_TOOLTIP"        value="isminuir el zoom"></property>
+             <property name="TOGGLE_BUTTON_OFF_TOOLTIP"        value="Toggle Snap"></property>
+             <property name="RESIZE_BUTTON_TOOLTIP"        value="ReCambiar el tamañosize"></property>
+              <property name="MOVE_UP_BUTTON_TOOLTIP"        value="Move ComMover el componente hacia arriba"></property>
+               <property name="MOVE_DOWN_BUTTON_TOOLTIP"        value="Mover el componente hacia abajo"></property>
+                <property name="RENAME_BUTTON_TOOLTIP"        value="Rebautizar"></property>
+                 <property name="ADD_TEXT_BUTTON_TOOLTIP"        value="Añadir texto"></property>
+                  <property name="ADD_IMAGE_BUTTON_TOOLTIP"        value="Añadir imagen"></property>
+                   <property name="ADD_RECTANGLE_BUTTON_TOOLTIP"        value="Agregar Rectángulo"></property>
+                    <property name="ADD_CIRCLE_BUTTON_TOOLTIP"        value="Añadir círculo"></property>
+                     <property name="ADD_TRIANGLE_BUTTON_TOOLTIP"        value="Añadir triángulo"></property>
+                      <property name="DELETE_BUTTON_TOOLTIP"        value="Eliminar componente"></property>
+                       <property name="BOLD_BUTTON_TOOLTIP"        value="Texto en negrita"></property>
+                        <property name="ITALICIZE_BUTTON_TOOLTIP"        value="Texto en cursiva"></property>
+                         <property name="INCREASE_TEXT_BUTTON_TOOLTIP"        value="Aumentar la fuente"></property>
+                          <property name="DECREASE_TEXT_BUTTON_TOOLTIP"        value="Disminuir fuente"></property>
+                           <property name="FONT_COLOR_PICKER_BUTTON_TOOLTIP"        value="Change FontCambiar color de fuente Color"></property>
+              
+        
+         <property name="LOGO_HEIGHT_LABEL_TEXT"           value="
+Altura:"></property>
+          <property name="LOGO_WIDTH_LABEL_TEXT"           value="Anchura:"></property>
+           <property name="LOGO_RESIZE_OK_LABEL_TEXT"           value="Ok"></property>
+            <property name="LOGO_RESIZE_CANCEL_LABEL_TEXT"           value="
+Cancelar"></property>
+            
+        
+         <property name="LOGO_DIALOG_RENAME_HEADER_TEXT"           value="
+Cambiar el nombre del componente"></property>
+                <property name="LOGO_CHANGE_NAME_LABEL_TEXT"            value="
+Cambiar nombre:"></property>
+         <property name="LOGO_EDIT_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+              <property name="LOGO_EDIT_DIALOG_CANCEL_BUTTON_TEXT"            value="
+Cancelar"></property>
+         <property name="LOGO_EDIT_TEXT_LABEL_TEXT"               value="
+Editar texto:"></property>  
+           <property name="LOGO_ADD_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+              <property name="LOGO_ADD_DIALOG_CANCEL_BUTTON_TEXT"            value="Cancelar"></property>
+         <property name="LOGO_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+        <property name="LOGO_DIALOG_CANCEL_BUTTON_TEXT"        value="Cancelar"></property>       
+
+         <property name="LOGO_TEXT_LABEL_TEXT"               value="
+Añadir texto:"></property>  
+        <property name="LOGO_DIALOG_HEADER_TEXT"               value="Agregar componente de logotipo"></property>
+        <property name="LOGO_NAME_LABEL_TEXT"               value="
+Nombre:"></property>   
+        <property name="LOGO_ADD_DIALOG_NAME_LABEL_TEXT"               value="
+Nombre:"></property>   
+        <property name="LOGO_DIALOG_ADD_HEADER_TEXT"           value="Agregar componente"></property>
+        <property name="CHANGE_DIMENSION_LABEL_TEXT"   value="Cambiar la dimensión del logotipo"></property>
+        <!-- WELCOME DIALOG TEXT -->
+        <property name="WELCOME_DIALOG_TITLE"               value="
+Bienvenido al editor goLogoLo"></property>
+        <property name="WELCOME_DIALOG_RECENT_WORK_LABEL"   value="Trabajo reciente"></property>
+        <property name="WELCOME_DIALOG_NEW_BUTTON_TEXT"  value="Crear nuevo logotipo"></property>
+
+        <!-- GENERIC APP ERROR MESSAGES -->
+        <property name="APP_ERROR_TITLE"            value="Error de la aplicación"></property>
+        <property name="APP_ERROR_CONTENT"          value="Ocurrió un error en la aplicación"></property>
+
+        <!-- PROPERTIES ERROR MESSAGES -->
+        <property name="PROPERTIES_ERROR_TITLE"     value="Error de archivo de propiedades"></property>
+        <property name="PROPERTIES_ERROR_CONTENT"   value="Hubo un error al cargar un archivo de propiedades"></property>
+
+        
+        <!-- FILE TOOLBAR TOOLTIPS -->
+        <property name="NEW_BUTTON_TOOLTIP"         value="
+Nuevo logotipo"></property>
+        <property name="LOAD_BUTTON_TOOLTIP"        value="Cargar Logo"></property>
+        <property name="CLOSE_BUTTON_TOOLTIP"       value="Cerrar el espacio de trabajo del logotipo"></property>
+        <property name="SAVE_BUTTON_TOOLTIP"        value="Guardar logotipo"></property>
+        <property name="EXPORT_BUTTON_TOOLTIP"      value="
+Logotipo de exportación"></property>
+        <property name="EXIT_BUTTON_TOOLTIP"        value="Salida"></property>
+
+        <!-- CLIPBOARD TOOLBAR TOOLTIPS -->
+        <property name="CUT_BUTTON_TOOLTIP"         value="Cortar"></property>
+        <property name="COPY_BUTTON_TOOLTIP"        value="Dupdo"></property>
+        <property name="PASTE_BUTTON_TOOLTIP"       value="Pegar"></property>
+
+        <!-- UNDO TOOLBAR TOOLTIPS -->
+        <property name="UNDO_BUTTON_TOOLTIP"        value="
+Deshacer"></property>
+        <property name="REDO_BUTTON_TOOLTIP"        value="
+Rehacer"></property>
+        
+
+        <!-- HELP TOOLBAR TOOLTIPS -->
+        <property name="HELP_BUTTON_TOOLTIP"        value="
+Ayuda"></property>
+        <property name="LANGUAGE_BUTTON_TOOLTIP"    value="
+Cambiar idioma"></property>
+        <property name="ABOUT_BUTTON_TOOLTIP"       value="Acerca de"></property>
+
+        <!-- NEW FEEDBACK DIALOGS -->	
+        <property name="NEW_SUCCESS_TITLE"      value="
+Nuevo completo"></property>
+        <property name="NEW_SUCCESS_CONTENT"	value="Trabajo creado pero aún no guardado"></property>
+        <property name="NEW_ERROR_TITLE"        value="
+Advertencia: error"></property>
+        <property name="NEW_ERROR_CONTENT"      value="
+Se produjo un error al crear un nuevo trabajo."></property>
+
+        <!-- LOAD FEEDBACK DIALOGS -->
+        <property name="LOAD_WORK_TITLE"        value="
+Cargar trabajo"></property>
+        <property name="LOAD_SUCCESS_TITLE"     value="
+Carga completa"></property>
+        <property name="LOAD_SUCCESS_CONTENT"   value="El archivo se cargó con éxito y ahora se puede editar
+."></property>
+        <property name="LOAD_ERROR_TITLE"       value="Error de carga
+"></property>        
+        <property name="LOAD_ERROR_CONTENT"     value="
+Cargando ha fallado Probablemente haya un problema de File Formatting."></property>
+
+        <!-- SAVE FEEDBACK DIALOGS -->
+        <property name="SAVE_WORK_TITLE"        value="Ahorre trabajo
+"></property>
+        <property name="SAVE_SUCCESS_TITLE"     value="
+Guardar completo"></property>
+        <property name="SAVE_SUCCESS_CONTENT"   value="
+El archivo está guardado."></property>
+        <property name="SAVE_ERROR_TITLE"       value="Guardar error
+"></property>
+        <property name="SAVE_ERROR_CONTENT"     value="
+El ahorro ha fallado. Probablemente debido a un problema de acceso a archivos."></property>
+        <property name="SAVE_VERIFY_TITLE"	value="Guarde el trabajo no guardado?"></property>
+        <property name="SAVE_VERIFY_CONTENT"	value="
+¿Le gustaría guardar primero su trabajo no guardado??"></property>
+
+        <!-- ABOUT DIALOG -->
+        <property name="ABOUT_TITLE"            value="Acerca de goLogoLo"></property>
+        <property name="ABOUT_CONTENT"          value="
+goLogoLo, la aplicación de edición de logotipos"></property>
+
+
+        
+        <!-- ENGLISH LANGUAGE SETTINGS SPECIFICALLY FOR goLogoLo CONTROLS -->
+        
+        <!-- LANGUAGE-DEPENDENT TEXT FOR WORKSPACE CONTROLS -->
+        <property name="GOLOGOLO_BORDER_THICKNESS_LABEL_TEXT"       value="Grosor del borde
+:"></property>
+        <property name="GOLOGOLO_BORDER_COLOR_LABEL_TEXT"       value="Color del borde:"></property>
+        <property name="GOLOGOLO_BORDER_RADIUS_LABEL_TEXT"       value="Radio de la frontera:"></property>
+        
+        <property name="GOLOGOLO_COLOR_GRADIENT_LABEL_TEXT"       value="   
+Gradiente de color   "></property>
+        <property name="GOLOGOLO_FOCUS_ANGLE_LABEL_TEXT"       value="
+Ángulo de enfoque:"></property>
+        <property name="GOLOGOLO_FOCUS_DISTANCE_LABEL_TEXT"       value="Distancia de enfoque:"></property>
+        <property name="GOLOGOLO_CENTER_X_LABEL_TEXT"       value="Centro x
+:"></property>
+        <property name="GOLOGOLO_CENTER_Y_LABEL_TEXT"       value="
+Centro Y:"></property>
+        <property name="GOLOGOLO_RADIUS_LABEL_TEXT"           value="Radio:"></property>       
+        <property name="GOLOGOLO_CYCLE_METHOD_LABEL_TEXT"       value="
+Método de ciclo:"></property>
+        <property name="GOLOGOLO_STOP_0_COLOR_LABEL_TEXT"       value="Detener 0 Color:"></property>
+        <property name="GOLOGOLO_STOP_1_COLOR_LABEL_TEXT"       value="Detener 1 color:"></property>
+         <property name="TOGGLE_SNAP_LABEL_TEXT"       value="
+Chasquido"></property>
+        
+        <property name="GOLOGOLO_ORDER_COLUMN_TEXT"       value="Orden
+"></property>
+        <property name="GOLOGOLO_NAME_COLUMN_TEXT"    value="Nombre"></property>
+        <property name="GOLOGOLO_TYPE_COLUMN_TEXT"     value="Tipo
+"></property>
+        
+        <!--NAVIGATION BAR RESIZE TEXTS -->
+        <property name="GOLOGOLO_CHANGE_LOGO_DIMENSIONS_LABEL_TEXT"     value="Cambiar las dimensiones del logotipo
+"></property>
+        <property name="GOLOGOLO_HEIGHT_LABEL_TEXT"     value="Altura:"></property>
+        <property name="GOLOGOLO_WIDTH_LABEL_TEXT"     value="Anchura
+:"></property>
+       
+        <!-- LANGUAGE-DEPENDENT TEXT FOR ITEM DIALOG CONTROLS -->
+      
+        <!-- TO SWITCH BACK TO ANOTHER LANGUAGE -->
+        <property name="LANGUAGE_DIALOG_TITLE"          value="Anchura
+"></property>
+        <property name="LANGUAGE_DIALOG_HEADER_TEXT"    value="Elija un idioma
+"></property>
+        <property name="LANGUAGE_DIALOG_CONTENT_TEXT"   value="
+Seleccione un idioma para la interfaz de usuario."></property>
+
+        <property name="WORK_FILE_EXT"          value="goLogoLo"></property>
+	<property name="WORK_FILE_EXT_DESC"     value="goLogoLo Editor Files"></property>
+
+    </property_list>
+    
+    <!-- LOGO COMBO BOX CHOICES -->
+    <property_options_list>
+        <property_options name="LANGUAGE_OPTIONS">
+            <option>Spanish</option> 
+            <option>English</option>
+              <option>Korean</option>   
+        </property_options>
+    </property_options_list>
+</properties>

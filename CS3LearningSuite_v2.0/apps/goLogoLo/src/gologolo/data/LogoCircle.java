@@ -98,6 +98,37 @@ public class LogoCircle extends Circle implements Cloneable {
        
     }
 
+    public LogoCircle(double radius, Paint stroke, double centerX, double centerY, double strokeWidth, double focusAngle, double focusDistance, double gradientCenterX, double gradientCenterY, double gradientRadius, CycleMethod cycleMethod, Stop stop0, Stop stop1) {
+        this.setRadius(radius);
+
+        this.setStroke(stroke);
+        this.setCenterX(centerX);
+        this.setCenterY(centerY);
+        this.setStrokeWidth(strokeWidth);
+        borderThickness=strokeWidth;
+        borderColor=(Color) stroke;
+        color="WHITE";
+        name="DEFAULT";
+        type="Circle";
+        this.radius=radius;
+        order=0;
+        xCenterCoordinate=centerX;
+        yCenterCoordinate=centerY;
+        
+        
+        this.focusAngle=focusAngle;
+        this.focusDistance= focusDistance;
+        this.gradientCenterX=gradientCenterX;
+        this.gradientCenterY=gradientCenterY;
+        this.gradientRadius=gradientRadius;
+        proportional=true;
+        this.cycleMethod=cycleMethod;
+        this.stop0=stop0;
+        this.stop1=stop1;
+        gradient=new RadialGradient(focusAngle,focusDistance,gradientCenterX,gradientCenterY,gradientRadius,proportional,cycleMethod,stop0,stop1);
+        this.setFill(gradient);   
+    }
+
     public double getCircleBorderThickness() {
         return borderThickness;
     }
@@ -124,6 +155,14 @@ public class LogoCircle extends Circle implements Cloneable {
 
     public RadialGradient getGradient() {
         return gradient;
+    }
+
+    public double getCircleRadius() {
+        return radius;
+    }
+
+    public void setCircleRadius(double radius) {
+        this.radius = radius;
     }
 
     public void setGradient(RadialGradient gradient) {
@@ -187,13 +226,6 @@ public class LogoCircle extends Circle implements Cloneable {
     }
        
 
-    public double getCircleRadius() {
-        return this.getRadius();
-    }
-
-    public void setCircleRadius(double radius) {
-        this.setRadius(radius);
-    }
 
     public String getColor() {
         return this.getFill().toString();
@@ -251,6 +283,8 @@ public class LogoCircle extends Circle implements Cloneable {
         this.order = order;
     }
     
-       
+      public Object clone() {
+         return new LogoCircle(getRadius(),this.getStroke(),this.getCenterX(),this.getCenterY(),this.getStrokeWidth(),getFocusAngle(),getFocusDistance(),getGradientCenterX(),getGradientCenterY(),getGradientRadius(),getCycleMethod(),getStop0(),getStop1());
+      }
        
 }

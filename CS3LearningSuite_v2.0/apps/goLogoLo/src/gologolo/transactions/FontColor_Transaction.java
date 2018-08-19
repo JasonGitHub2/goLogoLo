@@ -9,7 +9,8 @@ import gologolo.GoLogoLo;
 import gologolo.data.LogoData;
 import gologolo.data.LogoPrototype;
 import gologolo.data.LogoText;
-import static gologolo.goLogoLoPropertyType.FONT_COLOR_PICKER;
+import static gologolo.goLogoLoPropertyType.FONT_COLOR_PICKER_BUTTON;
+
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import jtps.jTPS_Transaction;
@@ -34,7 +35,7 @@ public class FontColor_Transaction  implements jTPS_Transaction{
         selected=selectedItem;
         app=initApp;
         newColor=color;
-        fontColor=(ColorPicker)data.getApp().getGUIModule().getGUINode(FONT_COLOR_PICKER);
+        fontColor=(ColorPicker)data.getApp().getGUIModule().getGUINode(FONT_COLOR_PICKER_BUTTON);
         int index=data.getItemIndex(selected);
         text=(LogoText) data.getEditComponents().get(index);
     }

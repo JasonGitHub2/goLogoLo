@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
  *
  * @author jasoncao
  */
-public class LogoImage extends ImageView{
+public class LogoImage extends ImageView implements Cloneable{
    ImageView imageView;
     double width;
     double height;
@@ -42,6 +42,16 @@ public class LogoImage extends ImageView{
         name=imageName;
         type="Image";
  
+    }
+
+    private LogoImage(ImageView imageView, double xCoordinate, double yCoordinate) {
+         this.imageView=imageView;
+        imageView.setX(xCoordinate);
+        imageView.setY(yCoordinate);
+        
+        name="DEFAULT";
+        type="Image";
+        order=0;
     }
 
     public ImageView getImageView() {
@@ -84,7 +94,9 @@ public class LogoImage extends ImageView{
         this.type = type;
     }
 
-   
-    
+  
+    public Object clone() {
+         return new LogoImage(getImageView(),imageView.getX(),imageView.getY());
+     }
     
 }

@@ -1,0 +1,55 @@
+
+{
+    "table data":[
+        {
+            "name":"DEFAULT",
+            "type":"Rectangle",
+            "rectangle border color":"0xb34d1aff",
+            "rectangle rectangle height":150.0,
+            "rectangle rectangle width":300.0,
+            "rectangle rectangle Stop 0":"0x996699ff",
+            "rectangle rectangle Stop 1":"0xe699b3ff",
+            "rectangle rectangle focus angle":2.0,
+            "rectangle rectangle focus distance":3.0,
+            "rectangle rectangle center x":2.0,
+            "rectangle rectangle center y":3.0,
+            "rectangle rectangle radius":2.0,
+            "rectangle rectangle cycle method":"REFLECT",
+            "rectangle rectangle stroke width":10.0,
+            "rectangle rectangle arc height":70.0,
+            "rectangle rectangle arc width":70.0,
+            "rectangle x coordinate":250.0,
+            "rectangle y coordinate":300.0
+        },
+        {
+            "name":"a",
+            "type":"Text",
+            "text":"a",
+            "text text input":"a",
+            "text font is italicized":false,
+            "text font is bold":false,
+            "text font color":"0x000000ff",
+            "text font size":24.0,
+            "text font name":"Times New Roman",
+            "text x coordinate":200.0,
+            "text y coordinate":200.0
+        },
+        {
+            "name":"DEFAULT",
+            "type":"Circle",
+            "circle x coordinate":250.0,
+            "circle y coordinate":350.0,
+            "circle radius":80.0,
+            "circle border color":"0x4d66ccff",
+            "circle border width":9.0,
+            "circle focus angle":3.0,
+            "circle focus distance":2.0,
+            "circle gradient x":1.0,
+            "circle gradient y":2.0,
+            "circle gradient radius":1.0,
+            "circle cycle method":"REPEAT",
+            "circle stop 0":"0xcc8033ff",
+            "circle stop 1":"0xe699b3ff"
+        }
+    ]
+}

@@ -100,6 +100,44 @@ public class LogoRectangle extends Rectangle implements Cloneable
        
     }
 
+       
+       
+    public LogoRectangle(double width, double height, Color borderColor, double x, double y, Stop stop1, Stop stop2, Double focusAngle, Double focusDistance, Double centerX, Double centerY, Double radius, boolean proportion, CycleMethod cycleMethod, double strokeWidth, double arcHeight, double arcWidth,Paint strokeColor) {
+        this.setWidth(width);
+        this.setHeight(height);
+        this.arcHeight=arcHeight;
+        this.setArcHeight(arcHeight);
+         this.setArcWidth(arcWidth);
+        this.arcWidth=arcWidth;
+        this.setStroke(strokeColor);
+        this.setY(x);
+        this.setX(y);
+        this.focusAngle=focusAngle;
+        this.focusDistance= focusDistance;
+        this.centerX=centerX;
+        this.centerY=centerY;
+        this.radius=radius;
+        proportional=true;
+        this.setStrokeWidth(strokeWidth);
+        this.strokeWidth=strokeWidth;
+        this.cycleMethod=cycleMethod;
+ 
+        borderColor=(Color) strokeColor;
+        color=borderColor.toString();
+        
+        type="Rectangle";
+        order=0;
+        this.stop1=stop1;
+        this.stop2=stop2;
+        gradient=new RadialGradient(focusAngle,focusDistance,centerX,centerY,radius,proportional,cycleMethod,stop1,stop2);
+      
+    
+        this.setFill(gradient);    
+ 
+        
+        
+    }
+
     public double getRectangleArcHeight() {
         return arcHeight;
     }
@@ -293,15 +331,22 @@ public class LogoRectangle extends Rectangle implements Cloneable
                 return borderColor;
     }
     
-    
-    public Object clone() {
+   
+    public LogoRectangle clone() {
        
              return new LogoRectangle(   this.getWidth()
                                         ,this.getHeight()
-                                        ,this.getFill()
-                                        ,this.getStroke()
-                                         ,this.getX()
-                                         ,this.getY()); 
+                                        ,getBorderColor()
+                                        ,this.getX()
+                                        ,this.getY()
+                                       
+                                        ,getStop1()
+                                           ,getStop2()
+                                           ,getFocusAngle(),
+                                           getFocusDistance(),
+                                           getCenterX(),
+                     getCenterY(),getRadius(),getProportion(),getCycleMethod(),getStrokeWidth(),getArcHeight(),getArcWidth(),this.getStroke());
+                                        
                                       
      }
 }

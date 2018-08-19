@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file provides all the text to be used when the application
+    is to be displayed in English.
+-->
+<properties>
+    <property_list>
+
+        <!--SPANISH LANGUAGE SETTINGS GOLOGOLO CONTROLS -->
+          <property name="RESET_BUTTON_TOOLTIP"        value="다시 놓기
+"></property>
+            <property name="ZOOM_IN_BUTTON_TOOLTIP"        value="확대"></property>
+            <property name="ZOOM_OUT_BUTTON_TOOLTIP"        value="축소
+"></property>
+             <property name="TOGGLE_BUTTON_OFF_TOOLTIP"        value="스냅 토글"></property>
+             <property name="RESIZE_BUTTON_TOOLTIP"        value="크기 조정
+"></property>
+              <property name="MOVE_UP_BUTTON_TOOLTIP"        value="구성 요소 위로 이동
+"></property>
+               <property name="MOVE_DOWN_BUTTON_TOOLTIP"        value="구성 요소 아래로 이동
+"></property>
+                <property name="RENAME_BUTTON_TOOLTIP"        value="이름 바꾸기
+"></property>
+                 <property name="ADD_TEXT_BUTTON_TOOLTIP"        value="텍스트 추가
+"></property>
+                  <property name="ADD_IMAGE_BUTTON_TOOLTIP"        value="이미지 추가
+"></property>
+                   <property name="ADD_RECTANGLE_BUTTON_TOOLTIP"        value="직사각형 추가
+"></property>
+                    <property name="ADD_CIRCLE_BUTTON_TOOLTIP"        value="직사각형 추가
+"></property>
+                     <property name="ADD_TRIANGLE_BUTTON_TOOLTIP"        value="삼각형 추가
+"></property>
+                      <property name="DELETE_BUTTON_TOOLTIP"        value="구성 요소 삭제
+"></property>
+                       <property name="BOLD_BUTTON_TOOLTIP"        value="굵은 텍스트
+"></property>
+                        <property name="ITALICIZE_BUTTON_TOOLTIP"        value="기울임 꼴 텍스트
+"></property>
+                         <property name="INCREASE_TEXT_BUTTON_TOOLTIP"        value="글꼴 높이기
+"></property>
+                          <property name="DECREASE_TEXT_BUTTON_TOOLTIP"        value="글꼴 감소
+"></property>
+                           <property name="FONT_COLOR_PICKER_BUTTON_TOOLTIP"        value="글꼴 색상 변경
+"></property>
+              
+        
+         <property name="LOGO_HEIGHT_LABEL_TEXT"           value="신장
+:"></property>
+          <property name="LOGO_WIDTH_LABEL_TEXT"           value="폭:"></property>
+           <property name="LOGO_RESIZE_OK_LABEL_TEXT"           value="Ok"></property>
+            <property name="LOGO_RESIZE_CANCEL_LABEL_TEXT"           value="취소
+"></property>
+            
+        
+         <property name="LOGO_DIALOG_RENAME_HEADER_TEXT"           value="구성 요소 이름 바꾸기
+"></property>
+                <property name="LOGO_CHANGE_NAME_LABEL_TEXT"            value="이름을 바꿔라
+:"></property>
+         <property name="LOGO_EDIT_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+              <property name="LOGO_EDIT_DIALOG_CANCEL_BUTTON_TEXT"            value="취소
+"></property>
+         <property name="LOGO_EDIT_TEXT_LABEL_TEXT"               value="텍스트 편집
+:"></property>  
+           <property name="LOGO_ADD_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+              <property name="LOGO_ADD_DIALOG_CANCEL_BUTTON_TEXT"            value="취소
+"></property>
+         <property name="LOGO_DIALOG_OK_BUTTON_TEXT"            value="OK"></property>
+        <property name="LOGO_DIALOG_CANCEL_BUTTON_TEXT"        value="취소"></property>       
+
+         <property name="LOGO_TEXT_LABEL_TEXT"               value="텍스트 추가
+:"></property>  
+        <property name="LOGO_DIALOG_HEADER_TEXT"               value="로고 구성 요소 추가
+"></property>
+        <property name="LOGO_NAME_LABEL_TEXT"               value="이름
+:"></property>   
+        <property name="LOGO_ADD_DIALOG_NAME_LABEL_TEXT"               value="이름
+:"></property>   
+        <property name="LOGO_DIALOG_ADD_HEADER_TEXT"           value="구성 요소 추가
+"></property>
+        <property name="CHANGE_DIMENSION_LABEL_TEXT"   value="로고 치수 변경
+"></property>
+        <!-- WELCOME DIALOG TEXT -->
+        <property name="WELCOME_DIALOG_TITLE"               value="goLogoLo 편집기에 오신 것을 환영합니다.
+"></property>
+        <property name="WELCOME_DIALOG_RECENT_WORK_LABEL"   value="최근 일
+"></property>
+        <property name="WELCOME_DIALOG_NEW_BUTTON_TEXT"  value="새 로고 만들기
+"></property>
+
+        <!-- GENERIC APP ERROR MESSAGES -->
+        <property name="APP_ERROR_TITLE"            value="응용 프로그램 오류
+"></property>
+        <property name="APP_ERROR_CONTENT"          value="응용 프로그램에서 오류가 발생했습니다.
+"></property>
+
+        <!-- PROPERTIES ERROR MESSAGES -->
+        <property name="PROPERTIES_ERROR_TITLE"     value="속성 파일 오류
+"></property>
+        <property name="PROPERTIES_ERROR_CONTENT"   value="속성 파일을로드하는 중 오류가 발생했습니다.
+"></property>
+
+        
+        <!-- FILE TOOLBAR TOOLTIPS -->
+        <property name="NEW_BUTTON_TOOLTIP"         value="새로운 로고
+"></property>
+        <property name="LOAD_BUTTON_TOOLTIP"        value="로고로드"></property>
+        <property name="CLOSE_BUTTON_TOOLTIP"       value="로고 닫기 작업 공간
+"></property>
+        <property name="SAVE_BUTTON_TOOLTIP"        value="로고 저장
+"></property>
+        <property name="EXPORT_BUTTON_TOOLTIP"      value="로고 내보내기
+"></property>
+        <property name="EXIT_BUTTON_TOOLTIP"        value="출구
+"></property>
+
+        <!-- CLIPBOARD TOOLBAR TOOLTIPS -->
+        <property name="CUT_BUTTON_TOOLTIP"         value="절단
+"></property>
+        <property name="COPY_BUTTON_TOOLTIP"        value="부
+"></property>
+        <property name="PASTE_BUTTON_TOOLTIP"       value="풀
+"></property>
+
+        <!-- UNDO TOOLBAR TOOLTIPS -->
+        <property name="UNDO_BUTTON_TOOLTIP"        value="끄르다
+"></property>
+        <property name="REDO_BUTTON_TOOLTIP"        value="다시 하다
+"></property>
+        
+
+        <!-- HELP TOOLBAR TOOLTIPS -->
+        <property name="HELP_BUTTON_TOOLTIP"        value="도움
+"></property>
+        <property name="LANGUAGE_BUTTON_TOOLTIP"    value="언어 변경
+"></property>
+        <property name="ABOUT_BUTTON_TOOLTIP"       value="약
+"></property>
+
+        <!-- NEW FEEDBACK DIALOGS -->	
+        <property name="NEW_SUCCESS_TITLE"      value="새로운 완료
+"></property>
+        <property name="NEW_SUCCESS_CONTENT"	value="생성되었지만 아직 저장되지 않은 작업
+"></property>
+        <property name="NEW_ERROR_TITLE"        value="경고 : 오류
+"></property>
+        <property name="NEW_ERROR_CONTENT"      value="새 작업을 만드는 동안 오류가 발생했습니다.
+."></property>
+
+        <!-- LOAD FEEDBACK DIALOGS -->
+        <property name="LOAD_WORK_TITLE"        value="작업로드
+"></property>
+        <property name="LOAD_SUCCESS_TITLE"     value="로드 완료
+"></property>
+        <property name="LOAD_SUCCESS_CONTENT"   value="파일이 성공적으로로드되었으며 이제 편집 할 수 있습니다.
+"></property>
+        <property name="LOAD_ERROR_TITLE"       value="로딩 오류
+"></property>        
+        <property name="LOAD_ERROR_CONTENT"     value="로드가 실패했습니다. 파일 형성 문제가있는 것 같습니다.
+"></property>
+
+        <!-- SAVE FEEDBACK DIALOGS -->
+        <property name="SAVE_WORK_TITLE"        value="작업 저장
+"></property>
+        <property name="SAVE_SUCCESS_TITLE"     value="저장 완료
+"></property>
+        <property name="SAVE_SUCCESS_CONTENT"   value="파일이 저장되었습니다.
+."></property>
+        <property name="SAVE_ERROR_TITLE"       value="오류 저장
+"></property>
+        <property name="SAVE_ERROR_CONTENT"     value="저장하지 못했습니다. 파일 액세스 문제로 인한 것 같습니다.."></property>
+        <property name="SAVE_VERIFY_TITLE"	value="저장되지 않은 작업 저장
+?"></property>
+        <property name="SAVE_VERIFY_CONTENT"	value="저장되지 않은 작업을 먼저 저장 하시겠습니까?
+?"></property>
+
+        <!-- ABOUT DIALOG -->
+        <property name="ABOUT_TITLE"            value="goLogoLo 정보
+
+"></property>
+        <property name="ABOUT_CONTENT"          value="goLogoLo, 로고 편집 응용 프로그램
+"></property>
+
+
+        
+        <!-- ENGLISH LANGUAGE SETTINGS SPECIFICALLY FOR goLogoLo CONTROLS -->
+        
+        <!-- LANGUAGE-DEPENDENT TEXT FOR WORKSPACE CONTROLS -->
+        <property name="GOLOGOLO_BORDER_THICKNESS_LABEL_TEXT"       value="테두리 두께
+:"></property>
+        <property name="GOLOGOLO_BORDER_COLOR_LABEL_TEXT"       value="테두리 색
+:"></property>
+        <property name="GOLOGOLO_BORDER_RADIUS_LABEL_TEXT"       value="테두리 반지름
+:"></property>
+        
+        <property name="GOLOGOLO_COLOR_GRADIENT_LABEL_TEXT"       value="색상 그라디언트
+"></property>
+        <property name="GOLOGOLO_FOCUS_ANGLE_LABEL_TEXT"       value="초점 각 :
+"></property>
+        <property name="GOLOGOLO_FOCUS_DISTANCE_LABEL_TEXT"       value="초점 거리
+:"></property>
+        <property name="GOLOGOLO_CENTER_X_LABEL_TEXT"       value="센터 x
+:"></property>
+        <property name="GOLOGOLO_CENTER_Y_LABEL_TEXT"       value="센터 y
+:"></property>
+        <property name="GOLOGOLO_RADIUS_LABEL_TEXT"           value="반지름
+:"></property>       
+        <property name="GOLOGOLO_CYCLE_METHOD_LABEL_TEXT"       value="사이클 방법
+:"></property>
+        <property name="GOLOGOLO_STOP_0_COLOR_LABEL_TEXT"       value="0 색 중지
+:"></property>
+        <property name="GOLOGOLO_STOP_1_COLOR_LABEL_TEXT"       value="1 색 중지
+:"></property>
+         <property name="TOGGLE_SNAP_LABEL_TEXT"       value="스냅
+"></property>
+        
+        <property name="GOLOGOLO_ORDER_COLUMN_TEXT"       value="주문
+"></property>
+        <property name="GOLOGOLO_NAME_COLUMN_TEXT"    value="이름"></property>
+        <property name="GOLOGOLO_TYPE_COLUMN_TEXT"     value="유형
+"></property>
+        
+        <!--NAVIGATION BAR RESIZE TEXTS -->
+        <property name="GOLOGOLO_CHANGE_LOGO_DIMENSIONS_LABEL_TEXT"     value="로고 치수 변경
+"></property>
+        <property name="GOLOGOLO_HEIGHT_LABEL_TEXT"     value="신장
+:"></property>
+        <property name="GOLOGOLO_WIDTH_LABEL_TEXT"     value="폭
+:"></property>
+       
+        <!-- LANGUAGE-DEPENDENT TEXT FOR ITEM DIALOG CONTROLS -->
+      
+        <!-- TO SWITCH BACK TO ANOTHER LANGUAGE -->
+        <property name="LANGUAGE_DIALOG_TITLE"          value="
+앱 언어 선택"></property>
+        <property name="LANGUAGE_DIALOG_HEADER_TEXT"    value="언어 선택
+"></property>
+        <property name="LANGUAGE_DIALOG_CONTENT_TEXT"   value="사용자 인터페이스의 언어 선택
+."></property>
+
+        <property name="WORK_FILE_EXT"          value="goLogoLo"></property>
+	<property name="WORK_FILE_EXT_DESC"     value="goLogoLo 편집기 파일
+"></property>
+
+    </property_list>
+    
+    <!-- LOGO COMBO BOX CHOICES -->
+    <property_options_list>
+        <property_options name="LANGUAGE_OPTIONS">
+            <option>Spanish</option> 
+            <option>English</option>
+              <option>Korean</option>   
+        </property_options>
+    </property_options_list>
+</properties>
